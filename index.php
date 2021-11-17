@@ -11,6 +11,9 @@ switch($urlpaths[1]) {
     case '/':
         require __DIR__ . '/webpage/index.php';
         break;
+    case 'profiel':
+        require __DIR__ . '/webpage/profiel.php';
+        break;
     case '':
         require __DIR__ . '/webpage/index.php';
         break;
