@@ -1,8 +1,6 @@
 <?php
 $source = $_SERVER['DOCUMENT_ROOT'];
 $dir = $source.'/classes/';
-$ext = ".php";
-$file = 'people.txt';
 $items = [];
 foreach(scandir($dir) as $item){
     if (!($item == '.')) {

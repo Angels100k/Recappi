@@ -2,10 +2,19 @@
 
 class Dbconfig {
     // personal sql server in XAMMP
-    private $host = "";
-    private $username = "root";
+    private $host;
+    private $username ;
     private $password;
+    private $dbname;
     public $conn;
+
+    // __construct is used on startup when the class is being called
+    public function __construct($host, $username, $password, $dbname) {
+        $this->host = $host;
+        $this->username  = $username;
+        $this->password = $password;
+        $this->dbname = $dbname;
+      }
 
     // Public function to start the database connection
     public function getConnection() {
@@ -15,7 +24,7 @@ class Dbconfig {
         // try so if fails we can see what goes wrong
         try{
             // this connection variable start a PDO connection with the sql server
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=recappi", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=".$this->dbname, $this->username, $this->password);
         // If there is an error it gets catched 
         }catch(PDOException $exception){
             // echo what is wrong with the connection

@@ -2,17 +2,20 @@
 session_start(); 
 $_SESSION["id"] = 0;
 
+
 require (__DIR__ ."/includes/classloader.php");
+
+(new EnvReader(__DIR__ . '/.env'))->load();
 
 $source = $_SERVER['DOCUMENT_ROOT'];
 $dir = $source.'/elements/';
-
 require($dir."elmentfunctions.php");
 
-$database = new Dbconfig();
+$database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
 $db = $database->getConnection();
 $sqlQuery = new Sql($db); 
 $databases;
+
 
 $request = $_SERVER['REQUEST_URI'];
 //var_dump($request);
