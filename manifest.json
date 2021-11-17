@@ -1,0 +1,9 @@
+{
+    "name": "Recappi",
+    "short_name": "Recappi",
+    "lang": "en-US",
+    "start_url": "/index",
+    "display": "standalone",
+    "background_color": "red",
+    "theme_color": "white"
+  }
