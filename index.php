@@ -1,6 +1,14 @@
 <?php
 session_start(); 
-include_once (__DIR__ ."/includes/classloader.php");
+$_SESSION["id"] = 0;
+
+require (__DIR__ ."/includes/classloader.php");
+
+
+$database = new Dbconfig();
+$db = $database->getConnection();
+$sqlQuery = new Sql($db); 
+$databases;
 
 $request = $_SERVER['REQUEST_URI'];
 //var_dump($request);
@@ -25,6 +33,9 @@ switch($urlpaths[1]) {
         break;
     case 'register':
         require __DIR__ . '/webpage/register.php';
+        break;
+    case 'test':
+        require __DIR__ . '/webpage/create_profile.php';
         break;
     default:
         require __DIR__ . '/webpage/404.php';

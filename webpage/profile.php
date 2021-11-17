@@ -1,3 +1,22 @@
+<?php
+
+$x=0;
+$y=0;
+$url = $urlpaths[2] ?? "";
+$email = "";
+$image = "";
+if($url != ""){
+    $x = 1;
+        $stmt = $sqlQuery->getprofile($url);
+    while($row = $stmt->fetch()){
+        $email = $row['email'];
+        $image = $row['image'];
+        $y++;
+    }
+}else {
+    $x = 0;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +26,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hallloooo <?= $urlpaths[2] ?></h1>
+    <?php 
+        if($y === 1){?>
+        <img src="<?= "/assets/img/" .$image;?>" width="300" height="300" style="">
+        <h1>Hallloooo <?=$email;?> </h1> 
+
+        <?php }else {?>
+            <h1>profile not found</h1>
+        <?php }?>
+    
 </body>
 </html>

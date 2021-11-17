@@ -1,14 +1,18 @@
 <?php
-spl_autoload_register(function ($className) {
-    $source = $_SERVER['DOCUMENT_ROOT'];
-    $dirs = [
-        $source.'classes/'
-    ];
-    $ext = ".php";
-
-    foreach ($dirs as $directory) {
-        if (file_exists($directory.$className.$ext)) {
-            require ($directory.$className.$ext);
+$source = $_SERVER['DOCUMENT_ROOT'];
+$dir = $source.'/classes/';
+$ext = ".php";
+$file = 'people.txt';
+$items = [];
+foreach(scandir($dir) as $item){
+    if (!($item == '.')) {
+        if (!($item == '..')) {
+            if(in_array($item, $items)){} else {
+                array_push($items, $item);
+            }
         }
     }
-});
+}
+foreach($items as $item){
+    require ($dir.$item);
+}
