@@ -11,6 +11,7 @@ if($url != ""){
     while($row = $stmt->fetch()){
         $email = $row['email'];
         $image = $row['image'];
+        $type = $row['imgtype'];
         $y++;
     }
 }else {
@@ -23,12 +24,18 @@ if($url != ""){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recappi | Profile of <?=$url?></title>
+    <meta name="twitter:label1" content="Person">
+    <meta name="twitter:data1" content="<?=$url?>">
+    
+    <meta name="twitter:label2" content="Amount posts">
+    <meta name="twitter:data2" content="943">
 </head>
 <body>
     <?php 
-        if($y === 1){?>
-        <img src="<?= "/assets/img/" .$image;?>" width="300" height="300" style="">
+        if($y === 1){
+            echo dd_img($image, $type, '300px', 'object-fit:cover;');
+            ?>
         <h1>Hallloooo <?=$email;?> </h1> 
 
         <?php }else {?>

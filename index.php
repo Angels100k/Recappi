@@ -4,6 +4,10 @@ $_SESSION["id"] = 0;
 
 require (__DIR__ ."/includes/classloader.php");
 
+$source = $_SERVER['DOCUMENT_ROOT'];
+$dir = $source.'/elements/';
+
+require($dir."elmentfunctions.php");
 
 $database = new Dbconfig();
 $db = $database->getConnection();

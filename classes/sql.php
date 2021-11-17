@@ -10,7 +10,7 @@ class Sql {
     }
 
     public function getprofile($user){
-      $stmt = $this->conn->prepare("SELECT `email`, `image` FROM `user` WHERE `Name` = ?");
+      $stmt = $this->conn->prepare("SELECT `email`, `image`, `imgtype` FROM `user` WHERE `Name` = ?");
       $stmt->execute([$user]); 
       return $stmt;
     }
