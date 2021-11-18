@@ -14,19 +14,19 @@
             max-width: 500px;
         }
         .w3-animate-left {
+            left: -500px;
             position: relative;
-            animation: animateleft 2.5s
+            animation: animateleft 5s
         }
         @keyframes animateleft {
             0%   {left: -500px;}
-            40%  {left: 0;}
+            30%  {left: 0;}
             50%  {left: 0;}
             70%  {left: 0;}
             100% {left: 500px;}
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <a class="mySlides w3-animate-left" style="width:100%">Create your own social cookbook</a>
@@ -53,7 +53,7 @@
             myIndex = 1
         }
         x[myIndex - 1].style.display = "block";
-        setTimeout(carousel, 2500);
+        setTimeout(carousel, 5000);
     }
 </script>
 
