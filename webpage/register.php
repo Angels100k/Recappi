@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?=dd_head("error")?>
-
+<?=dd_head("Register")?>
+    
 </head>
 <body>
-    page you're looking for is not here
+    
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+$style = '<link rel="stylesheet" href="./assets/css/main.css">';
+?>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?=dd_head("homepage", $style)?>
     <style>
         .container {
             margin: 0 auto;
@@ -27,17 +26,26 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color:<?=getenv("COLOR_PRIMARY")?>">
+<!-- start top side -->
+    <div class="bg-white home-top" style="margin-bottom: 53.5px;">
+        <div class="d-flex jc-center home-image">
+            <?=dd_img("Logo2", "png", "", "padding:1rem;background-color:". getenv("COLOR_PRIMARY") .";border-radius: 1.5rem;")?>
+        </div>
+    </div>
+<!-- end top side -->
+
     <div class="container">
-        <a class="mySlides w3-animate-left" style="width:100%">Create your own social cookbook</a>
-        <a class="mySlides w3-animate-left" style="width:100%">Save all your favorite recipes from different sources</a>
-        <a class="mySlides w3-animate-left" style="width:100%">Follow the cookbooks of your loved ones </a>
+            <a class="mySlides w3-animate-left txt-white" style="width:100%">Create your own social cookbook</a>
+            <a class="mySlides w3-animate-left txt-white" style="width:100%">Save all your favorite recipes from different sources</a>
+            <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your loved ones </a>
     </div>
 
-    <button>Create an account</button>
-    <a>Already have a account? Log in</a>
+    <div class="main-container">
+        <?=dd_button("Create an account", "href='/register'", "a", "button txt-black bg-white r-max w-100 bs-bb")?>
+        <?=dd_button("Already have a account? Log in", "href='/login'", "a", "txt-white")?>
+    </div>
 </body>
-
 <script>
     var myIndex = 0;
     carousel();

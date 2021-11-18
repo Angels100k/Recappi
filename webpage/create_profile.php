@@ -2,8 +2,8 @@
 
 // Image
 $dir = 'assets/img/';
-$name = "testing.png";
-$newName = 'testing.webp';
+$name = "Logo2.png";
+$newName = 'Logo2.webp';
 echo mime_content_type($dir. $name);
 // Create and save
 if(mime_content_type($dir. $name) == "image/jpeg"){

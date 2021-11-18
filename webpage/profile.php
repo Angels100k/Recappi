@@ -17,20 +17,16 @@ if($url != ""){
 }else {
     $x = 0;
 }
+$extra = '<meta name="twitter:label1" content="Person"><meta name="twitter:data1" content="'.$url.'"><meta name="twitter:label2" content="Amount posts"><meta name="twitter:data2" content="943">';
+$title = "Recappi | Profile of ".$url;
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recappi | Profile of <?=$url?></title>
-    <meta name="twitter:label1" content="Person">
-    <meta name="twitter:data1" content="<?=$url?>">
     
-    <meta name="twitter:label2" content="Amount posts">
-    <meta name="twitter:data2" content="943">
+<head>
+<?=dd_head($title, $extra)?>
 </head>
+
 <body>
     <?php 
         if($y === 1){
