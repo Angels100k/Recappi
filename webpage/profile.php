@@ -30,7 +30,7 @@ $title = "Recappi | Profile of ".$url;
 <body>
     <?php 
         if($y === 1){
-            echo dd_img($image, $type, '300px', 'object-fit:cover;');
+            echo dd_img($image, $type, '300px', '300px', 'object-fit:cover;');
             ?>
         <h1>Hallloooo <?=$email;?> </h1> 
 

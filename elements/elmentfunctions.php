@@ -1,9 +1,15 @@
 <?php
-function dd_img($image, $type, $size = '', $style = '')
+function dd_img($image, $type, $width = '', $height = '', $style = '')
 {
-    $src = "/assets/img/webp/".$image . ".webp";
-    $errsrc = "/assets/img/".$image . "." . $type;
-    return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`'.$errsrc.'`;test(`'.$image . "`,`" . $type.'`)" width="'.$size.'" height="'.$size.'" style="'.$style.'">';
+    if($type != "svg"){
+        $src = "/assets/img/webp/".$image . ".webp";
+        $errsrc = "/assets/img/".$image . "." . $type;
+        return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`'.$errsrc.'`;test(`'.$image . "`,`" . $type.'`)" width="'.$size.'" height="'.$size.'" style="'.$style.'">';
+    }
+    else {
+        $src = "/assets/img/".$image . "." . $type;
+        return '<img src="'.$src.'" width="'.$width.'" height="'.$height.'" style="'.$style.'">';
+    }
 }
 
 function dd_head($title, $extra ="")
@@ -27,7 +33,7 @@ function dd_button($text, $onclick, $type, $class = "", $style = ""){
         $button .= " class='". $class . "' ";
     }
     if($style !=""){
-        $button .= " style='". $class . "' ";
+        $button .= " style='". $style . "' ";
     }
     $button .= $onclick;
     $button .= '>';
