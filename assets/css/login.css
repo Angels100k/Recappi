@@ -1,0 +1,26 @@
+.home-top:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    background: #D5320B;
+    z-index: 1;
+    animation: sizing 1s;
+    animation-fill-mode: forwards;
+}
+.home-top .home-image{
+    z-index: 2;
+}
+
+@keyframes sizing {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

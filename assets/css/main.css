@@ -70,14 +70,17 @@ a   {
 }
 /* end background colors */
 
-/* start text colors */
+/* start text */
 .txt-black {
     color: black;
 }
 .txt-white {
     color: white;
 }
-/* end text colors */
+.text-center{
+    text-align: center;
+}
+/* end text  */
 
 /* start box size */
 .bs-bb {

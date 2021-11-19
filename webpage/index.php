@@ -30,7 +30,7 @@ $style = '<link rel="stylesheet" href="./assets/css/main.css">';
 <!-- start top side -->
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
         <div class="d-flex jc-center home-image">
-            <?=dd_img("Logo2", "png", "", "padding:1rem;background-color:". getenv("COLOR_PRIMARY") .";border-radius: 1.5rem;")?>
+            <?=dd_img("Logo-white", "png", "", "padding:1rem;background-color:". getenv("COLOR_PRIMARY") .";border-radius: 1.5rem;")?>
         </div>
     </div>
 <!-- end top side -->
@@ -41,7 +41,7 @@ $style = '<link rel="stylesheet" href="./assets/css/main.css">';
             <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your loved ones </a>
     </div>
 
-    <div class="main-container">
+    <div class="main-container text-center">
         <?=dd_button("Create an account", "href='/register'", "a", "button txt-black bg-white r-max w-100 bs-bb")?>
         <?=dd_button("Already have a account? Log in", "href='/login'", "a", "txt-white")?>
     </div>
