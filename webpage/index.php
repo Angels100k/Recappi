@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-$style = '<link rel="stylesheet" href="./assets/css/main.css">';
-?>
 <head>
-    <?=dd_head("homepage", $style)?>
+    <?=dd_head("homepage")?>
     <style>
         .container {
             margin: 0 auto;

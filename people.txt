@@ -1,2 +1,1 @@
-db.php
-sql.php
+png
