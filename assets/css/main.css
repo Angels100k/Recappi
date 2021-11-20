@@ -83,6 +83,9 @@ a   {
 .bg-white {
     background-color: white;
 }
+.bg-primary {
+    background-color: #D5320B;
+}
 /* end background colors */
 
 /* start text */
@@ -91,6 +94,9 @@ a   {
 }
 .txt-white {
     color: white;
+}
+.txt-primary {
+    color: #D5320B;
 }
 .text-center{
     text-align: center;

@@ -21,7 +21,7 @@ function dd_head($title, $extra ="")
     $html .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
     $html .= '<title>'. $title .'</title>';
     $html .= '<script src="/assets/js/index.js"></script>';
-    $html .= '<link rel="stylesheet" href="./assets/css/main.css">';
+    $html .= '<link rel="stylesheet" href="/assets/css/main.css">';
     $html .= $extra;
     
     return $html;
