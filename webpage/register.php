@@ -54,11 +54,12 @@ if($x === 0){
 
     <div class="d-flex jc-center" style="margin-top: 4rem;flex-wrap: wrap;">
         <?=dd_img("logo-red", "svg", "212px","81px", "flex:100%;")?>
-        <?=dd_field_wrapper("Create accout", "h1", "text-center f-100")?>
-        <?=dd_field_wrapper("You're just moments away from capturing and sharing your recipes", "h2", "text-center f-100")?>
     </div>
 
     <div class="main-container text-center">
+        <?=dd_field_wrapper("Create accout", "h1", "text-center f-100")?>
+        <?=dd_field_wrapper("You're just moments away from capturing and sharing your recipes", "h2", "text-center f-100")?>
+        
         <?=dd_button("Sign up", "href='/register'", "a", "button txt-white bg-primary r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;")?>
         <?=dd_button("I already have an account", "href='/login'", "a", "txt-primary", "bottom: 20px;position: absolute;left: 0;right: 0;")?>
     </div>

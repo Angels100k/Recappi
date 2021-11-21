@@ -12,9 +12,18 @@ function dd_img($image, $type, $width = '', $height = '', $style = '')
     }
 }
 
-function dd_input($text, $type = "text", $class="",$style =""){
-    $output = "";
+function dd_input($text, $name, $type = "text", $class="",$style =""){
+    $text = $text ? $text : "";
+    if ($text == "") {
+        return "";
+    }
 
+    $class_content = $class != "" ? " class='" . $class . "'" : "";
+    $style_content = $style != "" ? " style='" . $style . "'" : "";
+
+    $name_content = $name != "" ? " name='" . $name . "'": "";
+
+    $output = "<input " . $name_content . $class_content . $style_content . ">" . $text . "</input>";
 }
 
 function dd_head($title, $extra ="")
