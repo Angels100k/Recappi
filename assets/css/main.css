@@ -103,6 +103,12 @@ a   {
 }
 /* end text  */
 
+/* start flex */
+.f-100{
+    flex: 100%;
+}
+/* stop flex */
+
 /* start box size */
 .bs-bb {
     box-sizing: border-box;

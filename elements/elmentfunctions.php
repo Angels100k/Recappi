@@ -12,6 +12,11 @@ function dd_img($image, $type, $width = '', $height = '', $style = '')
     }
 }
 
+function dd_input($text, $type = "text", $class="",$style =""){
+    $output = "";
+
+}
+
 function dd_head($title, $extra ="")
 {
     $html = "";
@@ -23,8 +28,22 @@ function dd_head($title, $extra ="")
     $html .= '<script src="/assets/js/index.js"></script>';
     $html .= '<link rel="stylesheet" href="/assets/css/main.css">';
     $html .= $extra;
-    
+
     return $html;
+}
+
+function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
+{
+  $text = $text ? $text : "";
+  if ($text == "") {
+    return "";
+  }
+  $class_content = $class != "" ? " class='" . $class . "'" : "";
+  $style_content = $style != "" ? " style='" . $style . "'" : "";
+
+  $return = "<" . $el . $class_content . $style_content . ">" . $text . "</" . $el . ">";
+
+  return $return;
 }
 
 function dd_button($text, $onclick, $type, $class = "", $style = ""){
