@@ -33,13 +33,13 @@ if($url != ""){
     
 </head>
 <body <?php if($x === 0){
-    ?> style="padding: 0 16px;background-color:<?=getenv("COLOR_PRIMARY")?>"<?php }else { ?> style="padding: 0 16px; background-color:<?=getenv("COLOR_SUB")?>"<?php }?>>
+    ?> style="padding: 0 16px;background-color: var(--primary)"<?php }else { ?> style="padding: 0 16px; background-color: var(--background)"<?php }?>>
 <?php 
 if($x === 0){
     ?>
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
     <div class="d-flex jc-center home-image">
-        <?=dd_img("logo-white", "svg", "212px","81px", "padding:1rem;background-color:". getenv("COLOR_PRIMARY") .";border-radius: 1.5rem;")?>
+        <?=dd_img("logo-white", "svg", "212px","81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;")?>
     </div>
     </div>
 

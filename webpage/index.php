@@ -43,11 +43,11 @@
     </style>
 </head>
 
-<body style="background-color:<?=getenv("COLOR_PRIMARY")?>">
+<body style="background-color: var(--primary)">
     <!-- start top side -->
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
         <div class="d-flex jc-center home-image">
-            <?=dd_img("Logo-white", "svg", "212px","81px", "padding:1rem;background-color:". getenv("COLOR_PRIMARY") .";border-radius: 1.5rem;")?>
+            <?=dd_img("Logo-white", "svg", "212px","81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;")?>
         </div>
     </div>
     <!-- end top side -->
