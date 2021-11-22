@@ -1,10 +1,12 @@
 # Authenticatie 
+
 - Authenticatie Google (OAuth)
   - met PHP https://phppot.com/php/php-google-oauth-login/
 - Authenticatie Facebook (OAuth)
   - met PHP https://phppot.com/php/facebook-open-authentication-in-php/
 
 # Fonts
+
 - Montserrat: SemiBold 17px (AV 1), 14px (AV 0), 13px, 11px (AV 0)
 - Montserrat: Medium 14px (AV 0)
 - Open Sans: Bold 20px 
@@ -14,6 +16,7 @@
 - SF Pro Display: Regular
 
 # Colors
+
 - Background: #FAEFEC
 - Prim: #D5320B
 - Extra: #009070
