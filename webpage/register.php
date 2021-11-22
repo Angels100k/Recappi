@@ -17,7 +17,7 @@ if($url != ""){
             break;
         default:
             $x = 0;
-            require __DIR__ . '/404.php';
+            require $dir . '/404.php';
             header("HTTP/1.1 404 Not Found");
             break;
     }

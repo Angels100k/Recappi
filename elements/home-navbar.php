@@ -23,6 +23,7 @@ endif;
 
 
 <!-- profile -->
+
 <?=dd_img($image, $type, '32px', '32px', '', "profile_picture")?>
 
 

@@ -2,7 +2,14 @@
     --background: #FAEFEC;
     --primary: #D5320B;
     --extra: #009070;
-    --navbar: 2.75rem;
+    --menu-background-color: white;
+
+    --error: #FD3B2F;
+    --success: #4DBB24;
+    --info: white;
+    --warning: #FD9F27;
+
+    --navbar: 3.125rem;
 }
 
 html, body{
@@ -22,6 +29,16 @@ a{
 
 .main-container {
     margin: 0 16px;
+}
+
+.main-top, .main-footer {
+    height: var(--navbar);
+    background-color: white;
+}
+
+.main-body {
+    height: calc(100vh - (var(--navbar) * 3));
+    max-height: calc(100vh - (var(--navbar) * 3));
 }
 
 .profile_picture {
