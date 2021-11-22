@@ -7,7 +7,7 @@
     height: 100%;
     transform: scaleY(0);
     transform-origin: bottom center;
-    background: #D5320B;
+    background-color: var(--primary);
     z-index: 1;
     animation: sizing 1s;
     animation-fill-mode: forwards;
