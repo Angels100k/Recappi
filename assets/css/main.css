@@ -2,6 +2,7 @@
     --background: #FAEFEC;
     --primary: #D5320B;
     --extra: #009070;
+    --navbar: 2.75rem;
 }
 
 html, body{
@@ -9,12 +10,29 @@ html, body{
     padding: 0;
 }
 
-a   {
+nav{
+    background-color: var(--primary);
+    height: var(--navbar);
+    position: relative;
+}
+
+a{
     text-decoration: none;
 }
 
 .main-container {
     margin: 0 16px;
+}
+
+.profile_picture {
+    object-fit:cover;
+    border-radius: 50%;
+    margin: 0;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .dot {
@@ -90,7 +108,7 @@ a   {
     background-color: white;
 }
 .bg-primary {
-    background-color: #D5320B;
+    background-color: --primary;
 }
 /* end background colors */
 
@@ -102,7 +120,7 @@ a   {
     color: white;
 }
 .txt-primary {
-    color: #D5320B;
+    color: --primary;
 }
 .text-center{
     text-align: center;
