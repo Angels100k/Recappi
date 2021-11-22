@@ -1,3 +1,8 @@
+:root {
+    --primary: #D5320B;
+    --extra: #009070;
+}
+
 html, body{
     margin: 0;
     padding: 0;
