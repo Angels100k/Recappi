@@ -9,7 +9,7 @@ require (__DIR__ ."/includes/classloader.php");
 
 $source = $_SERVER['DOCUMENT_ROOT'];
 $dir = $source.'/elements/';
-require($dir."elmentfunctions.php");
+require($dir . "elementfunctions.php");
 
 $database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
 $db = $database->getConnection();
@@ -18,7 +18,6 @@ $databases;
 
 
 $request = $_SERVER['REQUEST_URI'];
-//var_dump($request);
 $url = parse_url($request);
 
 $urlpaths = explode("/", $url["path"]);

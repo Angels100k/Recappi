@@ -14,7 +14,7 @@
 - Open Sans: SemiBold
 - SF Pro Text: Regular, Semibold, Medium, Light
 - SF Pro Display: Regular
-
+ 
 # Colors
 
 - Background: #FAEFEC

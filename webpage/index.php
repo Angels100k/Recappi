@@ -2,7 +2,22 @@
 <html lang="en">
 
 <head>
-    <?=dd_head("homepage")?>
+
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/hello-icon-152.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hello World">
+    <meta name="msapplication-TileImage" content="images/hello-icon-144.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
+    <?= dd_head("homepage") ?>
     <style>
         .container-slider {
             position: absolute;
@@ -47,25 +62,25 @@
     <!-- start top side -->
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
         <div class="d-flex jc-center home-image">
-            <?=dd_img("Logo-white", "svg", "212px","81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;")?>
+            <?= dd_img("Logo-white", "svg", "212px", "81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;") ?>
         </div>
     </div>
     <!-- end top side -->
     <!-- start bottom side -->
     <div class="home-bottom">
         <div class="container-slider">
-            <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your loved ones</a>
+            <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your hated ones</a>
             <a class="mySlides w3-animate-left txt-white" style="width:100%">Create your own social cookbook</a>
         </div>
         <div style="text-align:center" id="dots">
-          <span class="dot" onclick="carousel(0)"></span>
-          <span class="dot" onclick="carousel(1)"></span>
-          <span class="dot" onclick="carousel(2)"></span>
+            <span class="dot" onclick="carousel(0)"></span>
+            <span class="dot" onclick="carousel(1)"></span>
+            <span class="dot" onclick="carousel(2)"></span>
         </div>
 
         <div class="main-container text-center">
-            <?=dd_button("Create an account", "href='/register'", "a", "button txt-black bg-white r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;")?>
-            <?=dd_button("Already have a account? Log in", "href='/login'", "a", "txt-white", "bottom: 20px;position: absolute;left: 0;right: 0;")?>
+            <?= dd_button("Create an account", "href='/register'", "a", "button txt-black bg-white r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;") ?>
+            <?= dd_button("Already have a account? Log in", "href='/login'", "a", "txt-white", "bottom: 20px;position: absolute;left: 0;right: 0;") ?>
         </div>
     </div>
     <!-- end bottom side -->
@@ -99,5 +114,5 @@
         }, 10000)
     }
 </script>
-
+<script src="/assets/js/index.js"></script>
 </html>

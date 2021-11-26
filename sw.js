@@ -1,8 +1,6 @@
 var cacheName = 'Recappi';
 var filesToCache = [
-  '/',
-  '/home',
-  '',
+  /*'/',*/
 ];
 
 /* Start the service worker and cache all of the app's content */
