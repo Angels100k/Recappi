@@ -36,6 +36,15 @@ function dd_head($title, $extra ="")
     $html .= '<title>'. $title .'</title>';
     $html .= '<script src="/assets/js/index.js"></script>';
     $html .= '<link rel="stylesheet" href="/assets/css/main.css">';
+    $html .= '<link rel="manifest" href="/manifest.json">';
+    $html .= '<link rel="icon" href="favicon.ico" type="image/x-icon" />';
+    $html .= '<link rel="apple-touch-icon" href="images/hello-icon-152.png">';
+    $html .= '<meta name="theme-color" content="white"/>';
+    $html .= '<meta name="apple-mobile-web-app-capable" content="yes">';
+    $html .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+    $html .= '<meta name="apple-mobile-web-app-title" content="Hello World">';
+    $html .= '<meta name="msapplication-TileImage" content="images/hello-icon-144.png">';
+    $html .= '<meta name="msapplication-TileColor" content="#FFFFFF">';
     $html .= $extra;
 
     return $html;
