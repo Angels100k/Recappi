@@ -17,7 +17,7 @@ if($url != ""){
             break;
         default:
             $x = 0;
-            require __DIR__ . '/404.php';
+            require $dir . '/404.php';
             header("HTTP/1.1 404 Not Found");
             break;
     }
@@ -33,7 +33,7 @@ if($url != ""){
     
 </head>
 <body <?php if($x === 0){
-    ?> style="padding: 0 16px;background-color: var(--primary)"<?php }else { ?> style="padding: 0 16px; background-color: var(--background)"<?php }?>>
+    ?> style="background-color: var(--primary)"<?php }else { ?> style="padding: 0 16px; background-color: var(--background)"<?php }?>>
 <?php 
 if($x === 0){
     ?>

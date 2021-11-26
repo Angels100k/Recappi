@@ -14,4 +14,10 @@ class Sql {
       $stmt->execute([$user]); 
       return $stmt;
     }
+
+    public function getprofileimg($id){
+      $stmt = $this->conn->prepare("SELECT `image`, `imgtype` FROM `user` WHERE `id` = ?");
+      $stmt->execute([$id]); 
+      return $stmt;
+    }
 }

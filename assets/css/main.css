@@ -2,6 +2,14 @@
     --background: #FAEFEC;
     --primary: #D5320B;
     --extra: #009070;
+    --menu-background-color: white;
+
+    --error: #FD3B2F;
+    --success: #4DBB24;
+    --info: white;
+    --warning: #FD9F27;
+
+    --navbar: 3.125rem;
 }
 
 html, body{
@@ -9,12 +17,39 @@ html, body{
     padding: 0;
 }
 
-a   {
+nav{
+    background-color: var(--primary);
+    height: var(--navbar);
+    position: relative;
+}
+
+a{
     text-decoration: none;
 }
 
 .main-container {
     margin: 0 16px;
+}
+
+.main-top, .main-footer {
+    height: var(--navbar);
+    background-color: white;
+}
+
+.main-body {
+    height: calc(100vh - (var(--navbar) * 3));
+    max-height: calc(100vh - (var(--navbar) * 3));
+}
+
+.profile_picture {
+    object-fit:cover;
+    border-radius: 50%;
+    margin: 0;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .dot {
@@ -90,7 +125,7 @@ a   {
     background-color: white;
 }
 .bg-primary {
-    background-color: #D5320B;
+    background-color: --primary;
 }
 /* end background colors */
 
@@ -102,7 +137,7 @@ a   {
     color: white;
 }
 .txt-primary {
-    color: #D5320B;
+    color: --primary;
 }
 .text-center{
     text-align: center;

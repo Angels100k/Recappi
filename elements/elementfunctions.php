@@ -1,10 +1,14 @@
 <?php
-function dd_img($image, $type, $width = '', $height = '', $style = '')
+function dd_img($image, $type, $width = '', $height = '', $style = '', $class = '', $onclick = '')
 {
     if($type != "svg"){
         $src = "/assets/img/webp/".$image . ".webp";
         $errsrc = "/assets/img/".$image . "." . $type;
-        return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`'.$errsrc.'`;test(`'.$image . "`,`" . $type.'`)" width="'.$size.'" height="'.$size.'" style="'.$style.'">';
+        $class_content = $class != "" ? " class='" . $class . "'" : "";
+        $style_content = $style != "" ? " style='" . $style . "'" : "";
+        $onclick_content = $onclick != "" ? " onclick='" . $onclick . "'" : "";
+
+        return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`'.$errsrc.'`;test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
     }
     else {
         $src = "/assets/img/".$image . "." . $type;

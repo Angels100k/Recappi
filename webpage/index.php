@@ -71,6 +71,7 @@
         <div class="container-slider">
             <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your hated ones</a>
             <a class="mySlides w3-animate-left txt-white" style="width:100%">Create your own social cookbook</a>
+            <a class="mySlides w3-animate-left txt-white" style="width:100%">Save all your favorite recipes from different sources</a>
         </div>
         <div style="text-align:center" id="dots">
             <span class="dot" onclick="carousel(0)"></span>

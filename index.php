@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-$_SESSION["id"] = 0;
+$_SESSION["id"] = 2;
 
 
 require (__DIR__ ."/includes/classloader.php");
@@ -16,6 +16,8 @@ $db = $database->getConnection();
 $sqlQuery = new Sql($db); 
 $databases;
 
+$dir = __DIR__;
+
 
 $request = $_SERVER['REQUEST_URI'];
 $url = parse_url($request);
@@ -25,8 +27,10 @@ switch($urlpaths[1]) {
     case '/':
     case '':
     case 'index':
-    case 'home':
         require __DIR__ . '/webpage/index.php';
+        break;
+    case 'home':
+        require __DIR__ . '/webpage/main.php';
         break;
     case 'profile':
         require __DIR__ . '/webpage/profile.php';
