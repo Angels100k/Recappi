@@ -5,12 +5,14 @@ $y=0;
 $url = $urlpaths[2] ?? "";
 $email = "";
 $image = "";
+$name = "";
 if($url != ""){
     $x = 1;
         $stmt = $sqlQuery->getprofile($url);
     while($row = $stmt->fetch()){
         $email = $row['email'];
         $image = $row['image'];
+        $name = $row['name'];
         $type = $row['imgtype'];
         $y++;
     }
@@ -27,16 +29,43 @@ $title = "Recappi | Profile of ".$url;
 <?=dd_head($title, $extra)?>
 </head>
 
-<body>
+<body style="background-color: var(--background)">
+
     <?php 
-        if($y === 1){
-            echo dd_img($image, $type, '300px', '300px', 'object-fit:cover;');
-            ?>
+        if($y === 1):?>
+        <div class="profile-main row">
+            <div class="col-5"><?=dd_img($image, $type, '98px', '98px', '', "profile-main-picture")?></div>
+            <div class="col-7">
+            <div class="row text-center">
+                    <div class="col-1-3">
+                        <div>
+                            <h1 class="mt-0 pl-1"><?=$name?></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-1-3">
+                        <div class="text-bold">100</div>
+                        <div>recepten</div>
+                    </div>
+                    <div class="col-1-3">
+                        <div class="text-bold">30</div>
+                        <div>volgers</div>
+                    </div>
+                    <div class="col-1-3">
+                        <div class="text-bold">40</div>
+                        <div>volgend</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            
         <h1>Hallloooo <?=$email;?> </h1> 
 
-        <?php }else {?>
+        <?php else: ?>
             <h1>profile not found</h1>
-        <?php }?>
+        <?php endif;?>
     
 </body>
 </html>
