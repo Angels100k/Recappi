@@ -10,18 +10,46 @@ class Sql {
     }
 
     public function getprofile($user){
-//       SELECT 	user.name AS "name",
-// 		user.image AS "image",
-// 		user.imgtype AS "imgtype",
-// 		COUNT(recept.id) AS "recepts",
-// 		COUNT(folowers.id) AS "followers",
-// 		COUNT(folowing.id) AS "folowing"
-// FROM user
-// INNER JOIN recept ON recept.userid = user.ID
-// INNER JOIN friends AS folowing ON folowing.user1 = user.ID
-// INNER JOIN friends AS folowers ON folowers.user2 = user.ID
-// WHERE user.name = "frank"
-      $stmt = $this->conn->prepare("SELECT * FROM `user` WHERE `Name` = ?");
+      $stmt = $this->conn->prepare("
+      SELECT 
+      user.name AS `name`, 
+      user.image AS `image`, 
+      user.imgtype AS `imgtype`, 
+      user.email AS `email`, 
+      user.bio AS `bio`,
+      ufn_recept_count(id) AS `recepts`, 
+      ufn_follower_count(id) AS `followers`, 
+      ufn_following_count(id) AS `following` 
+      FROM user WHERE user.name = ? GROUP BY 1, 2, 3, 4, 5");
+      $stmt->execute([$user]); 
+      return $stmt;
+    }
+
+    public function getcookbookcat($cat, $user){
+      $stmt = $this->conn->prepare("
+      SELECT receptname FROM `recept`
+INNER JOIN categorie on categorie.catoriename = ?
+INNER JOIN user on user.name = ?
+ WHERE recept.userid = user.id AND categorieid = categorie.id;");
+ $stmt->execute([$cat, $user]); 
+ return $stmt;
+    }
+
+    public function getshoplist($user){
+      $stmt = $this->conn->prepare("
+      SELECT boodschappenlijst.item, boodschappenlijst.hoeveelheidid 
+      FROM user 
+      RIGHT JOIN boodschappenlijst ON boodschappenlijst.userid = user.ID
+      WHERE user.name = ?");
+      $stmt->execute([$user]); 
+      return $stmt;
+    }
+    public function getcookbookamount($user){
+      $stmt = $this->conn->prepare("
+      SELECT boodschappenlijst.item, boodschappenlijst.hoeveelheidid 
+      FROM user 
+      RIGHT JOIN boodschappenlijst ON boodschappenlijst.userid = user.ID
+      WHERE user.name = ?");
       $stmt->execute([$user]); 
       return $stmt;
     }

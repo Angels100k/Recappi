@@ -10,6 +10,8 @@
     --warning: #FD9F27;
 
     --navbar: 3.125rem;
+    --border-radius: 1.5rem;
+    --shadow: 0 0 4px 2px rgba(0, 0, 0, 0.08);
 }
 
 html, body{
@@ -26,7 +28,6 @@ nav{
 a{
     text-decoration: none;
 }
-
 .main-container {
     margin: 0 16px;
 }
@@ -39,6 +40,10 @@ a{
 .main-body {
     height: calc(100vh - (var(--navbar) * 3));
     max-height: calc(100vh - (var(--navbar) * 3));
+}
+
+.shadow {
+    box-shadow: var(--shadow);
 }
 
 .profile_picture {
@@ -198,10 +203,20 @@ a{
     flex: 0 0 58.333333333333333333333333333333%;
     max-width: 58.333333333333333333333333333333%;
 }
+.col-12{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
 .profile-main {
     background-color: white;
     margin-top: 1rem;
     padding: 2rem;
+    border-radius: var(--border-radius);
+}
+.border-small{
+    border-radius: 0.7rem;
 }
 .profile-main-picture {
     object-fit:cover;
@@ -211,8 +226,25 @@ a{
 .mt-0{
     margin-top: 0;
 }
-
+.mt-05{
+    margin-top: 0.5rem;
+}
+.my-1{
+    margin: 0 1rem;
+}
+.ml-1{
+    margin-left: 1rem;
+}
+.mt-2{
+    margin-top: 2rem;
+}
+.mt-3{
+    margin-top: 3rem;
+}
 .pl-1{
     padding-left: 1rem;
+}
+.p-1{
+    padding: 1rem;
 }
 /* end responsive */

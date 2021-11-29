@@ -3,23 +3,41 @@
 $x=0;
 $y=0;
 $url = $urlpaths[2] ?? "";
+$cat = $urlpaths[3] ?? "";
 $email = "";
+$cookbook = array(array("breakfast", 0),array("lunch", 3));
 $image = "";
 $name = "";
+$bio = "";
+$recepts = "";
+$following = "";
+$followers = "";
 if($url != ""){
-    $x = 1;
+    $x = 1;        
         $stmt = $sqlQuery->getprofile($url);
-    while($row = $stmt->fetch()){
-        $email = $row['email'];
-        $image = $row['image'];
-        $name = $row['name'];
-        $type = $row['imgtype'];
-        $y++;
+
+        while($row = $stmt->fetch()){
+            $email = $row['email'];
+            $name = $row['name'];
+            $bio = $row['bio'];
+            $recepts = $row['recepts'];
+            $following = $row['following'];
+            $followers = $row['followers'];
+            $type = $row['imgtype'];
+            $image = $row['image'];
+            $y++;
+        }
+    if($cat != ""){
+        $x = 2;
+        $stmt = $sqlQuery->getcookbookcat($cat, $url);
+        while($row = $stmt->fetch()){
+            var_dump($row);
+        }
     }
 }else {
     $x = 0;
 }
-$extra = '<meta name="twitter:label1" content="Person"><meta name="twitter:data1" content="'.$url.'"><meta name="twitter:label2" content="Amount posts"><meta name="twitter:data2" content="943">';
+$extra = '<meta name="twitter:label1" content="Person"><meta name="twitter:data1" content="'.$url.'"><meta name="twitter:label2" content="Amount recepts"><meta name="twitter:data2" content="'.$recepts.'">';
 $title = "Recappi | Profile of ".$url;
 ?>
 <!DOCTYPE html>
@@ -33,39 +51,76 @@ $title = "Recappi | Profile of ".$url;
 
     <?php 
         if($y === 1):?>
-        <div class="profile-main row">
+        <div class="profile-main main-container shadow row">
             <div class="col-5"><?=dd_img($image, $type, '98px', '98px', '', "profile-main-picture")?></div>
             <div class="col-7">
             <div class="row text-center">
-                    <div class="col-1-3">
-                        <div>
-                            <h1 class="mt-0 pl-1"><?=$name?></h1>
-                        </div>
+                <div class="col-1-3">
+                    <div>
+                        <h1 class="mt-0 pl-1"><?=$name?></h1>
                     </div>
+                </div>
                 </div>
                 <div class="row text-center">
                     <div class="col-1-3">
-                        <div class="text-bold">100</div>
+                        <div class="text-bold"><?=$recepts?></div>
                         <div>recepten</div>
                     </div>
                     <div class="col-1-3">
-                        <div class="text-bold">30</div>
+                        <div class="text-bold"><?=$following?></div>
                         <div>volgers</div>
                     </div>
                     <div class="col-1-3">
-                        <div class="text-bold">40</div>
+                        <div class="text-bold"><?=$followers?></div>
                         <div>volgend</div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="text-center col-1-3">
+                        <div class="text-bold">Biografie</div>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <div><?=$bio?></div>
                     </div>
                 </div>
             </div>
         </div>
-            
-            
-        <h1>Hallloooo <?=$email;?> </h1> 
+        <?php if($x === 1):?>
+            <div class="main-container mt-3">
+            <div class="row">
+                    <h2 class="text-bold">Cookbook</h2>
+            </div>
+            <div class="row">
+                <?php
+                    foreach ($cookbook as &$value) {
+                        ?>
+                        <a href="/profile/<?=$url?>/<?=$value[0]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+                            <div>
+                                <span class="text-bold"><?=$value[0]?></span>
+                                <div><?=$value[1]?> recipes</div>
+                            </div>
+                        </a>
+                        <?php
+                    }
+                    // while($row = $cookbook->fetch()):
+                        
+                    // endwhile;
+                ?>
+                <!-- items -->
+             </div>
+        </div>
+        <?php elseif($x === 2): ?>
+            <div class="row main-container">
+                <div class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
 
-        <?php else: ?>
-            <h1>profile not found</h1>
-        <?php endif;?>
+                </div>
+            </div>
+
+    <?php endif;?>
+    <?php else: ?>
+        
+        <h1>profile not found</h1>
+    <?php endif;?>
     
 </body>
 </html>
