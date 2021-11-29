@@ -111,10 +111,19 @@ $title = "Recappi | Profile of ".$url;
                         <div class="row main-container"><?php
         while($row = $stmt->fetch()){
             ?>
-                        <a href="/profile/<?=$url?>/<?=$cat?>/" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+                        <a href="/recept/<?=$row["id"]?>/" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                         <div class="row">
                             <div class="col-12"><h2 class="text-bold"><?=$row["receptname"]?></h2></div>
-                            <div class="col-7">hi</div>
+                            <div class="col-7">
+                                prep time
+                                10 min
+                                difficulty
+                                2/5
+                                <div>
+                                    likes
+                                    responses
+                                </div>
+                            </div>
                             <div class="col-5 jc-center">
                             <?=dd_img("193747", "jpg", '120px', '120px', '', "border-small")?>
                             </div>

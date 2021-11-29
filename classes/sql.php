@@ -27,7 +27,7 @@ class Sql {
 
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
-      SELECT receptname FROM `recept`
+      SELECT receptname, recept.id FROM `recept`
 INNER JOIN categorie on categorie.catoriename = ?
 INNER JOIN user on user.name = ?
  WHERE recept.userid = user.id AND categorieid = categorie.id;");

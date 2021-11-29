@@ -35,6 +35,9 @@ switch($urlpaths[1]) {
     case 'profile':
         require __DIR__ . '/webpage/profile.php';
         break;
+    case 'recept':
+        require __DIR__ . '/webpage/recept.php';
+        break;
     case 'login':
         require __DIR__ . '/webpage/login.php';
         break;
