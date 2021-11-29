@@ -29,10 +29,6 @@ if($url != ""){
         }
     if($cat != ""){
         $x = 2;
-        $stmt = $sqlQuery->getcookbookcat($cat, $url);
-        while($row = $stmt->fetch()){
-            var_dump($row);
-        }
     }
 }else {
     $x = 0;
@@ -109,13 +105,25 @@ $title = "Recappi | Profile of ".$url;
                 <!-- items -->
              </div>
         </div>
-        <?php elseif($x === 2): ?>
-            <div class="row main-container">
-                <div class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
-
-                </div>
-            </div>
-
+        <?php elseif($x === 2):
+            $stmt = $sqlQuery->getcookbookcat($cat, $url);
+            ?>
+                        <div class="row main-container"><?php
+        while($row = $stmt->fetch()){
+            ?>
+                        <a href="/profile/<?=$url?>/<?=$cat?>/" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+                        <div class="row">
+                            <div class="col-12"><h2 class="text-bold"><?=$row["receptname"]?></h2></div>
+                            <div class="col-7">hi</div>
+                            <div class="col-5 jc-center">
+                            <?=dd_img("193747", "jpg", '120px', '120px', '', "border-small")?>
+                            </div>
+                        </div>
+                                
+                        </a>
+                        <?php
+        }
+        ?></div>
     <?php endif;?>
     <?php else: ?>
         
