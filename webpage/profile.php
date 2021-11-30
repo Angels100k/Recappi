@@ -121,8 +121,8 @@ $title = "Recappi | Profile of ".$url;
                                 difficulty
                                 2/5
                                 <div>
-                                    likes : <?=$row["likes"]    ?>
-                                    responses
+                                    likes : <?=$row["likes"]?><br>
+                                    responses : <?=$row["repsonses"]?>
                                 </div>
                             </div>
                             <div class="col-5 jc-center">
