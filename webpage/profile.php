@@ -109,19 +109,22 @@ $title = "Recappi | Profile of ".$url;
         <?php elseif($x === 2):
             $stmt = $sqlQuery->getcookbookcat($cat, $url);
             ?>
-            <div class="row main-container"><?php
+            <div class="row main-container mt-3">
+                <h2><?=$cat?></h2>
+                <?php
                 while($row = $stmt->fetch()){
             ?>
-                        <a href="/recept/<?=$row["id"]?>/" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+            
+                        <a href="/recept/<?=$row["id"]?>/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb">
                         <div class="row">
                             <div class="col-12"><h2 class="text-bold"><?=$row["receptname"]?></h2></div>
                             <div class="col-7">
-                                prep time
-                                10 min
-                                difficulty
-                                2/5
+                                prep time<br>
+                                10 min<br>
+                                difficulty<br>
+                                2/5<br>
                                 <div>
-                                    likes : <?=$row["likes"]?><br>
+                                    likes : <?=$row["likes"]?> | 
                                     responses : <?=$row["repsonses"]?>
                                 </div>
                             </div>

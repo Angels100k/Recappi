@@ -28,10 +28,10 @@ class Sql {
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
       SELECT receptname, recept.id, recept.preptime, recept.difficulty, recept.waittime, recept.totaltime, receptimage.image, receptimage.type, ufn_likes_count(recept.id) as likes, ufn_reactions_count(recept.id) as repsonses  FROM `recept`
-	INNER JOIN categorie on categorie.catoriename = ?
-	INNER JOIN user on user.name = ?
-	LEFT JOIN receptimage ON (receptimage.ReceptID = recept.id AND receptimage.order = 0)
-WHERE recept.userid = user.id AND categorieid = categorie.id;");
+      	INNER JOIN categorie on categorie.catoriename = ?
+      	INNER JOIN user on user.name = ?
+      	LEFT JOIN receptimage ON (receptimage.ReceptID = recept.id AND receptimage.order = 0)
+      WHERE recept.userid = user.id AND categorieid = categorie.id;");
  $stmt->execute([$cat, $user]); 
  return $stmt;
     }
