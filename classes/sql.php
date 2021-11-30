@@ -27,10 +27,11 @@ class Sql {
 
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
-      SELECT receptname, recept.id FROM `recept`
-INNER JOIN categorie on categorie.catoriename = ?
-INNER JOIN user on user.name = ?
- WHERE recept.userid = user.id AND categorieid = categorie.id;");
+      SELECT receptname, recept.id, recept.preptime, recept.difficulty, recept.waittime, recept.totaltime, receptimage.image, receptimage.type, ufn_likes_count(recept.id) as likes  FROM `recept`
+	INNER JOIN categorie on categorie.catoriename = ?
+	INNER JOIN user on user.name = ?
+	LEFT JOIN receptimage ON (receptimage.ReceptID = recept.id AND receptimage.order = 0)
+WHERE recept.userid = user.id AND categorieid = categorie.id;");
  $stmt->execute([$cat, $user]); 
  return $stmt;
     }
@@ -46,10 +47,11 @@ INNER JOIN user on user.name = ?
     }
     public function getcookbookamount($user){
       $stmt = $this->conn->prepare("
-      SELECT boodschappenlijst.item, boodschappenlijst.hoeveelheidid 
-      FROM user 
-      RIGHT JOIN boodschappenlijst ON boodschappenlijst.userid = user.ID
-      WHERE user.name = ?");
+      select categorie.catoriename, ufn_cat_count(user.id, categorie.id) as amountrecepts
+      from user
+      RIGHT JOIN categorie ON 1
+      WHERE user.name = ?
+      ORDER BY 2 DESC");
       $stmt->execute([$user]); 
       return $stmt;
     }

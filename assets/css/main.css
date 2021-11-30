@@ -111,6 +111,9 @@ a{
 .jc-center {
     justify-content: center;
 }
+.rf{
+    float: right;
+}
 /* end jusitify content */
 
 /* start heights */

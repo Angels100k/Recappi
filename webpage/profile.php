@@ -5,7 +5,7 @@ $y=0;
 $url = $urlpaths[2] ?? "";
 $cat = $urlpaths[3] ?? "";
 $email = "";
-$cookbook = array(array("breakfast", 0),array("lunch", 3));
+$cookbook = "";
 $image = "";
 $name = "";
 $bio = "";
@@ -15,6 +15,7 @@ $followers = "";
 if($url != ""){
     $x = 1;        
         $stmt = $sqlQuery->getprofile($url);
+        $cookbook = $sqlQuery->getcookbookamount($url);
 
         while($row = $stmt->fetch()){
             $email = $row['email'];
@@ -88,12 +89,12 @@ $title = "Recappi | Profile of ".$url;
             </div>
             <div class="row">
                 <?php
-                    foreach ($cookbook as &$value) {
+                    while($row = $cookbook->fetch()){
                         ?>
-                        <a href="/profile/<?=$url?>/<?=$value[0]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+                        <a href="/profile/<?=$url?>/<?=$row[0]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                             <div>
-                                <span class="text-bold"><?=$value[0]?></span>
-                                <div><?=$value[1]?> recipes</div>
+                                <span class="text-bold"><?=$row[0]?></span>
+                                <div><?=$row[1]?> recipes</div>
                             </div>
                         </a>
                         <?php
@@ -108,8 +109,8 @@ $title = "Recappi | Profile of ".$url;
         <?php elseif($x === 2):
             $stmt = $sqlQuery->getcookbookcat($cat, $url);
             ?>
-                        <div class="row main-container"><?php
-        while($row = $stmt->fetch()){
+            <div class="row main-container"><?php
+                while($row = $stmt->fetch()){
             ?>
                         <a href="/recept/<?=$row["id"]?>/" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                         <div class="row">
@@ -120,12 +121,18 @@ $title = "Recappi | Profile of ".$url;
                                 difficulty
                                 2/5
                                 <div>
-                                    likes
+                                    likes : <?=$row["likes"]    ?>
                                     responses
                                 </div>
                             </div>
                             <div class="col-5 jc-center">
-                            <?=dd_img("193747", "jpg", '120px', '120px', '', "border-small")?>
+                                <?php 
+                                if($row["image"] && $row["type"]){
+                                    echo dd_img($row["image"], $row["type"], '120px', '120px', '', "border-small rf");
+                                }else {
+                                    echo dd_img("placeholder", "png", '120px', '120px', '', "border-small rf");
+                                }
+                                ?>
                             </div>
                         </div>
                                 
