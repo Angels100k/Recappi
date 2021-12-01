@@ -38,26 +38,64 @@ var parents = document.querySelectorAll('.receptitem');
 //     })
 // }
 function likepost(id, text, item){
-  console.log(item.children[0].src);
-  console.log(item.children[1].innerHTML);
-  item.children[0].src = "/assets/img/svg/heartfill.svg"
-  item.children[1].innerHTML = parseInt(item.children[1].innerHTML) + 1;
+  data = {
+    "postID": id,
+  }
+  var opts = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    },
+  };
+   fetch('/request/updatelike.php', opts).then(response => response.json())
+   .then(data =>{
+ if(data.OUT_result == 1){
+  item.children[0].src = "/assets/img/svg/heartfill.svg";
+}else {
+  item.children[0].src = "/assets/img/svg/heartempty.svg";
+}
+item.children[1].innerHTML = data.OUT_Count;
+   }
+     
+     );
+  //.then(function (response) {
+  //   json = response.json();
+  //   console.log(json)
+  //   // if(json.OUT_result == 1){
+  //   //   item.children[0].src = "/assets/img/svg/heartfill.svg"
+  //   // }else {
+  //   //   item.children[0].src = "/assets/img/svg/heartempty.svg"
+  //   // }
+  //   // item.children[1].innerHTML = json.OUT_Count;
+
+  // }).then(data => {
+  //   console.log('Success:', data);
+  // })
+
 }
 function savepost(id, item){
-  loadDoc(id);
+  safepostcall(id);
   console.log(item.children[1].src);
   item.children[1].src = "/assets/img/svg/savefill.svg"
 }
 
-function loadDoc(id) {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-    }
+function safepostcall(id) {
+  data = {
+    "postID": id,
+  }
+  var opts = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    },
   };
-  xhttp.setRequestHeader("postID", id)
-  xhttp.open("GET", "request/updatelike.php");
-  xhttp.send();
+  fetch('/request/updatesave.php', opts).then(function (response) {
+    json = response.json;
+    if(json.OUT_result == 0){
+
+    }
+
+  })
 }

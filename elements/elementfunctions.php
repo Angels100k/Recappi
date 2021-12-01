@@ -68,12 +68,17 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
   return $return;
 }
 
-function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type){
+function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID){
     $img;
     if($image && $type):
         $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
     else:
         $img = dd_img("placeholder", "png", "120px", "120px", "", "border-small object-cover ");
+    endif;
+    if($likedID != null):
+        $likeimg = dd_img("heartfill", "svg", "20px", "20px", "", "");
+    else:
+        $likeimg = dd_img("heartempty", "svg", "20px", "20px", "", "");
     endif;
     $dots = "";
    
@@ -93,7 +98,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
             '.$dots.'
             <div class="text-bold">
                 <button onclick="likepost(`'. $id .'`,`frank`, this); return false;" class="button-no-style">
-                '. dd_img("heartempty", "svg", "20px", "20px", "", "") .'<span>'.$likes.'</span> 
+                '. $likeimg .'<span>'.$likes.'</span> 
                 </button>
                     
                 <button class="button-no-style">

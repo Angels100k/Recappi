@@ -1,6 +1,23 @@
 <?php
-$file = 'people.txt';
-// Open the file to get existing content
+session_start();
 
-// Write the contents back to the file
-file_put_contents($file, $_POST);
+$json = json_decode(file_get_contents('php://input'), true);
+require ($_SERVER['DOCUMENT_ROOT']."/includes/classloader.php");
+
+(new EnvReader($_SERVER['DOCUMENT_ROOT'] . '/.env'))->load();
+$item;
+$source = $_SERVER['DOCUMENT_ROOT'];
+$dir = $source.'/elements/';
+require($dir . "elementfunctions.php");
+
+$database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
+$db = $database->getConnection();
+$sqlQuery = new Sql($db); 
+
+
+$hank = $sqlQuery->updatelike($json["postID"]);
+
+while($row = $hank->fetch()): 
+    $item = $row;
+endwhile;
+echo json_encode($item);
