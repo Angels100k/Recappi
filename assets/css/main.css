@@ -57,6 +57,16 @@ a{
     transform: translateY(-50%);
 }
 
+.button-no-style{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
 .dot {
     cursor: pointer;
     height: 15px;
@@ -114,6 +124,9 @@ a{
 .rf{
     float: right;
 }
+.object-cover{
+    object-fit: cover;
+}
 /* end jusitify content */
 
 /* start heights */
@@ -144,6 +157,9 @@ a{
 .txt-white {
     color: white;
 }
+.text-grey{
+    color: grey;
+}
 .txt-primary {
     color: --primary;
 }
@@ -152,6 +168,9 @@ a{
 }
 .text-bold{
     font-weight: bold;
+}
+.p-r{
+    position: relative;
 }
 /* end text  */
 
@@ -234,6 +253,9 @@ a{
 }
 .my-1{
     margin: 0 1rem;
+}
+.f{
+    margin-right: 0.2rem;
 }
 .ml-1{
     margin-left: 1rem;
