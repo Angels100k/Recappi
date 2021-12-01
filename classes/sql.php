@@ -30,8 +30,17 @@ class Sql {
       $stmt = $this->conn->prepare("
         CALL likePost(?,?,@id, @count);
         SELECT @id,@count;");
- $stmt->execute([$postid, $userid]); 
- return $stmt;
+      $stmt->execute([$postid, $userid]); 
+      return $stmt;
+    }
+
+    public function updatesave($postid){
+      $userid = $_SESSION["id"];
+      $stmt = $this->conn->prepare("
+        CALL savePost(?,?,@id);
+        SELECT @id;");
+      $stmt->execute([$postid, $userid]); 
+      return $stmt;
     }
 
     public function getcookbookcat($cat, $user){
