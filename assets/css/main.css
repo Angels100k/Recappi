@@ -13,10 +13,17 @@
     --border-radius: 1.5rem;
     --shadow: 0 0 4px 2px rgba(0, 0, 0, 0.08);
 }
+@font-face {
+    font-family: "Recappi-font";
+    src: url("../fonts/Montserrat/Montserrat-Medium.ttf");
+}
+
 
 html, body{
     margin: 0;
     padding: 0;
+    font-family: Recappi-font, serif;
+
 }
 
 nav{
