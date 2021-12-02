@@ -1,5 +1,22 @@
 <?php 
 $style = '<link rel="stylesheet" href="/assets/css/login.css">';
+if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+    header("Location: /start");
+}
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['Name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password_repeat'];
+
+    $Account = new Account();
+    if ($Account->register($name, $email, $password, $password2) == true) {
+        header("Location: /login");
+    } else {
+        echo "<script>alert('Something went wrong.')</script>";
+    }
+}
 $url = $urlpaths[2] ?? "";
 if($url != ""){
     switch($url) {
@@ -61,7 +78,7 @@ if($x === 0){
     <div class="main-container text-center">
         <?=dd_field_wrapper("Create accout", "h1", "text-center f-100")?>
         <?=dd_field_wrapper("You're just moments away from capturing and sharing your recipes", "h2", "text-center f-100")?>
-        <form action="">
+        <form method="post">
             <input type="text" id="name" name="name" placeholder="Name"><br>
             <input type="text" id="email" name="email" placeholder="Email"><br>
             <input type="password" id="password" name="password" placeholder="Password"><br>
