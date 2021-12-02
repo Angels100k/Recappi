@@ -30,7 +30,9 @@ if($url != ""){
 <html lang="en">
 <head>
 <?=dd_head("Register", $style)?>
-    
+ <style>
+
+ </style>
 </head>
 <body <?php if($x === 0){
     ?> style="background-color: var(--primary)"<?php }else { ?> style="padding: 0 16px; background-color: var(--background)"<?php }?>>
@@ -59,7 +61,13 @@ if($x === 0){
     <div class="main-container text-center">
         <?=dd_field_wrapper("Create accout", "h1", "text-center f-100")?>
         <?=dd_field_wrapper("You're just moments away from capturing and sharing your recipes", "h2", "text-center f-100")?>
-        
+        <form action="">
+            <input type="text" id="name" name="name" placeholder="Name"><br>
+            <input type="text" id="email" name="email" placeholder="Email"><br>
+            <input type="password" id="password" name="password" placeholder="Password"><br>
+            <input type="password" id="passwordcheck" name="passwordcheck" placeholder="Password check"><br>
+            <input type="submit" value="Submit">
+        </form>
         <?=dd_button("Sign up", "href='/register'", "a", "button txt-white bg-primary r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;")?>
         <?=dd_button("I already have an account", "href='/login'", "a", "txt-primary", "bottom: 20px;position: absolute;left: 0;right: 0;")?>
     </div>
