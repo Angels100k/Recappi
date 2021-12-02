@@ -45,31 +45,33 @@ class Sql {
 
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
-      SELECT receptname, recept.id, recept.preptime, recept.difficulty, recept.waittime, recept.totaltime, receptimage.image, receptimage.type,
-       ufn_likes_count(recept.id) as likes, ufn_reactions_count(recept.id) as repsonses, likes.id AS likedID FROM `recept` 
-       INNER JOIN categorie on categorie.catoriename = ? 
-       INNER JOIN user on user.name = ? 
-       LEFT JOIN receptimage ON (receptimage.ReceptID = recept.id AND receptimage.order = 0) 
-       LEFT JOIN likes ON (likes.receptid = recept.id AND likes.userid = ?) 
-       WHERE recept.userid = user.id AND categorieid = categorie.id");
- $stmt->execute([$cat, $user, $_SESSION["id"]]); 
+      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, recipe_image.image,
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
+      ufn_reactions_count(recipe.id) AS repsonses FROM `recipe`
+      INNER JOIN category on category.name = ?
+      INNER JOIN user on user.name = ?
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
+      LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
+      LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?)
+      WHERE recipe.userid = user.id AND categoryid = category.id");
+ $stmt->execute([$cat, $user, $_SESSION["id"], $_SESSION["id"]]); 
  return $stmt;
     }
 
     public function getshoplist($user){
       $stmt = $this->conn->prepare("
-      SELECT boodschappenlijst.item, boodschappenlijst.hoeveelheidid 
+      SELECT grocery_list.amountid, grocery_list.amount 
       FROM user 
-      RIGHT JOIN boodschappenlijst ON boodschappenlijst.userid = user.ID
+      RIGHT JOIN grocery_list ON grocery_list.userid = user.ID
       WHERE user.name = ?");
       $stmt->execute([$user]); 
       return $stmt;
     }
     public function getcookbookamount($user){
       $stmt = $this->conn->prepare("
-      select categorie.catoriename, ufn_cat_count(user.id, categorie.id) as amountrecepts
+      select category.name, ufn_cat_count(user.id, category.id) as amountrecepts
       from user
-      RIGHT JOIN categorie ON 1
+      RIGHT JOIN category ON 1
       WHERE user.name = ?
       ORDER BY 2 DESC");
       $stmt->execute([$user]); 

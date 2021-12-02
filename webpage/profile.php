@@ -108,7 +108,7 @@ $title = "Recappi | Profile of ".$url;
                 <h2><?=$cat?></h2>
                 <?php
                 while($row = $stmt->fetch()):
-                        echo dd_layout_post($row['id'], $row["receptname"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likedID"]);
+                        echo dd_layout_post($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"]);
                 endwhile;
                 ?>
             </div>

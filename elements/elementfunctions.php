@@ -68,7 +68,7 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
   return $return;
 }
 
-function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID){
+function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID){
     $img;
     if($image && $type):
         $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
@@ -79,6 +79,11 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
         $likeimg = dd_img("heartfill", "svg", "20px", "20px", "", "");
     else:
         $likeimg = dd_img("heartempty", "svg", "20px", "20px", "", "");
+    endif;
+    if($saveID != null):
+        $saveimg = dd_img("savefill", "svg", "20px", "20px", "    position: absolute; right: 10px; bottom: 10px;", "");
+    else:
+        $saveimg = dd_img("saveempty", "svg", "20px", "20px", "    position: absolute; right: 10px; bottom: 10px;", "");
     endif;
     $dots = "";
    
@@ -110,9 +115,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
         <div class="col-5 jc-center">
             <button onclick="savepost(`'. $id .'`, this); return false;" class="p-r button-no-style rf">
                 '.$img.'
-                '. dd_img("saveempty", "svg", "20px", "20px", "    position: absolute;
-                right: 10px;
-                bottom: 10px;", "") .'
+                '. $saveimg .'
             </button>
         </div>
     </div>
