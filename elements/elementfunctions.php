@@ -38,7 +38,7 @@ function draftrecipebig($data){
         $img = dd_img("placeholder", "png", "150px", "150px", "", "bg-img");
     endif;
     return '
-        <a href="/recept/'.$data["id"].'/edit" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
+        <a href="/edit/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
         '.$img.'
         <h3 class="txt-white text-center">'.$data['recipe'].'</h3>
             '.dd_img("pen-white", "svg", "18px", "18px", "    position: absolute; right: 10px; bottom: 10px;", "").'
@@ -84,7 +84,7 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
   return $return;
 }
 
-function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID){
+function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID, $userid){
     $img;
     if($image && $type):
         $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
@@ -101,6 +101,16 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
     else:
         $saveimg = dd_img("saveempty", "svg", "20px", "20px", "    position: absolute; right: 10px; bottom: 10px;", "");
     endif;
+    if($userid != $_SESSION["id"]){
+        $button = ' <button onclick="savepost(`'. $id .'`, this); return false;" class="p-r button-no-style rf">
+        '.$img.'
+        '. $saveimg .'
+    </button>';
+    }else {
+        $button = ' <div class="p-r button-no-style rf">
+        '.$img.'
+    </div>';
+    }
     $dots = "";
    
     for ($x = 0; $x <= $difficulty; $x++):
@@ -129,10 +139,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
             </div>
         </div>
         <div class="col-5 jc-center">
-            <button onclick="savepost(`'. $id .'`, this); return false;" class="p-r button-no-style rf">
-                '.$img.'
-                '. $saveimg .'
-            </button>
+           '.$button.'
         </div>
     </div>
             

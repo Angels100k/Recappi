@@ -46,7 +46,7 @@ class Sql {
 
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
-      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, recipe_image.image,
+      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, user.id AS userid, recipe_image.image,
       recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
       ufn_reactions_count(recipe.id) AS repsonses FROM `recipe`
       INNER JOIN category on category.name = ?
