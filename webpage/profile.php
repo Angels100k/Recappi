@@ -95,6 +95,14 @@ $title = "Recappi | Profile of ".$url;
                 <div class="row">
                     <h2 class="text-bold"><?=dd_img("list-ul", "svg", '18px', '18px')?> <span class="ml-05">My shopping list</span></h2>
                 </div>
+                <?php $draftrecepts = $sqlQuery->ingredientlist(); ?>
+            <div class="row shadow bg-white p-1 border-small bs-bb mt-05">
+                <?php
+                    while($row = $draftrecepts->fetch()):
+                        echo dd_showshoppinglist($row);
+                    endwhile;
+                ?>
+            </div>
                 <div class="row">
                 <h2 class="text-bold"><?=dd_img("pen-black", "svg", '18px', '18px')?> <span class="ml-05">Drafts</span></h2>
                 </div>
@@ -103,7 +111,7 @@ $title = "Recappi | Profile of ".$url;
             <div class="row main-container flex-wrap-no w-100 overflow-x-auto mr--1">
                 <?php
                     while($row = $draftrecepts->fetch()):
-                        echo draftrecipebig($row);
+                        echo dd_draftrecipebig($row);
                     endwhile;
                 ?>
             </div>

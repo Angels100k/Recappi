@@ -44,6 +44,16 @@ class Sql {
       return $stmt;
     }
 
+    public function ingredientlist(){
+      $stmt = $this->conn->prepare("
+      SELECT grocery_list.amount, grocery_list.owned, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `grocery_list`
+INNER JOIN amount on amount.id = grocery_list.amountid
+INNER JOIN ingredient on ingredient.id = amount.ingredientid
+WHERE grocery_list.userid = ?");
+ $stmt->execute([$_SESSION["id"]]);
+ return $stmt;
+    }
+
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
       SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, user.id AS userid, recipe_image.image,

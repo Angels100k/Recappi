@@ -30,7 +30,7 @@ function dd_input($text, $name, $type = "text", $class="",$style =""){
     $output = "<input " . $name_content . $class_content . $style_content . ">" . $text . "</input>";
 }
 
-function draftrecipebig($data){
+function dd_draftrecipebig($data){
     $img;
     if($data["image"] && $data["type"]):
         $img = dd_img($image, $type, "150px", "150px", "", "border-small object-cover");
@@ -144,6 +144,22 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
     </div>
             
     </a>';
+}
+
+function dd_showshoppinglist($data){
+    return'
+    <div class="col-12 row  mt-1-not-first top-border">
+        <div class="pt-05">
+            <div class="custom-checkbox">
+                <input type="checkbox" id="checkbox" />
+                <label for="checkbox" ></label>
+            </div>
+        </div>
+        <div class="ml-1 pt-05 border col">
+            <span class="text-bold">'.$data['amount'].'</span> '.$data['ingredient'].' <span class="text-bold"> '. $data['amountunit'].' '.$data['unit'].'</span>
+        </div>
+    </div>
+    ';
 }
 
 function dd_button($text, $onclick, $type, $class = "", $style = ""){
