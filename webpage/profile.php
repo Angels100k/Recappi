@@ -34,7 +34,10 @@ if($url != ""){
 }else {
     $x = 0;
 }
-$extra = '<meta name="twitter:label1" content="Person"><meta name="twitter:data1" content="'.$url.'"><meta name="twitter:label2" content="Amount recepts"><meta name="twitter:data2" content="'.$recepts.'">';
+$extra = '  <meta name="twitter:label1" content="Person">
+            <meta name="twitter:data1" content="'.$url.'">
+            <meta name="twitter:label2" content="Amount recepts">
+            <meta name="twitter:data2" content="'.$recepts.'">';
 $title = "Recappi | Profile of ".$url;
 ?>
 <!DOCTYPE html>
@@ -88,22 +91,14 @@ $title = "Recappi | Profile of ".$url;
                     <h2 class="text-bold">Cookbook</h2>
             </div>
             <div class="row">
-                <?php
-                    while($row = $cookbook->fetch()){
-                        ?>
-                        <a href="/profile/<?=$url?>/<?=$row[0]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
-                            <div>
-                                <span class="text-bold"><?=$row[0]?></span>
-                                <div><?=$row[1]?> recipes</div>
-                            </div>
-                        </a>
-                        <?php
-                    }
-                    // while($row = $cookbook->fetch()):
-                        
-                    // endwhile;
-                ?>
-                <!-- items -->
+                <?php while($row = $cookbook->fetch()): ?>
+                    <a href="/profile/<?=$url?>/<?=$row[0]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+                        <div>
+                            <span class="text-bold"><?=$row[0]?></span>
+                            <div><?=$row[1]?> recipes</div>
+                        </div>
+                    </a>
+                <?php endwhile;?>
              </div>
         </div>
         <?php elseif($x === 2):
@@ -112,42 +107,15 @@ $title = "Recappi | Profile of ".$url;
             <div class="row main-container mt-3">
                 <h2><?=$cat?></h2>
                 <?php
-                while($row = $stmt->fetch()){
-            ?>
-            
-                        <a href="/recept/<?=$row["id"]?>/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb">
-                        <div class="row">
-                            <div class="col-12"><h2 class="text-bold"><?=$row["receptname"]?></h2></div>
-                            <div class="col-7">
-                                prep time<br>
-                                10 min<br>
-                                difficulty<br>
-                                2/5<br>
-                                <div>
-                                    likes : <?=$row["likes"]?> | 
-                                    responses : <?=$row["repsonses"]?>
-                                </div>
-                            </div>
-                            <div class="col-5 jc-center">
-                                <?php 
-                                if($row["image"] && $row["type"]){
-                                    echo dd_img($row["image"], $row["type"], '120px', '120px', '', "border-small rf");
-                                }else {
-                                    echo dd_img("placeholder", "png", '120px', '120px', '', "border-small rf");
-                                }
-                                ?>
-                            </div>
-                        </div>
-                                
-                        </a>
-                        <?php
-        }
-        ?></div>
-    <?php endif;?>
-    <?php else: ?>
-        
-        <h1>profile not found</h1>
-    <?php endif;?>
+                while($row = $stmt->fetch()):
+                        echo dd_layout_post($row['id'], $row["receptname"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likedID"]);
+                endwhile;
+                ?>
+            </div>
+        <?php endif;?>
+        <?php else: ?>
+            <h1>profile not found</h1>
+        <?php endif;?>
     
 </body>
 </html>

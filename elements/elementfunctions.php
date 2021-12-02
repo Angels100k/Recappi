@@ -11,7 +11,7 @@ function dd_img($image, $type, $width = '', $height = '', $style = '', $class = 
         return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`'.$errsrc.'`;test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
     }
     else {
-        $src = "/assets/img/".$image . "." . $type;
+        $src = "/assets/img/svg/".$image . "." . $type;
         return '<img src="'.$src.'" width="'.$width.'" height="'.$height.'" style="'.$style.'">';
     }
 }
@@ -66,6 +66,58 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
   $return = "<" . $el . $class_content . $style_content . ">" . $text . "</" . $el . ">";
 
   return $return;
+}
+
+function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID){
+    $img;
+    if($image && $type):
+        $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
+    else:
+        $img = dd_img("placeholder", "png", "120px", "120px", "", "border-small object-cover ");
+    endif;
+    if($likedID != null):
+        $likeimg = dd_img("heartfill", "svg", "20px", "20px", "", "");
+    else:
+        $likeimg = dd_img("heartempty", "svg", "20px", "20px", "", "");
+    endif;
+    $dots = "";
+   
+    for ($x = 0; $x <= $difficulty; $x++):
+        $dots.= "<span class='text-black mr-02'>&#9679</span>";
+    endfor;
+    for ($y = $x; $y <= 4; $y++):
+        $dots.= "<span class='text-grey mr-02'>&#9679</span>";
+    endfor;
+    return '<a href="/recept/'.$id.'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
+    <div class="row">
+        <div class="col-12"><h2 class="text-bold">'.$receptname.'</h2></div>
+        <div class="col-7">
+            prep time<br>
+            <span class="text-bold">'.$preptime.' min</span><br>
+            difficulty<br>
+            '.$dots.'
+            <div class="text-bold">
+                <button onclick="likepost(`'. $id .'`,`frank`, this); return false;" class="button-no-style">
+                '. $likeimg .'<span>'.$likes.'</span> 
+                </button>
+                    
+                <button class="button-no-style">
+                    '. dd_img("comment", "svg", "20px", "20px", "", "") .'
+                </button>
+                 '.$repsonses.'
+            </div>
+        </div>
+        <div class="col-5 jc-center">
+            <button onclick="savepost(`'. $id .'`, this); return false;" class="p-r button-no-style rf">
+                '.$img.'
+                '. dd_img("saveempty", "svg", "20px", "20px", "    position: absolute;
+                right: 10px;
+                bottom: 10px;", "") .'
+            </button>
+        </div>
+    </div>
+            
+    </a>';
 }
 
 function dd_button($text, $onclick, $type, $class = "", $style = ""){

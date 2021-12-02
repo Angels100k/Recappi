@@ -14,10 +14,10 @@ class Sql {
       SELECT 
       user.name AS `name`, 
       user.image AS `image`, 
-      user.type AS `imgtype`, 
+      user.imgtype AS `imgtype`, 
       user.email AS `email`, 
       user.bio AS `bio`,
-      ufn_recipe_count(id) AS `recipes`, 
+      ufn_recept_count(id) AS `recepts`, 
       ufn_follower_count(id) AS `followers`, 
       ufn_following_count(id) AS `following` 
       FROM user WHERE user.name = ? GROUP BY 1, 2, 3, 4, 5");
@@ -25,31 +25,51 @@ class Sql {
       return $stmt;
     }
 
+    public function updatelike($postid){
+      $userid = $_SESSION["id"];
+      $stmt = $this->conn->prepare("
+        CALL likePost(?,?,@id, @count);
+        SELECT @id,@count;");
+      $stmt->execute([$postid, $userid]); 
+      return $stmt;
+    }
+
+    public function updatesave($postid){
+      $userid = $_SESSION["id"];
+      $stmt = $this->conn->prepare("
+        CALL savePost(?,?,@id);
+        SELECT @id;");
+      $stmt->execute([$postid, $userid]); 
+      return $stmt;
+    }
+
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
-      SELECT recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe_image.image, recipe_image.type, ufn_likes_count(recipe.id) as likes, ufn_comment_count(recipe.id) as responses  FROM `recipe`
-      	INNER JOIN category on category.name = ?
-      	INNER JOIN user on user.name = ?
-      	LEFT JOIN recipe_image ON (recipe_image.ReceptID = recipe.id AND recipe_image.order = 0)
-      WHERE recipe.userid = user.id AND categoryid = category.id;");
- $stmt->execute([$cat, $user]); 
+      SELECT receptname, recept.id, recept.preptime, recept.difficulty, recept.waittime, recept.totaltime, receptimage.image, receptimage.type,
+       ufn_likes_count(recept.id) as likes, ufn_reactions_count(recept.id) as repsonses, likes.id AS likedID FROM `recept` 
+       INNER JOIN categorie on categorie.catoriename = ? 
+       INNER JOIN user on user.name = ? 
+       LEFT JOIN receptimage ON (receptimage.ReceptID = recept.id AND receptimage.order = 0) 
+       LEFT JOIN likes ON (likes.receptid = recept.id AND likes.userid = ?) 
+       WHERE recept.userid = user.id AND categorieid = categorie.id");
+ $stmt->execute([$cat, $user, $_SESSION["id"]]); 
  return $stmt;
     }
 
     public function getshoplist($user){
       $stmt = $this->conn->prepare("
-      SELECT grocery_list.item, grocery_list.amount 
+      SELECT boodschappenlijst.item, boodschappenlijst.hoeveelheidid 
       FROM user 
-      RIGHT JOIN grocery_list ON grocery_list.userid = user.ID
+      RIGHT JOIN boodschappenlijst ON boodschappenlijst.userid = user.ID
       WHERE user.name = ?");
       $stmt->execute([$user]); 
       return $stmt;
     }
     public function getcookbookamount($user){
       $stmt = $this->conn->prepare("
-      select category.name, ufn_cat_count(user.id, category.id) as amountrecipes
+      select categorie.catoriename, ufn_cat_count(user.id, categorie.id) as amountrecepts
       from user
-      RIGHT JOIN category ON 1
+      RIGHT JOIN categorie ON 1
       WHERE user.name = ?
       ORDER BY 2 DESC");
       $stmt->execute([$user]); 
