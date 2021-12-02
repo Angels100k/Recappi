@@ -12,6 +12,7 @@ class Sql {
     public function getprofile($user){
       $stmt = $this->conn->prepare("
       SELECT 
+      user.id AS `id`, 
       user.name AS `name`, 
       user.image AS `image`, 
       user.imgtype AS `imgtype`, 
@@ -53,18 +54,28 @@ class Sql {
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
       LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
       LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?)
-      WHERE recipe.userid = user.id AND categoryid = category.id");
+      WHERE recipe.userid = user.id AND categoryid = category.id AND recipe.draft = 0");
  $stmt->execute([$cat, $user, $_SESSION["id"], $_SESSION["id"]]); 
  return $stmt;
     }
 
-    public function getshoplist($user){
+    public function getcookbookdraftbig(){
       $stmt = $this->conn->prepare("
-      SELECT grocery_list.amountid, grocery_list.amount 
-      FROM user 
-      RIGHT JOIN grocery_list ON grocery_list.userid = user.ID
-      WHERE user.name = ?");
-      $stmt->execute([$user]); 
+      SELECT recipe.id, recipe.recipe, recipe_image.image AS image, recipe_image.type AS type
+      FROM `recipe`
+      INNER JOIN user on user.id = ?
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
+      WHERE recipe.userid = user.id AND recipe.draft = 1");
+ $stmt->execute([$_SESSION["id"]]); 
+ return $stmt;
+    }
+
+    public function getshoplist(){
+      $stmt = $this->conn->prepare("
+      SELECT amountid, amount, owned, creation_date 
+      FROM grocery_list 
+      WHERE userid = ?");
+      $stmt->execute([$_SESSION["id"]]); 
       return $stmt;
     }
     public function getcookbookamount($user){

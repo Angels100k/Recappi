@@ -9,6 +9,7 @@ $cookbook = "";
 $image = "";
 $name = "";
 $bio = "";
+$id = "";
 $recepts = "";
 $following = "";
 $followers = "";
@@ -20,6 +21,7 @@ if($url != ""){
         while($row = $stmt->fetch()){
             $email = $row['email'];
             $name = $row['name'];
+            $id = $row['id'];
             $bio = $row['bio'];
             $recepts = $row['recepts'];
             $following = $row['following'];
@@ -87,8 +89,28 @@ $title = "Recappi | Profile of ".$url;
         </div>
         <?php if($x === 1):?>
             <div class="main-container mt-3">
+            <?php 
+                if($id == $_SESSION["id"]){
+                ?>
+                <div class="row">
+                    <h2 class="text-bold"><?=dd_img("list-ul", "svg", '18px', '18px')?> <span class="ml-05">My shopping list</span></h2>
+                </div>
+                <div class="row">
+                <h2 class="text-bold"><?=dd_img("pen-black", "svg", '18px', '18px')?> <span class="ml-05">Drafts</span></h2>
+                </div>
+                <div class="row">
+                <?php $draftrecepts = $sqlQuery->getcookbookdraftbig(); ?>
+            <div class="row main-container flex-wrap-no w-100 overflow-x-auto mr--1">
+                <?php
+                    while($row = $draftrecepts->fetch()):
+                        echo draftrecipebig($row);
+                    endwhile;
+                ?>
+            </div>
+             </div>
+            <?php }?>
             <div class="row">
-                    <h2 class="text-bold">Cookbook</h2>
+                    <h2 class="text-bold"><?=dd_img("bars", "svg", '18px', '18px')?> <span class="ml-05">Cookbook</span></h2>
             </div>
             <div class="row">
                 <?php while($row = $cookbook->fetch()): ?>
