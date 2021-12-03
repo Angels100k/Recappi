@@ -1,7 +1,7 @@
 <?php
 $image ="";
 $type = "";
-
+$y = 0 ;
 if($_SESSION['id']):
     $stmt = $sqlQuery->getprofileimg($_SESSION["id"]);
     while($row = $stmt->fetch()):
@@ -11,7 +11,7 @@ if($_SESSION['id']):
     endwhile;
 endif;
 ?>
-<nav>
+<nav class="main-navbar">
 
 <!-- search -->
 

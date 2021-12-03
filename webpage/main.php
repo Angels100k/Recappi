@@ -6,17 +6,21 @@
 </head>
 
 <body style="background-color: var(--background)">
-<?php    require $dir.'/elements/home-navbar.php'; ?>
+    <div class="main-top row txt-primary">
+        <div class="col text-center">My friends</div>
+        <div class="col text-center">Discover</div>
+    </div>
+    <div class="main-body homepage-container row flex-wrap-no">
+        <div class="main-container pagefriends">
+            <h2>following</h2>
+        </div>
+        <div class="main-container pagediscover">
+            <h2>Recipe feed</h2>
+        </div>
+    </div>
+    <div class="main-footer">
 
-<div class="main-top">
-
-</div>
-<div class="main-body">
-
-</div>
-<div class="main-footer">
-
-</div>
+    </div>
 </body>
 
 </html>

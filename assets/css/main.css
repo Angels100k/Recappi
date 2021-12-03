@@ -34,6 +34,29 @@ nav{
     position: relative;
 }
 
+.main-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.main-top {
+    position: fixed;
+    top: var(--navbar);
+    left: 0;
+    right: 0;
+    box-shadow: var(--shadow);
+}
+.homepage-container {
+    margin-top: calc(var(--navbar) * 2);
+    width: 100vw;
+    overflow-x: scroll;
+}
+.pagediscover, .pagefriends{
+    -ms-flex: 0 0 calc(100% - 2rem);
+    flex: 0 0 calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+}
 a{
     text-decoration: none;
 }
@@ -155,7 +178,7 @@ a{
     background-color: white;
 }
 .bg-primary {
-    background-color: --primary;
+    background-color: var(--primary);
 }
 /* end background colors */
 
@@ -170,7 +193,7 @@ a{
     color: grey;
 }
 .txt-primary {
-    color: --primary;
+    color: var(--primary);
 }
 .text-center{
     text-align: center;

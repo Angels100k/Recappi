@@ -21,6 +21,7 @@ $dir = __DIR__;
 
 $request = $_SERVER['REQUEST_URI'];
 $url = parse_url($request);
+require $dir.'/elements/navbar.php';
 
 $urlpaths = explode("/", $url["path"]);
 switch($urlpaths[1]) {
@@ -36,7 +37,7 @@ switch($urlpaths[1]) {
         require __DIR__ . '/webpage/profile.php';
         break;
     case 'recept':
-        require __DIR__ . '/webpage/recept.php';
+        require __DIR__ . '/webpage/recipe.php';
         break;
     case 'login':
         require __DIR__ . '/webpage/login.php';
