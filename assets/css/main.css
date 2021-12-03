@@ -283,6 +283,9 @@ a{
     border-radius: 50%;
 }
 
+.mb--4 {
+    margin-bottom: -4rem;
+}
 .mt-0{
     margin-top: 0;
 }

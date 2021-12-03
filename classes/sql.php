@@ -82,6 +82,21 @@ WHERE grocery_list.userid = ?");
  $stmt->execute([$cat, $user, $_SESSION["id"], $_SESSION["id"]]); 
  return $stmt;
     }
+    public function getcookbookdiscover(){
+      $stmt = $this->conn->prepare("
+      SELECT discovery.order, recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, user.id AS userid, recipe_image.image,
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
+      ufn_reactions_count(recipe.id) AS repsonses 
+      FROM `discovery`
+      LEFT JOIN recipe ON (recipe.id = discovery.receptid)
+      INNER JOIN user on user.id = recipe.userid
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
+      LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
+      LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?)
+      WHERE recipe.draft = 0 ORDER BY discovery.order ASC");
+ $stmt->execute([$_SESSION["id"], $_SESSION["id"]]); 
+ return $stmt;
+    }
 
     public function getcookbookdraftbig(){
       $stmt = $this->conn->prepare("

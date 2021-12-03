@@ -14,8 +14,16 @@
         <div class="main-container pagefriends">
             <h2>following</h2>
         </div>
-        <div class="main-container pagediscover">
+        <div class="main-container pagediscover mb--4">
             <h2>Recipe feed</h2>
+            <div class="row">
+                <?php 
+                $stmt = $sqlQuery->getcookbookdiscover();
+                while($row = $stmt->fetch()):
+                        echo dd_layout_post($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);
+                    endwhile;
+                ?>
+            </div>
         </div>
     </div>
     <div class="main-footer">
