@@ -70,3 +70,29 @@ function savepost(id,item){
    }
      );
 }
+
+function klikaj(i) {
+  const ids = i.split("_");
+  y = document.getElementById(i);
+  id = ids[1];
+  data = {
+    "postID": id,
+  }
+  var opts = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    },
+  };
+   fetch('/request/updategrocerys.php', opts).then(response => response.json())
+   .then(data =>{
+     if(data.OUT_result == 1){
+      y.checked = true;
+    }else {
+      y.checked = false;
+    }
+   }
+     );
+
+}

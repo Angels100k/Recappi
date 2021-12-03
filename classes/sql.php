@@ -25,12 +25,26 @@ class Sql {
       $stmt->execute([$user]); 
       return $stmt;
     }
+    public function emailverify($mail){
+      $stmt = $this->conn->prepare("
+      SELECT * FROM user WHERE `email`= ?");
+      $stmt->execute([$mail]); 
+      return $stmt;
+    }
 
     public function updatelike($postid){
       $userid = $_SESSION["id"];
       $stmt = $this->conn->prepare("
         CALL likePost(?,?,@id, @count);
         SELECT @id,@count;");
+      $stmt->execute([$postid, $userid]); 
+      return $stmt;
+    }
+    public function updategrocery($postid){
+      $userid = $_SESSION["id"];
+      $stmt = $this->conn->prepare("
+        CALL updategrocery(?,?,@id);
+        SELECT @id;");
       $stmt->execute([$postid, $userid]); 
       return $stmt;
     }
@@ -46,7 +60,7 @@ class Sql {
 
     public function ingredientlist(){
       $stmt = $this->conn->prepare("
-      SELECT grocery_list.amount, grocery_list.owned, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `grocery_list`
+      SELECT grocery_list.amount, grocery_list.id as id, grocery_list.owned, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `grocery_list`
 INNER JOIN amount on amount.id = grocery_list.amountid
 INNER JOIN ingredient on ingredient.id = amount.ingredientid
 WHERE grocery_list.userid = ?");

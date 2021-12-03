@@ -147,11 +147,16 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
 }
 
 function dd_showshoppinglist($data){
+    if($data["owned"] == 1){
+        $own = "checked";
+    }else {
+        $own = "";
+    }
     return'
     <div class="col-12 row  mt-1-not-first top-border">
         <div class="pt-05">
-            <div class="custom-checkbox">
-                <input type="checkbox" id="checkbox" />
+            <div class="custom-checkbox"  onclick="klikaj(`checkbox_'.$data["id"].'`)">
+                <input type="checkbox" '.$own.' id="checkbox_'.$data["id"].'" />
                 <label for="checkbox" ></label>
             </div>
         </div>
