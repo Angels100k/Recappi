@@ -3,7 +3,7 @@ $style = '<link rel="stylesheet" href="/assets/css/login.css">';
 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /start");
 }
-
+$error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $username = $_POST['username'];
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $returned = $sqlQuery->registerUser($name, $username, $email, $hashedPassword);
         while($row = $returned->fetch()): 
             if(intval($row["OUT_result"]) == 0){
-                    var_dump("User exists");
+                    $error = 1;
             }else {
                 $_SESSION["id"] = $row["OUT_result"];
                 header("Location: /home");
@@ -102,7 +102,17 @@ if($x === 0){
         <?=dd_button("I already have an account", "href='/login'", "a", "txt-primary", "bottom: 20px;position: absolute;left: 0;right: 0;")?>
     </div>
 
-<?php }?>
+    
+
+<?php
+if($error == 1){
+    echo '
+                    <script>
+                        document.getElementById("password").setCustomValidity("passwords do not match");
+                      </script>
+                    ';
+}
+}?>
 
 </body>
 </html>
