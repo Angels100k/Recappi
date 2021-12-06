@@ -5,6 +5,8 @@
 
 </head>
 <body>
+<?php require $dir.'/elements/navbar.php';?>
+    
     page you're looking for is not here
 </body>
 </html>

@@ -21,7 +21,6 @@ $dir = __DIR__;
 
 $request = $_SERVER['REQUEST_URI'];
 $url = parse_url($request);
-require $dir.'/elements/navbar.php';
 
 $urlpaths = explode("/", $url["path"]);
 switch($urlpaths[1]) {

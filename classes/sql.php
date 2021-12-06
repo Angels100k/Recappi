@@ -13,6 +13,7 @@ class Sql {
       $stmt = $this->conn->prepare("
       SELECT 
       user.id AS `id`, 
+      user.username AS `username`, 
       user.name AS `name`, 
       user.image AS `image`, 
       user.imgtype AS `imgtype`, 
@@ -66,6 +67,14 @@ INNER JOIN ingredient on ingredient.id = amount.ingredientid
 WHERE grocery_list.userid = ?");
  $stmt->execute([$_SESSION["id"]]);
  return $stmt;
+    }
+
+    public function registerUser($name, $username, $email, $hashedPassword){
+      $stmt = $this->conn->prepare("
+      CALL registeruser(?,?,?,?,@out);
+      SELECT @out;");
+    $stmt->execute([$name, $username, $email, $hashedPassword]); 
+    return $stmt;
     }
 
     public function getcookbookcat($cat, $user){

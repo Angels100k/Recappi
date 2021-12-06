@@ -3,18 +3,31 @@ $style = '<link rel="stylesheet" href="/assets/css/login.css">';
 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /start");
 }
-
-if (isset($_POST['submit'])) {
-    $name = $_POST['Name'];
+$error = 0;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password2 = $_POST['password_repeat'];
+    $password2 = $_POST['passwordcheck'];
+    $file = 'people.txt';
 
-    $Account = new Account();
-    if ($Account->register($name, $email, $password, $password2) == true) {
-        header("Location: /login");
-    } else {
-        echo "<script>alert('Something went wrong.')</script>";
+    if($password === $password2){
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $returned = $sqlQuery->registerUser($name, $username, $email, $hashedPassword);
+        while($row = $returned->fetch()): 
+            if(intval($row["OUT_result"]) == 0){
+                    $error = 1;
+            }else {
+                $_SESSION["id"] = $row["OUT_result"];
+                header("Location: /home");
+            }
+            var_dump($row);
+        endwhile;
+    }else {
+        var_dump("error");
+        var_dump($password);
+        var_dump($password2);
     }
 }
 $url = $urlpaths[2] ?? "";
@@ -78,18 +91,28 @@ if($x === 0){
     <div class="main-container text-center">
         <?=dd_field_wrapper("Create accout", "h1", "text-center f-100")?>
         <?=dd_field_wrapper("You're just moments away from capturing and sharing your recipes", "h2", "text-center f-100")?>
-        <form method="post">
-            <input type="text" id="name" name="name" placeholder="Name"><br>
-            <input type="text" id="email" name="email" placeholder="Email"><br>
-            <input type="password" id="password" name="password" placeholder="Password"><br>
-            <input type="password" id="passwordcheck" name="passwordcheck" placeholder="Password check"><br>
-            <input type="submit" value="Submit">
+        <form method="post" style="bottom: 55px;position: absolute;left: 16px;right: 16px;">
+            <input required type="text" id="username" name="username" placeholder="Username"><br>
+            <input required type="text" id="name" name="name" placeholder="Name"><br>
+            <input required type="text" id="email" name="email" placeholder="Email"><br>
+            <input required type="password" id="password" name="password" placeholder="Password"><br>
+            <input required type="password" id="passwordcheck" name="passwordcheck" placeholder="Password check"><br>
+            <input type="submit" value="Sign up" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">
         </form>
-        <?=dd_button("Sign up", "href='/register'", "a", "button txt-white bg-primary r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;")?>
         <?=dd_button("I already have an account", "href='/login'", "a", "txt-primary", "bottom: 20px;position: absolute;left: 0;right: 0;")?>
     </div>
 
-<?php }?>
+    
+
+<?php
+if($error == 1){
+    echo '
+                    <script>
+                        document.getElementById("password").setCustomValidity("passwords do not match");
+                      </script>
+                    ';
+}
+}?>
 
 </body>
 </html>
