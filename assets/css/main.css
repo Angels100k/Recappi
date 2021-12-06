@@ -61,12 +61,15 @@ a, a:hover, a:visited, a:focus {
 .homepage-container {
     margin-top: calc(var(--navbar) * 2);
     width: 100vw;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     overflow-x: scroll;
 }
 .pagediscover, .pagefriends{
     -ms-flex: 0 0 calc(100% - 2rem);
     flex: 0 0 calc(100% - 2rem);
     max-width: calc(100% - 2rem);
+    scroll-snap-align: start;
 }
 a{
     text-decoration: none;
