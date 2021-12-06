@@ -8,6 +8,7 @@ $email = "";
 $cookbook = "";
 $image = "";
 $name = "";
+$username = "";
 $bio = "";
 $id = "";
 $recepts = "";
@@ -21,6 +22,7 @@ if($url != ""){
         while($row = $stmt->fetch()){
             $email = $row['email'];
             $name = $row['name'];
+            $username = $row['username'];
             $id = $row['id'];
             $bio = $row['bio'];
             $recepts = $row['recepts'];
@@ -59,7 +61,7 @@ $title = "Recappi | Profile of ".$url;
             <div class="row text-center">
                 <div class="col-1-3">
                     <div>
-                        <h1 class="mt-0 pl-1"><?=$name?></h1>
+                        <h1 class="mt-0 pl-1"><?=$username?></h1>
                     </div>
                 </div>
                 </div>
