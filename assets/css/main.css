@@ -3,13 +3,23 @@
 :root {
     --background: #FAEFEC;
     --primary: #D5320B;
+    --secondary: #ff7042;
     --extra: #009070;
     --menu-background-color: white;
+
+    --disabled: #F6F4F4;
+    --toggle: #C73114;
+    
+    --tag: #E6320F;
+    --white: white;
 
     --error: #FD3B2F;
     --success: #4DBB24;
     --info: white;
     --warning: #FD9F27;
+
+    --txt-primary: #242222;
+    --txt-subheader: #A2A0A0;
 
     --navbar: 3.125rem;
     --border-radius: 1.5rem;
@@ -22,12 +32,17 @@ html, body{
     font-family: "Open Sans", serif;
     font-size: 0.9375rem;
     font-weight: 400;
+    color: var(--txt-primary)
 }
 
 nav{
     background-color: var(--primary);
     height: var(--navbar);
     position: relative;
+}
+
+a, a:hover, a:visited, a:focus {
+    color: var(--txt-primary);
 }
 
 .main-navbar {
@@ -120,6 +135,36 @@ a{
     line-height: 1.5;
     border-radius: 0.25rem;
     cursor: pointer;
+}
+
+.button:hover, .button:visited {
+    background-color: var(--secondary);
+    color: var(--white)
+}
+
+.button:disabled {
+    background-color: var(--disabled);
+    color: var(--txt-subheader);
+}
+
+.button-white {
+    background-color: var(--white);
+    color: var(--txt-primary)
+}
+
+.button-disabled {
+    background-color: var(--disabled);
+    color: var(--txt-subheader)
+}
+
+.tag {
+    background-color: var(--white);
+    border: 1px solid var(--tag)
+}
+
+.tag-toggled {
+    background-color: var(--tag);
+    border: 1px solid var(--white)
 }
 
 .home-top{

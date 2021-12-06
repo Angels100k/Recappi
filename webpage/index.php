@@ -2,21 +2,6 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <title>Hello World</title>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/hello-icon-152.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="white" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Hello World">
-    <meta name="msapplication-TileImage" content="images/hello-icon-144.png">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-
     <?= dd_head("homepage") ?>
     <style>
         .container-slider {
@@ -80,7 +65,7 @@
         </div>
 
         <div class="main-container text-center">
-            <?= dd_button("Create an account", "href='/register'", "a", "button txt-black bg-white r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;") ?>
+            <?= dd_button("Create an account", "href='/register'", "a", "button button-white r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;") ?>
             <?= dd_button("Already have a account? Log in", "href='/login'", "a", "txt-white", "bottom: 20px;position: absolute;left: 0;right: 0;") ?>
         </div>
     </div>

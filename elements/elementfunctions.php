@@ -31,7 +31,6 @@ function dd_input($text, $name, $type = "text", $class="",$style =""){
 }
 
 function dd_draftrecipebig($data){
-    $img;
     if($data["image"] && $data["type"]):
         $img = dd_img($data["image"], $data["type"], "150px", "150px", "", "border-small object-cover");
     else:
@@ -85,7 +84,6 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
 }
 
 function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID, $userid){
-    $img;
     if($image && $type):
         $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
     else:
