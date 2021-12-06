@@ -144,7 +144,7 @@ $title = "Recappi | Profile of ".$url;
             </div>
         <?php endif;?>
         <?php else: ?>
-            <h1>profile not found</h1>
+            <h1 class="profile-not-found">profile not found</h1>
         <?php endif;?>
     
 </body>

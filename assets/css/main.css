@@ -271,10 +271,15 @@ a{
 }
 .profile-main {
     background-color: white;
-    margin-top: 1rem;
+    margin-top: 5rem;
     padding: 2rem;
     border-radius: var(--border-radius);
 }
+
+.profile-not-found{
+    margin-top: 5rem;
+}
+
 .border-small{
     border-radius: 0.7rem;
 }
