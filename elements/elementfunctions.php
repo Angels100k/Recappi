@@ -33,7 +33,7 @@ function dd_input($text, $name, $type = "text", $class="",$style =""){
 function dd_draftrecipebig($data){
     $img;
     if($data["image"] && $data["type"]):
-        $img = dd_img($image, $type, "150px", "150px", "", "border-small object-cover");
+        $img = dd_img($data["image"], $data["type"], "150px", "150px", "", "border-small object-cover");
     else:
         $img = dd_img("placeholder", "png", "150px", "150px", "", "bg-img");
     endif;

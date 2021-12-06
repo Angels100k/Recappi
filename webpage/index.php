@@ -62,14 +62,14 @@
     <!-- start top side -->
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
         <div class="d-flex jc-center home-image">
-            <?= dd_img("Logo-white", "svg", "212px", "81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;") ?>
+            <?= dd_img("logo-white", "svg", "212px", "81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;") ?>
         </div>
     </div>
     <!-- end top side -->
     <!-- start bottom side -->
     <div class="home-bottom">
         <div class="container-slider">
-            <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your hated ones</a>
+            <a class="mySlides w3-animate-left txt-white" style="width:100%">Follow the cookbooks of your loved ones</a>
             <a class="mySlides w3-animate-left txt-white" style="width:100%">Create your own social cookbook</a>
             <a class="mySlides w3-animate-left txt-white" style="width:100%">Save all your favorite recipes from different sources</a>
         </div>
