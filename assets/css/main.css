@@ -243,6 +243,9 @@ a{
 .text-bold{
     font-weight: bold;
 }
+.text-normal {
+    font-weight: normal;
+}
 .p-r{
     position: relative;
 }
