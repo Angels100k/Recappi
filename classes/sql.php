@@ -77,6 +77,13 @@ WHERE grocery_list.userid = ?");
     return $stmt;
     }
 
+    public function loginUser($email){
+      $stmt = $this->conn->prepare("
+      SELECT id, password FROM user where email = ?;");
+    $stmt->execute([$email]); 
+    return $stmt;
+    }
+
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
       SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, user.id AS userid, recipe_image.image,
