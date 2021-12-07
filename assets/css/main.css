@@ -35,14 +35,14 @@ html, body{
     color: var(--txt-primary)
 }
 
+a {
+    color: var(--txt-primary);
+}
+
 nav{
     background-color: var(--primary);
     height: var(--navbar);
     position: relative;
-}
-
-a, a:hover, a:visited, a:focus {
-    color: var(--txt-primary);
 }
 
 .main-navbar {
@@ -137,7 +137,7 @@ a{
     cursor: pointer;
 }
 
-.button:hover, .button:visited {
+.button:hover, .button:active {
     background-color: var(--secondary);
     color: var(--white)
 }
@@ -155,6 +155,15 @@ a{
 .button-disabled {
     background-color: var(--disabled);
     color: var(--txt-subheader)
+}
+
+
+.button-facebook {
+    color: #237AEF;
+}
+
+.button-mail {
+    color: #E03C19;
 }
 
 .tag {

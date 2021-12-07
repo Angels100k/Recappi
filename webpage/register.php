@@ -77,9 +77,9 @@ if($x === 0){
 
     <div class="home-bottom">
         <div class="main-container text-center">
-            <?=dd_button("Register with Email", "href='/register/email'", "a", "button txt-black bg-white r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;color:#E03C19;")?>
-            <?=dd_button("Register with Google", "href='/register/google'", "a", "button txt-black bg-white r-max bs-bb", "bottom: 105px;position: absolute;left: 16px;right: 16px;")?>
-            <?=dd_button("Register with Facebook", "href='/register/facebook'", "a", "button txt-black bg-white r-max bs-bb", "bottom: 155px;position: absolute;left: 16px;right: 16px;color:#237AEF;")?>
+            <?=dd_button("Register with Email", "href='/register/email'", "a", "button button-white button-mail r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;")?>
+            <?=dd_button("Register with Google", "href='/register/google'", "a", "button button-white button-google r-max bs-bb", "bottom: 105px;position: absolute;left: 16px;right: 16px;")?>
+            <?=dd_button("Register with Facebook", "href='/register/facebook'", "a", "button button-white button-facebook r-max bs-bb", "bottom: 155px;position: absolute;left: 16px;right: 16px;")?>
         </div>
     </div>
 <?php } elseif($x === 2) {?>
