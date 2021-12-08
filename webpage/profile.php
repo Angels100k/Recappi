@@ -5,7 +5,8 @@ $url = $urlpaths[2] ?? "";
 $cat = $urlpaths[3] ?? "";
 $email = "";
 $cookbook = "";
-$image = "";
+$profileImage = "";
+$profileImagetype = "";
 $name = "";
 $username = "";
 $bio = "";
@@ -27,8 +28,8 @@ if($url != ""){
             $recepts = $row['recepts'];
             $following = $row['following'];
             $followers = $row['followers'];
-            $type = $row['imgtype'];
-            $image = $row['image'];
+            $profileImagetype = $row['imgtype'];
+            $profileImage = $row['image'];
             $y++;
         }
     if($cat != ""){
@@ -56,12 +57,12 @@ $title = "Recappi | Profile of ".$url;
     <?php 
         if($y === 1):?>
         <div class="profile-main main-container shadow row">
-            <div class="col-5"><?=dd_img($image, $type, '98px', '98px', '', "profile-main-picture")?></div>
+            <div class="col-5"><?=dd_img($profileImage, $profileImagetype, '98px', '98px', '', "profile-main-picture")?></div>
             <div class="col-7">
             <div class="row text-center">
                 <div class="col-1-3">
                     <div>
-                        <h1 class="mt-0 pl-1"><?=$username?></h1>
+                        <h1 class="mt-0"><?=$username?></h1>
                     </div>
                 </div>
                 </div>
@@ -113,7 +114,7 @@ $title = "Recappi | Profile of ".$url;
             <div class="row main-container flex-wrap-no w-100 overflow-x-auto mr--1">
                 <?php
                     while($row = $draftrecepts->fetch()):
-                        echo dd_draftrecipebig($row);
+                        echo dd_draftrecipebigedit($row);
                     endwhile;
                 ?>
             </div>

@@ -1,14 +1,19 @@
 <?php
 function dd_img($image, $type, $width = '', $height = '', $style = '', $class = '', $onclick = '')
 {
-    if($type != "svg"){
+            if($type != "svg"){
         $src = "/assets/img/webp/".$image . ".webp";
         $errsrc = "/assets/img/".$image . "." . $type;
+
+        // if () {
+        // } else {
+        //     $src = "/assets/img/placeholder.png";
+        // }
         $class_content = $class != "" ? " class='" . $class . "'" : "";
         $style_content = $style != "" ? " style='" . $style . "'" : "";
         $onclick_content = $onclick != "" ? " onclick='" . $onclick . "'" : "";
 
-        return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`'.$errsrc.'`;test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
+        return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`/assets/img/webp/placeholder.webp`;test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
     }
     else {
         $src = "/assets/img/svg/".$image . "." . $type;
@@ -30,7 +35,7 @@ function dd_input($text, $name, $type = "text", $class="",$style =""){
     $output = "<input " . $name_content . $class_content . $style_content . ">" . $text . "</input>";
 }
 
-function dd_draftrecipebig($data){
+function dd_draftrecipebigedit($data){
     if($data["image"] && $data["type"]):
         $img = dd_img($data["image"], $data["type"], "150px", "150px", "", "border-small object-cover");
     else:
@@ -41,6 +46,21 @@ function dd_draftrecipebig($data){
         '.$img.'
         <h3 class="txt-white text-center">'.$data['recipe'].'</h3>
             '.dd_img("pen-white", "svg", "18px", "18px", "    position: absolute; right: 10px; bottom: 10px;", "").'
+        </a>
+    ';
+}
+
+function dd_DraftRecipeBigShow($data){
+    if($data["image"] && $data["type"]):
+        $img = dd_img($data["image"], $data["type"], "150px", "150px", "", "border-small object-cover");
+    else:
+        $img = dd_img("placeholder", "png", "150px", "150px", "", "bg-img");
+    endif;
+    return '
+        <a href="/recipe/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
+        '.$img.'
+        <h3 class="txt-white text-center">'.$data['recipe'].'</h3>
+            '.dd_img("savefill", "svg", "18px", "18px", "    position: absolute; right: 10px; bottom: 10px;", "").'
         </a>
     ';
 }
@@ -117,7 +137,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
     for ($y = $x; $y <= 4; $y++):
         $dots.= "<span class='text-grey mr-02'>&#9679</span>";
     endfor;
-    return '<a href="/recept/'.$id.'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
+    return '<a href="/recipe/'.$id.'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
     <div class="row">
         <div class="col-12"><h2 class="text-bold">'.$receptname.'</h2></div>
         <div class="col-7">
@@ -138,6 +158,25 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
         </div>
         <div class="col-5 jc-center">
            '.$button.'
+        </div>
+    </div>
+            
+    </a>';
+}
+
+function dd_layout_friend($row){
+    return '<a href="/profile/'.$row["name"].'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
+    <div class="row">
+        <div class="col-3 text-center">
+            '. dd_img($row["image"], $row["type"], "60px", "60px", "", "profile-main-picture") .'
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="text-bold text-size-1-5">'.$row["username"].'</div>
+            </div>
+            <div class="row">
+                <div class="text-bold">'.$row["recepts"].'</div><div class="ml-05">     recepten</div>
+            </div>
         </div>
     </div>
             

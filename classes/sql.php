@@ -33,6 +33,15 @@ class Sql {
       return $stmt;
     }
 
+    public function getfriends(){
+      $stmt = $this->conn->prepare("
+      SELECT user.name AS `name`, user.username AS `username`, user.image AS `image`, user.imgtype AS `imgtype`, ufn_recept_count(user.id) AS `recepts`  FROM `follower` 
+INNER JOIN user on user.id = user2
+WHERE user1 = ?");
+      $stmt->execute([$_SESSION["id"]]); 
+      return $stmt; 
+    }
+
     public function updatelike($postid){
       $userid = $_SESSION["id"];
       $stmt = $this->conn->prepare("
@@ -125,6 +134,20 @@ WHERE grocery_list.userid = ?");
  return $stmt;
     }
 
+    public function getcookbookresentbig(){
+      $stmt = $this->conn->prepare("
+      SELECT recipe.id, recipe.recipe, recipe_image.image AS image, recipe_image.type AS type, saved_recipe.creation_date 
+      FROM `saved_recipe`
+      LEFT JOIN recipe on recipe.id = saved_recipe.receptid 
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
+      WHERE saved_recipe.userid = ? 
+      AND recipe.draft = 0 
+      AND saved_recipe.creation_date >= DATE_SUB(CURDATE(), INTERVAL DAYOFMONTH(CURDATE())-1 DAY) 
+      ORDER BY saved_recipe.creation_date DESC");
+ $stmt->execute([$_SESSION["id"]]); 
+ return $stmt;
+    }
+
     public function getshoplist(){
       $stmt = $this->conn->prepare("
       SELECT amountid, amount, owned, creation_date 
@@ -143,9 +166,19 @@ WHERE grocery_list.userid = ?");
       $stmt->execute([$user]); 
       return $stmt;
     }
+    public function getcookbookamountprofile($user){
+      $stmt = $this->conn->prepare("
+      select user.name as username, category.name, ufn_cat_count(user.id, category.id) as amountrecepts
+      from user
+      RIGHT JOIN category ON 1
+      WHERE user.id = ?
+      ORDER BY 2 DESC");
+      $stmt->execute([$user]); 
+      return $stmt;
+    }
 
     public function getprofileimg($id){
-      $stmt = $this->conn->prepare("SELECT `image`, `imgtype` FROM `user` WHERE `id` = ?");
+      $stmt = $this->conn->prepare("SELECT `image`, `name`, `imgtype` FROM `user` WHERE `id` = ?");
       $stmt->execute([$id]); 
       return $stmt;
     }

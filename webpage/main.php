@@ -14,10 +14,18 @@
     <div class="main-body homepage-container row flex-wrap-no">
         <div class="main-container pagefriends">
             <h2>following</h2>
+            <div class="row">
+                <?php 
+                    $stmt = $sqlQuery->getfriends();
+                    while($row = $stmt->fetch()):
+                        echo dd_layout_friend($row);
+                    endwhile;
+                    ?>
+            </div>
         </div>
         <div class="main-container pagediscover mb--4">
             <h2>Recipe feed</h2>
-            <div class="row">
+            <div class="row mb-4">
                 <?php 
                 $stmt = $sqlQuery->getcookbookdiscover();
                 while($row = $stmt->fetch()):
@@ -27,9 +35,8 @@
             </div>
         </div>
     </div>
-    <div class="main-footer">
+    <?php require $dir.'/elements/main-footer.php';?>
 
-    </div>
 </body>
 
 </html>
