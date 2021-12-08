@@ -48,9 +48,7 @@ while($row = $stmt->fetch()){
                 <div class="row flex-wrap-no w-100 overflow-x-auto mr--1">
                 <?php $draftrecepts = $sqlQuery->getcookbookresentbig();
                     while($row = $draftrecepts->fetch()):
-                for ($x = 0; $x <= 10; $x++) {
                     echo dd_DraftRecipeBigShow($row);
-                }
             endwhile;
                 ?>
             </div>
@@ -59,16 +57,14 @@ while($row = $stmt->fetch()){
                         <h2 class="text-bold"><?=dd_img("bars", "svg", '18px', '18px')?> <span class="ml-05">Cookbook</span></h2>
                     </div>
                     <div class="row">
-                        <?php while($row = $cookbook->fetch()):
-                for ($x = 0; $x <= 10; $x++) {
-                    ?>
+                        <?php while($row = $cookbook->fetch()): ?>
                             <a href="/profile/<?=$row["username"]?>/<?=$row["name"]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                                 <div>
                                     <span class="text-bold"><?=$row["name"]?></span>
                                     <div><?=$row["amountrecepts"]?> recipes</div>
                                 </div>
                             </a>
-                        <?php } endwhile;?>
+                        <?php endwhile;?>
                     </div>
             </div>
            </div>
