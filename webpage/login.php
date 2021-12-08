@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $returned = $sqlQuery->loginUser($email);
         while($row = $returned->fetch()): 
             if (password_verify($password, $row["password"])) {
-                $_SESSION["id"] = $row["OUT_result"];
+                $_SESSION["id"] = $row["id"];
                 header("Location: /home");
             } else {
                     $error = 1;
