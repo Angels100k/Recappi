@@ -71,7 +71,7 @@ if($x === 0){
     ?>
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
     <div class="d-flex jc-center home-image">
-        <?=dd_img("logo-white", "svg", "212px","81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;")?>
+        <?=dd_img("logo-white-dot", "svg", "212px","81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;")?>
     </div>
     </div>
 
@@ -85,7 +85,7 @@ if($x === 0){
 <?php } elseif($x === 2) {?>
 
     <div class="d-flex jc-center" style="margin-top: 4rem;flex-wrap: wrap;">
-        <?=dd_img("logo-red", "svg", "212px","81px", "flex:100%;")?>
+        <?=dd_img("logo-red-dot", "svg", "212px","81px", "flex:100%;")?>
     </div>
 
     <div class="main-container text-center">

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body style="background-color: var(--background)">
 
     <div class="d-flex jc-center" style="margin-top: 4rem;flex-wrap: wrap;">
-        <?=dd_img("logo-red", "svg", "212px","81px", "flex:100%;")?>
+        <?=dd_img("logo-red-dot", "svg", "212px","81px", "flex:100%;")?>
     </div>
 
     <div class="main-container text-center" style="bottom: 20px;position: absolute;left: 16px;right: 16px;">
