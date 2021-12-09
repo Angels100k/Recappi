@@ -82,6 +82,25 @@ function imgerror(item, url){
       item.src = url;
   }
   console.log("error")
+function invitefollower(id, item){
+    data = {
+        "followid": id,
+    }
+    var opts = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+            'content-type': 'application/json'
+        },
+    };
+    fetch('request/updatefollow.php', opts).then(response => response.json())
+        .then(data =>{
+            if(data.OUT_result == 1){
+                item.children[1].src = "/assets/img/svg/user-minus-solid.svg";
+            }else{
+                item.children[1].src = "/assets/img/svg/user-plus-solid.svg";
+            }
+        })
 }
 
 function klikaj(i) {
@@ -107,5 +126,5 @@ function klikaj(i) {
     }
    }
      );
-
+}
 }

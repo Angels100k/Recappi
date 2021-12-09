@@ -61,6 +61,14 @@ WHERE user1 = ?");
       $stmt->execute([$_SESSION["id"]]); 
       return $stmt; 
     }
+    public function updatefollow($followid){
+        $userid = $_SESSION["id"];
+        $stmt = $this->conn->prepare("
+        CALL likePost(?,?,@id, @count);
+        SELECT @id,@count;");
+        $stmt->execute([$followid, $userid]);
+        return $stmt;
+    }
 
     public function updatelike($postid){
       $userid = $_SESSION["id"];
