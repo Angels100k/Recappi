@@ -7,6 +7,7 @@ $email = "";
 $cookbook = "";
 $profileImage = "";
 $profileImagetype = "";
+$followimg = "";
 $name = "";
 $username = "";
 $bio = "";
@@ -57,7 +58,13 @@ $title = "Recappi | Profile of ".$url;
     <?php 
         if($y === 1):?>
         <div class="profile-main main-container shadow row">
+            <div class="col-5">
+                <button onclick="invitefollower(id)" class="button-no-style">
+                    <?=dd_img("user-plus-solid", "svg", "20px", "20px", "     right: 10px; bottom: 10px;", "");?>
+
+                    <?=dd_img($profileImage, $profileImagetype, '98px', '98px', '', "profile-main-picture")?>
                 </button>
+
             </div>
             <div class="col-7">
             <div class="row text-center">
