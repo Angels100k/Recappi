@@ -26,10 +26,30 @@ class Sql {
       $stmt->execute([$user]); 
       return $stmt;
     }
+    public function getprofileedit(){
+      $stmt = $this->conn->prepare("
+      SELECT 
+      user.id AS `id`, 
+      user.username AS `username`, 
+      user.image AS `image`, 
+      user.imgtype AS `imgtype`, 
+      user.email AS `email`, 
+      user.bio AS `bio`
+      FROM user WHERE user.id = ?");
+      $stmt->execute([$_SESSION["id"]]); 
+      return $stmt;
+    }
     public function emailverify($mail){
       $stmt = $this->conn->prepare("
       SELECT * FROM user WHERE `email`= ?");
       $stmt->execute([$mail]); 
+      return $stmt;
+    }
+
+    public function updatesaveprofile($json){
+      $stmt = $this->conn->prepare("
+      UPDATE `user` SET `image`= ?,`imgtype`=?,`email`=?,`username`=?,`bio`=? WHERE id = ?");
+      $stmt->execute([$json[0], $json[1],$json[2],$json[3],$json[4], $_SESSION["id"]]); 
       return $stmt;
     }
 

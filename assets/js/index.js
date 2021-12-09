@@ -71,6 +71,19 @@ function savepost(id,item){
      );
 }
 
+function imgerror(item, url){
+  var xhr = new XMLHttpRequest();
+  xhr.open('HEAD', url, false);
+  xhr.send();
+   
+  if (xhr.status == "404") {
+      item.src = "/assets/img/placeholder.png";
+  } else {
+      item.src = url;
+  }
+  console.log("error")
+}
+
 function klikaj(i) {
   const ids = i.split("_");
   y = document.getElementById(i);

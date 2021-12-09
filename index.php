@@ -47,8 +47,8 @@ switch($urlpaths[1]) {
     case 'register':
         require __DIR__ . '/webpage/register.php';
         break;
-    case 'test':
-        require __DIR__ . '/webpage/create_profile.php';
+    case 'edit':
+        require __DIR__ . '/webpage/edit.php';
         break;
     default:
         require __DIR__ . '/webpage/404.php';

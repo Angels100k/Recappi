@@ -5,7 +5,7 @@
 
 </head>
 <body>
-<?php require $dir.'/elements/navbar.php';?>
+<?php require $dir.'/elements/navbar/navbar.php';?>
     
     page you're looking for is not here
 </body>

@@ -1,23 +1,20 @@
 <?php
-function dd_img($image, $type, $width = '', $height = '', $style = '', $class = '', $onclick = '')
+function dd_img($image, $type, $width = '', $height = '', $style = '', $class = '', $onclick = '', $id = '', $custom = "")
 {
             if($type != "svg"){
         $src = "/assets/img/webp/".$image . ".webp";
         $errsrc = "/assets/img/".$image . "." . $type;
 
-        // if () {
-        // } else {
-        //     $src = "/assets/img/placeholder.png";
-        // }
         $class_content = $class != "" ? " class='" . $class . "'" : "";
         $style_content = $style != "" ? " style='" . $style . "'" : "";
         $onclick_content = $onclick != "" ? " onclick='" . $onclick . "'" : "";
+        $id_content = $id != "" ? " id='" . $id . "'" : "";
 
-        return '<img src="'.$src.'" onerror="this.onerror=null; this.src=`/assets/img/webp/placeholder.webp`;test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
+        return '<img '. $custom . " ".$id_content.' src="'.$src.'" onerror="imgerror(this, `'.$errsrc.'`); test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
     }
     else {
         $src = "/assets/img/svg/".$image . "." . $type;
-        return '<img src="'.$src.'" width="'.$width.'" height="'.$height.'" style="'.$style.'">';
+        return '<img src="'.$src.'" '. $custom .' width="'.$width.'" height="'.$height.'" style="'.$style.'">';
     }
 }
 

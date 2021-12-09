@@ -52,7 +52,7 @@ $title = "Recappi | Profile of ".$url;
 </head>
 
 <body style="background-color: var(--background)">
-<?php require $dir.'/elements/navbar.php';?>
+<?php require $dir.'/elements/navbar/navbar.php';?>
 
     <?php 
         if($y === 1):?>

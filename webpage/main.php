@@ -6,7 +6,7 @@
 </head>
 
 <body style="background-color: var(--background)">
-<?php require $dir.'/elements/navbar.php';?>
+<?php require $dir.'/elements/navbar/navbar.php';?>
     <div class="main-top row txt-primary">
         <div class="col text-center">My friends</div>
         <div class="col text-center">Discover</div>

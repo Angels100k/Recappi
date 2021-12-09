@@ -11,7 +11,7 @@ $title = "Recipe";
 </head>
 
 <body style="background-color: var(--background)">
-<?php require $dir.'/elements/navbar.php';?>
+<?php require $dir.'/elements/navbar/navbar.php';?>
 
 </body>
 </html>

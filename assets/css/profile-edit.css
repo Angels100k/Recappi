@@ -1,0 +1,14 @@
+.choose_file{
+    position:relative;
+    display:inline-block;    
+	border-radius:8px;
+    width:250px; 
+    padding: 4px 6px 4px 8px;
+    margin-top: 2px;
+}
+.choose_file input[type="file"]{
+    -webkit-appearance:none; 
+    position:absolute;
+    top:0; left:0;
+    opacity:0; 
+}
