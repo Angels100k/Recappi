@@ -71,6 +71,27 @@ function savepost(id,item){
      );
 }
 
+function invitefollower(id, item){
+    data = {
+        "followid": id,
+    }
+    var opts = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+            'content-type': 'application/json'
+        },
+    };
+    fetch('request/updatefollow.php', opts).then(response => response.json())
+        .then(data =>{
+            if(data.OUT_result == 1){
+                item.children[1].src = "/assets/img/svg/followmin.svg";
+            }else{
+                item.children[1].src = "/assets/img/svg/followplus"
+            }
+        })
+}
+
 function klikaj(i) {
   const ids = i.split("_");
   y = document.getElementById(i);
