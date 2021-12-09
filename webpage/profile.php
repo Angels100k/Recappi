@@ -59,16 +59,15 @@ $title = "Recappi | Profile of ".$url;
         if($y === 1):?>
         <div class="profile-main main-container shadow row">
             <div class="col-5">
-                <button onclick="invitefollower(id)" class="button-no-style">
-                    <?=dd_img("user-plus-solid", "svg", "20px", "20px", "     right: 10px; bottom: 10px;", "");?>
-
+                <button onclick="invitefollower(<?= $id?>, this)" class="button-no-style  p-r">
                     <?=dd_img($profileImage, $profileImagetype, '98px', '98px', '', "profile-main-picture")?>
+                    <?=dd_img("user-plus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");?>
                 </button>
 
             </div>
             <div class="col-7">
-            <div class="row text-center">
-                <div class="col-1-3">
+            <div class="row">
+                <div class="col-12">
                     <div>
                         <h1 class="mt-0"><?=$username?></h1>
                     </div>

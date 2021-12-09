@@ -49,7 +49,7 @@ class Sql {
     public function updatesaveprofile($json){
       $stmt = $this->conn->prepare("
       UPDATE `user` SET `image`= ?,`imgtype`=?,`email`=?,`username`=?,`bio`=? WHERE id = ?");
-      $stmt->execute([$json[0], $json[1],$json[2],$json[3],$json[4], $_SESSION["id"]]); 
+      $stmt->execute([$json[0], $json[1],$json[3],$json[2],$json[4], $_SESSION["id"]]); 
       return $stmt;
     }
 
@@ -64,8 +64,8 @@ WHERE user1 = ?");
     public function updatefollow($followid){
         $userid = $_SESSION["id"];
         $stmt = $this->conn->prepare("
-        CALL likePost(?,?,@id, @count);
-        SELECT @id,@count;");
+        CALL updatefollowing(?,?,@id);
+        SELECT @id;");
         $stmt->execute([$followid, $userid]);
         return $stmt;
     }

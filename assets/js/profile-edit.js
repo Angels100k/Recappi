@@ -63,6 +63,6 @@ function linecontinue(){
         body: JSON.stringify(imagearray),
       }).then(response => response.json())
       .then(result => {
-        
+        location.replace("/home")
     });
 }

@@ -82,6 +82,7 @@ function imgerror(item, url){
       item.src = url;
   }
   console.log("error")
+}
 function invitefollower(id, item){
     data = {
         "followid": id,
@@ -93,8 +94,9 @@ function invitefollower(id, item){
             'content-type': 'application/json'
         },
     };
-    fetch('request/updatefollow.php', opts).then(response => response.json())
+    fetch('/request/updatefollow.php', opts).then(response => response.json())
         .then(data =>{
+          console.log(data);
             if(data.OUT_result == 1){
                 item.children[1].src = "/assets/img/svg/user-minus-solid.svg";
             }else{
@@ -126,5 +128,4 @@ function klikaj(i) {
     }
    }
      );
-}
 }
