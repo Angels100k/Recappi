@@ -27,6 +27,6 @@ endif;
 <a href="/profile/<?=$navbarlink?>">
     <?=dd_img($navbarimage, $navbartype, '32px', '32px', '', "profile_picture")?>
 </a>
-
-
+<!-- logout -->
+    <a href="/webpage/logout.php">Logout</a>
 </nav>
