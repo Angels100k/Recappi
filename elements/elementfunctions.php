@@ -165,7 +165,7 @@ function dd_layout_friend($row){
     return '<a href="/profile/'.$row["name"].'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
     <div class="row">
         <div class="col-3 text-center">
-            '. dd_img($row["image"], $row["type"], "60px", "60px", "", "profile-main-picture") .'
+            '. dd_img($row["image"], $row["imgtype"], "60px", "60px", "", "profile-main-picture") .'
         </div>
         <div class="col">
             <div class="row">

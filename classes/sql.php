@@ -21,9 +21,10 @@ class Sql {
       user.bio AS `bio`,
       ufn_recept_count(id) AS `recepts`, 
       ufn_follower_count(id) AS `followers`, 
-      ufn_following_count(id) AS `following` 
+      ufn_following_count(id) AS `following`,
+      (SELECT COUNT(*) FROM follower WHERE user2 = ? AND user1 = user.ID ) as personfollow
       FROM user WHERE user.name = ? GROUP BY 1, 2, 3, 4, 5");
-      $stmt->execute([$user]); 
+      $stmt->execute([$_SESSION["id"], $user]); 
       return $stmt;
     }
     public function getprofileedit(){

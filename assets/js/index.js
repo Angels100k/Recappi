@@ -98,9 +98,9 @@ function invitefollower(id, item){
         .then(data =>{
           console.log(data);
             if(data.OUT_result == 1){
-                item.children[1].src = "/assets/img/svg/user-minus-solid.svg";
+                item.children[0].src = "/assets/img/svg/user-minus-solid.svg";
             }else{
-                item.children[1].src = "/assets/img/svg/user-plus-solid.svg";
+                item.children[0].src = "/assets/img/svg/user-plus-solid.svg";
             }
         })
 }

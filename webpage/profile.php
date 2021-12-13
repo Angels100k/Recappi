@@ -14,6 +14,7 @@ $bio = "";
 $id = "";
 $recepts = "";
 $following = "";
+$followingperson = "";
 $followers = "";
 if($url != ""){
     $x = 1;        
@@ -25,6 +26,7 @@ if($url != ""){
             $name = $row['name'];
             $username = $row['username'];
             $id = $row['id'];
+            $followingperson =  $row['personfollow'];
             $bio = $row['bio'];
             $recepts = $row['recepts'];
             $following = $row['following'];
@@ -59,10 +61,19 @@ $title = "Recappi | Profile of ".$url;
         if($y === 1):?>
         <div class="profile-main main-container shadow row">
             <div class="col-5">
+            <?php if($_SESSION["id"] != $id){ 
+                ?>
                 <button onclick="invitefollower(<?= $id?>, this)" class="button-no-style  p-r">
+                <?php 
+                        if($followingperson == 0){
+                            echo dd_img("user-plus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");
+                        }else {
+                            echo dd_img("user-minus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");
+                        }
+                    }?>
+                
                     <?=dd_img($profileImage, $profileImagetype, '98px', '98px', '', "profile-main-picture")?>
-                    <?=dd_img("user-plus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");?>
-                </button>
+                    <?php if($_SESSION["id"] === 1){ ?> </button> <?php } ?>
 
             </div>
             <div class="col-7">

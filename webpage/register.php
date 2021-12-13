@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $error = 1;
             }else {
                 $_SESSION["id"] = $row["OUT_result"];
-                header("Location: /home");
+                header("Location: /edit/profile");
             }
             var_dump($row);
         endwhile;
