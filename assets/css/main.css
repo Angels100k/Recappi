@@ -295,6 +295,9 @@ a{
 .text-center{
     text-align: center;
 }
+.text-end{
+    text-align: end;
+}
 .text-bold{
     font-weight: bold;
 }
@@ -303,6 +306,14 @@ a{
 }
 .text-size-1-5{
     font-size: 1.5rem;
+}
+.text-nowrap {
+    white-space: nowrap;
+}
+.text-overflow {
+  overflow: hidden;
+  width: 65vw;
+  text-overflow: ellipsis; 
 }
 .p-r{
     position: relative;
@@ -378,6 +389,18 @@ a{
     flex: 0 0 58.333333333333333333333333333333%;
     max-width: 58.333333333333333333333333333333%;
 }
+.col-9{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 66.66%;
+    flex: 0 0 66.66%;
+    max-width: 66.66%;
+}
+.col-11{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 85%;
+    flex: 0 0 85%;
+    max-width: 85%;
+}
 .col-12{
     -webkit-box-flex: 0;
     -ms-flex: 0 0 100%;
@@ -391,6 +414,13 @@ a{
     border-radius: var(--border-radius);
 }
 
+.snap-x {
+    scroll-snap-type:x mandatory;
+}
+
+.snap-center {
+    scroll-snap-align:center;
+}
 
 .profile-not-found{
     margin-top: 5rem;
@@ -539,4 +569,13 @@ a{
 
 .custom-checkbox input[type="checkbox"]:checked + label:after {
   opacity: 1;
+}
+.mt-1 {
+    margin-top: 1rem;
+}
+.p-0 {
+    padding: 0;
+}
+.p-1 {
+    padding: 1rem;
 }
