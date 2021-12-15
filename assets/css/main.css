@@ -24,6 +24,7 @@
     --navbar: 3.125rem;
     --border-radius: 10px;
     --shadow: 0 0 4px 2px rgba(0, 0, 0, 0.08);
+    --signout: #FECBBB;
 }
 
 html, body{
@@ -540,3 +541,86 @@ a{
 .custom-checkbox input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
+.page-title{
+    font-family: "Montserrat", serif;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.small-title{
+    font-family: "Montserrat", serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.subheader{
+    font-family: "Montserrat", serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+}
+.text-settings{
+    font-family: "Montserrat", serif;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+}
+.setting-icons{
+    margin-right: 1rem;
+}
+.setting-signout-icon{
+    margin-right: 1rem;
+}
+/* settingburger */
+.topnav {
+    background-color: var(--background);
+    font-family: "Montserrat", serif;
+
+}
+.topnav #myLinks {
+    display: none;
+    text-align: left;
+    margin-top: 4rem;
+}
+
+.topnav a {
+    color: black;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+
+}
+.icon-slider{
+    right: 4rem;
+    color: white;
+}
+
+.icon-arrow {
+    display: none;
+    left: 1rem;
+    color: white;
+}
+
+.main-navbar a.icon {
+    /*background-color: var(--primary);*/
+    /*display: block;*/
+    font-size:14px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.parts{
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    padding-left: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 15px;
+}
+
+.grijs{
+    border-bottom: solid 2px gray;
+    padding-bottom: 2px;
+}
+
+

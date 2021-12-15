@@ -1,0 +1,7 @@
+<svg id="lock_black_24dp" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g id="Group_746" data-name="Group 746">
+        <path id="Path_1080" data-name="Path 1080" d="M0,0H24V24H0Z" fill="none"/>
+        <path id="Path_1081" data-name="Path 1081" d="M0,0H24V24H0Z" fill="none" opacity="0.87"/>
+    </g>
+    <path id="Path_1082" data-name="Path 1082" d="M18,8H17V6A5,5,0,0,0,7,6V8H6a2.006,2.006,0,0,0-2,2V20a2.006,2.006,0,0,0,2,2H18a2.006,2.006,0,0,0,2-2V10A2.006,2.006,0,0,0,18,8Zm-6,9a2,2,0,1,1,2-2A2.006,2.006,0,0,1,12,17ZM9,8V6a3,3,0,0,1,6,0V8Z" fill="#242222"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg id="logout_black_24dp" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g id="Group_759" data-name="Group 759">
+        <path id="Path_1100" data-name="Path 1100" d="M0,0H24V24H0Z" fill="none"/>
+    </g>
+    <g id="Group_761" data-name="Group 761">
+        <g id="Group_760" data-name="Group 760">
+            <path id="Path_1101" data-name="Path 1101" d="M5,5h6a1,1,0,0,0,1-1h0a1,1,0,0,0-1-1H5A2.006,2.006,0,0,0,3,5V19a2.006,2.006,0,0,0,2,2h6a1,1,0,0,0,1-1h0a1,1,0,0,0-1-1H5Z" fill="#242222"/>
+            <path id="Path_1102" data-name="Path 1102" d="M20.65,11.65,17.86,8.86a.5.5,0,0,0-.86.35V11H10a1,1,0,0,0-1,1H9a1,1,0,0,0,1,1h7v1.79a.5.5,0,0,0,.85.35l2.79-2.79A.492.492,0,0,0,20.65,11.65Z" fill="#242222"/>
+        </g>
+    </g>
+</svg>

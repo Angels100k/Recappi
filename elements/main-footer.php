@@ -4,7 +4,7 @@ if($urlpaths[1] == "recipes"){
 $color = 1; 
 }
 ?>
-<div class="main-footer row">
+<div class="main-footer row" id="main-footer">
     <div class="col">
         <a href="/home">
             <div class="text-center" style="height:28px;">

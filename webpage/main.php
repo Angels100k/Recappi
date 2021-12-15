@@ -7,12 +7,12 @@
 
 <body style="background-color: var(--background)">
 <?php require $dir.'/elements/navbar/navbar.php';?>
-    <div class="main-top row txt-primary">
+    <div id="main-top" class="main-top row txt-primary">
 
         <div class="col text-center">My friends</div>
         <div class="col text-center">Discover</div>
     </div>
-    <div class="main-body homepage-container row flex-wrap-no">
+    <div id="main-body" class="main-body homepage-container row flex-wrap-no">
         <div class="main-container pagefriends">
             <h2>following</h2>
             <div class="row">

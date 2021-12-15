@@ -50,6 +50,9 @@ switch($urlpaths[1]) {
     case 'edit':
         require __DIR__ . '/webpage/edit.php';
         break;
+    case 'logout':
+        require __DIR__ . '/webpage/logout.php';
+        break;
     default:
         require __DIR__ . '/webpage/404.php';
         header("HTTP/1.1 404 Not Found");
