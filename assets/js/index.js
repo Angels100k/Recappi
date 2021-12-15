@@ -26,7 +26,7 @@ function test(img, type) {
   })
 }
 
-function likepost(id, text, item){
+function likepost(id, item){
   data = {
     "postID": id,
   }

@@ -143,14 +143,14 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
             difficulty<br>
             '.$dots.'
             <div class="text-bold">
-                <button onclick="likepost(`'. $id .'`,`frank`, this); return false;" class="button-no-style">
+                <button onclick="likepost(`'. $id .'`, this); return false;" class="button-no-style">
                 '. $likeimg .'<span>'.$likes.'</span> 
                 </button>
                     
-                <button class="button-no-style">
-                    '. dd_img("comment", "svg", "20px", "20px", "", "") .'
+                <button class="button-no-style" onclick="location.href=`/recipe/'.$id.'/#comments`;return false;">
+                    '. dd_img("comment", "svg", "20px", "20px", "", "") .''.$repsonses.'
                 </button>
-                 '.$repsonses.'
+                 
             </div>
         </div>
         <div class="col-5 jc-center">

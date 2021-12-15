@@ -20,39 +20,56 @@ $request = $_SERVER['REQUEST_URI'];
 $url = parse_url($request);
 
 $urlpaths = explode("/", $url["path"]);
-switch($urlpaths[1]) {
-    case '/':
-    case '':
-    case 'index':
-        require __DIR__ . '/webpage/index.php';
-        break;
-    case 'home':
-        require __DIR__ . '/webpage/main.php';
-        break;
-    case 'recipes':
-        require __DIR__ . '/webpage/myrecipe.php';
-        break;
-    case 'profile':
-        require __DIR__ . '/webpage/profile.php';
-        break;
-    case 'recipe':
-        require __DIR__ . '/webpage/recipe.php';
-        break;
-    case 'login':
-        require __DIR__ . '/webpage/login.php';
-        break;
-    case 'search':
-        require __DIR__ . '/webpage/search.php';
-        break;
-    case 'register':
-        require __DIR__ . '/webpage/register.php';
-        break;
-    case 'edit':
-        require __DIR__ . '/webpage/edit.php';
-        break;
-    default:
-        require __DIR__ . '/webpage/404.php';
-        header("HTTP/1.1 404 Not Found");
-        break;
+if($_SESSION["id"]){
+    switch($urlpaths[1]) {
+        case '/':
+        case '':
+        case 'index':
+        case 'home':
+            require __DIR__ . '/webpage/main.php';
+            break;
+        case 'recipes':
+            require __DIR__ . '/webpage/myrecipe.php';
+            break;
+        case 'profile':
+            require __DIR__ . '/webpage/profile.php';
+            break;
+        case 'recipe':
+            require __DIR__ . '/webpage/recipe.php';
+            break;
+        case 'login':
+            require __DIR__ . '/webpage/login.php';
+            break;
+        case 'search':
+            require __DIR__ . '/webpage/search.php';
+            break;
+        case 'register':
+            require __DIR__ . '/webpage/register.php';
+            break;
+        case 'edit':
+            require __DIR__ . '/webpage/edit.php';
+            break;
+        default:
+            require __DIR__ . '/webpage/404.php';
+            header("HTTP/1.1 404 Not Found");
+            break;
+    }
+}else {
+    switch($urlpaths[1]) {
+        case '/':
+        case '':
+        case 'index':
+            require __DIR__ . '/webpage/index.php';
+            break;
+        case 'login':
+            require __DIR__ . '/webpage/login.php';
+            break;
+        case 'register':
+            require __DIR__ . '/webpage/register.php';
+            break;
+        default:
+            require __DIR__ . '/webpage/index.php';
+            break;
+    }
 }
 ?>

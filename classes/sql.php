@@ -218,7 +218,7 @@ WHERE grocery_list.userid = ?");
       ufn_likes_count(recipe.id) AS likes, ufn_reactions_count(recipe.id) AS repsonses,
       (SELECT COUNT(*) FROM saved_recipe WHERE  saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?) AS saved,
       (SELECT COUNT(*) FROM liked WHERE  liked.receptid = recipe.id AND liked.userid = ?) AS liked,
-      user.name, user.image, user.imgtype
+      user.name, user.username, user.image, user.imgtype
       FROM recipe
       INNER JOIN user ON user.ID = recipe.userid
       WHERE recipe.id = ?");
@@ -226,6 +226,12 @@ WHERE grocery_list.userid = ?");
       return $stmt;
     }
 
+    public function createComment($id, $comment){
+      $stmt = $this->conn->prepare("
+      INSERT INTO `comment`(`recipeid`, `userid`, `comment`) VALUES (?,?,?)");
+      $stmt->execute([$id, $_SESSION["id"], $comment]); 
+      return $stmt;
+    }
     public function receppiimages($id){
       $stmt = $this->conn->prepare("
       SELECT image, type, `order` FROM `recipe_image` WHERE recipeid = ?");
@@ -237,7 +243,7 @@ WHERE grocery_list.userid = ?");
       SELECT  comment.comment , user.image, user.imgtype, user.username, user.name
       FROM `comment` 
       INNER JOIN user ON user.ID = comment.userid
-      WHERE recipeid = ?");
+      WHERE recipeid = ? ORDER BY comment.creation_date ASC");
       $stmt->execute([$id]); 
       return $stmt;
     }
