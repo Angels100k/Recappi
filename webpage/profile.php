@@ -56,7 +56,6 @@ $title = "Recappi | Profile of ".$url;
 
 <body style="background-color: var(--background)">
 <?php require $dir.'/elements/navbar/navbar.php';?>
-
     <?php 
         if($y === 1):?>
         <div class="profile-main main-container shadow row">
@@ -90,11 +89,11 @@ $title = "Recappi | Profile of ".$url;
                         <div>recepten</div>
                     </div>
                     <div class="col-1-3">
-                        <div class="text-bold"><?=$following?></div>
+                        <div class="text-bold"><?=$followers?></div>
                         <div>volgers</div>
                     </div>
                     <div class="col-1-3">
-                        <div class="text-bold"><?=$followers?></div>
+                        <div class="text-bold"><?=$following?></div>
                         <div>volgend</div>
                     </div>
                 </div>

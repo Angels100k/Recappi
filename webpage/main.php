@@ -8,9 +8,16 @@
 <body style="background-color: var(--background)">
 <?php require $dir.'/elements/navbar/navbar.php';?>
     <div id="main-top" class="main-top row txt-primary">
-
-        <div class="col text-center">My friends</div>
-        <div class="col text-center">Discover</div>
+        <div class="col text-center">
+        <button id="Btnfriends" class="list-main list-main-active button-no-style">
+        My friends
+        </button>    
+        </div>
+        <div class="col text-center">
+        <button id="BtnDiscover" class="list-main button-no-style">
+        Discover
+        </button>    
+        </div>
     </div>
     <div id="main-body" class="main-body homepage-container row flex-wrap-no">
         <div class="main-container pagefriends">
@@ -38,6 +45,7 @@
     </div>
     <?php require $dir.'/elements/main-footer.php';?>
 
+    <script src="/assets/js/main.js"></script>
 </body>
 
 </html>

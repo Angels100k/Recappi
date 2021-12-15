@@ -124,7 +124,7 @@ WHERE grocery_list.userid = ?");
 
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
-      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, user.id AS userid, recipe_image.image,
+      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
       recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
       ufn_reactions_count(recipe.id) AS repsonses FROM `recipe`
       INNER JOIN category on category.name = ?
@@ -138,7 +138,7 @@ WHERE grocery_list.userid = ?");
     }
     public function getcookbookdiscover(){
       $stmt = $this->conn->prepare("
-      SELECT discovery.order, recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.totaltime, user.id AS userid, recipe_image.image,
+      SELECT discovery.order, recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
       recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
       ufn_reactions_count(recipe.id) AS repsonses 
       FROM `discovery`
@@ -208,6 +208,42 @@ WHERE grocery_list.userid = ?");
 
     public function getprofileimg($id){
       $stmt = $this->conn->prepare("SELECT `image`, `name`, `imgtype` FROM `user` WHERE `id` = ?");
+      $stmt->execute([$id]); 
+      return $stmt;
+    }
+
+    public function getrecipedefault($id){
+      $stmt = $this->conn->prepare("
+      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.waittime, recipe.cooktime, recipe.description,
+      ufn_likes_count(recipe.id) AS likes, ufn_reactions_count(recipe.id) AS repsonses,
+      (SELECT COUNT(*) FROM saved_recipe WHERE  saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?) AS saved,
+      (SELECT COUNT(*) FROM liked WHERE  liked.receptid = recipe.id AND liked.userid = ?) AS liked,
+      user.name, user.username, user.image, user.imgtype
+      FROM recipe
+      INNER JOIN user ON user.ID = recipe.userid
+      WHERE recipe.id = ?");
+      $stmt->execute([$_SESSION["id"],$_SESSION["id"], $id]); 
+      return $stmt;
+    }
+
+    public function createComment($id, $comment){
+      $stmt = $this->conn->prepare("
+      INSERT INTO `comment`(`recipeid`, `userid`, `comment`) VALUES (?,?,?)");
+      $stmt->execute([$id, $_SESSION["id"], $comment]); 
+      return $stmt;
+    }
+    public function receppiimages($id){
+      $stmt = $this->conn->prepare("
+      SELECT image, type, `order` FROM `recipe_image` WHERE recipeid = ?");
+      $stmt->execute([$id]); 
+      return $stmt;
+    }
+    public function receppicomments($id){
+      $stmt = $this->conn->prepare("
+      SELECT  comment.comment , user.image, user.imgtype, user.username, user.name
+      FROM `comment` 
+      INNER JOIN user ON user.ID = comment.userid
+      WHERE recipeid = ? ORDER BY comment.creation_date ASC");
       $stmt->execute([$id]); 
       return $stmt;
     }
