@@ -107,6 +107,22 @@ WHERE grocery_list.userid = ?");
  return $stmt;
     }
 
+    public function ingredientlistrecipe($id){
+      $stmt = $this->conn->prepare("
+      SELECT amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `amount` 
+INNER JOIN ingredient ON ingredient.id =  amount.ingredientid
+WHERE amount.recipeid = ?");
+      $stmt->execute([$id]);
+      return $stmt;
+    }
+
+    public function ingredientMethodRecipe($id){
+      $stmt = $this->conn->prepare("
+      SELECT  `step`, `text` FROM `instruction` WHERE receptid = ? ORDER BY step asc");
+      $stmt->execute([$id]);
+      return $stmt;
+    }
+
     public function registerUser($name, $username, $email, $hashedPassword){
       $stmt = $this->conn->prepare("
       CALL registeruser(?,?,?,?,@out);

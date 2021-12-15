@@ -133,10 +133,55 @@ endif;
             </div>
         </div>
         <div class="pagerecepi">
-            second
+            <div class="main-container">
+                <div class="row mt-2">
+                    <div class="col-5 container-buttons button-white r-max bs-bb">
+                         <button class="button-no-style lf">-</button>
+                        <span>1</span> 
+                        <button class="button-no-style rf">+</button>
+                        
+                    </div>
+                    <div class="col"><button class="button button-secondary r-max bs-bb rf">convert</button></div>
+                </div>    
+                <div class="row mt-2">
+                    <div class="col text-bold">
+                        Ingredients
+                    </div>
+                </div>        
+            </div>
+            <div class="row shadow bg-white p-1 border-small bs-bb mt-1">
+                <?php 
+                $ingredients = $sqlQuery->ingredientlistrecipe($recipeid); 
+                while($row = $ingredients->fetch()):
+                    echo dd_showshoppinglistrecipe($row);
+                endwhile;
+                
+                ?>
+            </div>
+            <div class="main-container">
+                <div class="row mt-1">
+                    <div class="col">
+                    <button class="button bg-primary w-100 txt-white r-max bs-bb">Add to list</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="pagerecepi">
-            third
+            <div class="main-container">
+            <h3 class="text-bold">Preperation method</h3>
+            </div>
+
+            <div class="row shadow bg-white p-1 border-small bs-bb mt-1">
+                <?php 
+                 $ingredients = $sqlQuery->ingredientMethodRecipe($recipeid); 
+                 while($row = $ingredients->fetch()):
+                     echo dd_preprecipe($row);
+                 endwhile;
+                 
+                ?>
+
+            </div>
         </div>
     </div>
 </body>

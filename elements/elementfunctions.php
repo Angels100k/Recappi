@@ -201,6 +201,33 @@ function dd_showshoppinglist($data){
     ';
 }
 
+
+function dd_showshoppinglistrecipe($data){
+    return'
+    <div class="col-12 row  mt-1-not-first top-border">
+        <div class="pt-05">
+            <div class="custom-checkbox">
+                <input type="checkbox" />
+                <label for="checkbox" ></label>
+            </div>
+        </div>
+        <div class="ml-1 pt-05 border col">
+             <span class="text-bold"> '. $data['amountunit'].' '.$data['unit'].' </span>'.$data['ingredient'].'
+        </div>
+    </div>
+    ';
+}
+
+function dd_preprecipe($data){
+    return'
+    <div class="col-12 row  mt-1-not-first">
+        <div class="ml-1 pt-05 border col">
+             <span class="text-size-1-5"> '. $data['step'].'   </span><span>'.$data['text'].'</span>
+        </div>
+    </div>
+    ';
+}
+
 function dd_button($text, $onclick, $type, $class = "", $style = ""){
     $button = "<" . $type . " ";
     if($class !=""){

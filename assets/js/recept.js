@@ -9,7 +9,6 @@ let page2Width = (sectionContainer.scrollWidth /  6) * 3;
 let page3Width = (sectionContainer.scrollWidth / 6) * 5;
 
 sectionContainer.addEventListener("scroll", () => {
-    console.log(sectionContainer.scrollLeft )
     if(sectionContainer.scrollLeft > 0 && sectionContainer.scrollLeft < page1Width){
         overviewButton.classList.add("list-main-active");
 
