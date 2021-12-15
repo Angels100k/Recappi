@@ -47,8 +47,7 @@
     <!-- start top side -->
     <div class="bg-white home-top" style="margin-bottom: 53.5px;">
         <div class="d-flex jc-center home-image">
-
-            <?= dd_img("logo-white", "svg", "212px", "81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;") ?>
+            <?= dd_img("logo-white-dot", "svg", "212px", "81px", "padding:1rem;background-color: var(--primary);border-radius: 1.5rem;") ?>
         </div>
     </div>
     <!-- end top side -->
