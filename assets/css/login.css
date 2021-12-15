@@ -24,27 +24,3 @@
     transform: scaleY(1);
   }
 }
-input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: none;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-}
-
-input[type=password], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: none;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-}
-
-
-input[type=submit]:hover {
-    background-color: var(--primary);
-}

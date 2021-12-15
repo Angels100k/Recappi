@@ -1,6 +1,5 @@
 <?php
 session_start(); 
-
 require (__DIR__ ."/includes/classloader.php");
 
 (new EnvReader(__DIR__ . '/.env'))->load();
@@ -30,10 +29,13 @@ switch($urlpaths[1]) {
     case 'home':
         require __DIR__ . '/webpage/main.php';
         break;
+    case 'recipes':
+        require __DIR__ . '/webpage/myrecipe.php';
+        break;
     case 'profile':
         require __DIR__ . '/webpage/profile.php';
         break;
-    case 'recept':
+    case 'recipe':
         require __DIR__ . '/webpage/recipe.php';
         break;
     case 'login':
@@ -45,8 +47,8 @@ switch($urlpaths[1]) {
     case 'register':
         require __DIR__ . '/webpage/register.php';
         break;
-    case 'test':
-        require __DIR__ . '/webpage/create_profile.php';
+    case 'edit':
+        require __DIR__ . '/webpage/edit.php';
         break;
     default:
         require __DIR__ . '/webpage/404.php';

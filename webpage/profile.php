@@ -5,13 +5,16 @@ $url = $urlpaths[2] ?? "";
 $cat = $urlpaths[3] ?? "";
 $email = "";
 $cookbook = "";
-$image = "";
+$profileImage = "";
+$profileImagetype = "";
+$followimg = "";
 $name = "";
 $username = "";
 $bio = "";
 $id = "";
 $recepts = "";
 $following = "";
+$followingperson = "";
 $followers = "";
 if($url != ""){
     $x = 1;        
@@ -23,12 +26,13 @@ if($url != ""){
             $name = $row['name'];
             $username = $row['username'];
             $id = $row['id'];
+            $followingperson =  $row['personfollow'];
             $bio = $row['bio'];
             $recepts = $row['recepts'];
             $following = $row['following'];
             $followers = $row['followers'];
-            $type = $row['imgtype'];
-            $image = $row['image'];
+            $profileImagetype = $row['imgtype'];
+            $profileImage = $row['image'];
             $y++;
         }
     if($cat != ""){
@@ -51,17 +55,32 @@ $title = "Recappi | Profile of ".$url;
 </head>
 
 <body style="background-color: var(--background)">
-<?php require $dir.'/elements/navbar.php';?>
+<?php require $dir.'/elements/navbar/navbar.php';?>
 
     <?php 
         if($y === 1):?>
         <div class="profile-main main-container shadow row">
-            <div class="col-5"><?=dd_img($image, $type, '98px', '98px', '', "profile-main-picture")?></div>
+            <div class="col-5">
+            <?php if($_SESSION["id"] != $id){ 
+                ?>
+                <button onclick="invitefollower(<?= $id?>, this)" class="button-no-style  p-r">
+                <?php 
+                        if($followingperson == 0){
+                            echo dd_img("user-plus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");
+                        }else {
+                            echo dd_img("user-minus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");
+                        }
+                    }?>
+                
+                    <?=dd_img($profileImage, $profileImagetype, '98px', '98px', '', "profile-main-picture")?>
+                    <?php if($_SESSION["id"] === 1){ ?> </button> <?php } ?>
+
+            </div>
             <div class="col-7">
-            <div class="row text-center">
-                <div class="col-1-3">
+            <div class="row">
+                <div class="col-12">
                     <div>
-                        <h1 class="mt-0 pl-1"><?=$username?></h1>
+                        <h1 class="mt-0"><?=$username?></h1>
                     </div>
                 </div>
                 </div>
@@ -93,11 +112,13 @@ $title = "Recappi | Profile of ".$url;
             <div class="main-container mt-3">
             <?php 
                 if($id == $_SESSION["id"]){
+                $draftrecepts = $sqlQuery->ingredientlist(); 
+                if($draftrecepts->fetchColumn() > 0){
                 ?>
+                
                 <div class="row">
                     <h2 class="text-bold"><?=dd_img("list-ul", "svg", '18px', '18px')?> <span class="ml-05">My shopping list</span></h2>
                 </div>
-                <?php $draftrecepts = $sqlQuery->ingredientlist(); ?>
             <div class="row shadow bg-white p-1 border-small bs-bb mt-05">
                 <?php
                     while($row = $draftrecepts->fetch()):
@@ -105,20 +126,23 @@ $title = "Recappi | Profile of ".$url;
                     endwhile;
                 ?>
             </div>
+            <?php }                 
+            $draftrecepts = $sqlQuery->getcookbookdraftbig();
+            if($draftrecepts->fetchColumn() > 0){
+                ?>?>
                 <div class="row">
                 <h2 class="text-bold"><?=dd_img("pen-black", "svg", '18px', '18px')?> <span class="ml-05">Drafts</span></h2>
                 </div>
                 <div class="row">
-                <?php $draftrecepts = $sqlQuery->getcookbookdraftbig(); ?>
             <div class="row main-container flex-wrap-no w-100 overflow-x-auto mr--1">
                 <?php
                     while($row = $draftrecepts->fetch()):
-                        echo dd_draftrecipebig($row);
+                        echo dd_draftrecipebigedit($row);
                     endwhile;
                 ?>
             </div>
              </div>
-            <?php }?>
+            <?php }}?>
             <div class="row">
                     <h2 class="text-bold"><?=dd_img("bars", "svg", '18px', '18px')?> <span class="ml-05">Cookbook</span></h2>
             </div>

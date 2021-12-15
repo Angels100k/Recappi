@@ -1,7 +1,7 @@
 <?php 
 $style = '<link rel="stylesheet" href="/assets/css/login.css">';
 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
-    header("Location: /start");
+    header("Location: /home");
 }
 
 $error = 0;
