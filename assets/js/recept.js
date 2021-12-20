@@ -79,3 +79,37 @@ function postcomment(id, comment) {
         location.reload();
     })
 }
+
+
+document.getElementById("btnMinrecipe").addEventListener("click", convertrecipeRemove);
+document.getElementById("btnAddrecipe").addEventListener("click", convertrecipeadd);
+document.getElementById("BtnConvert").addEventListener("click", recipeConvert);
+
+function recipeConvert() {
+    amount = document.getElementById("convertAmount").innerText
+    
+    console.log(amount);
+
+    var converted_ele = document.getElementsByClassName('converted');
+for (var i = 0; i < converted_ele.length; ++i) {
+    var item = converted_ele[i];  
+    console.log(item.innerText);
+    item.innerText = parseInt(item.dataset.amountunit) * parseInt(amount)
+    console.log(item.innerText);
+}
+}
+
+function convertrecipeadd(){
+    var number = parseInt(document.getElementById("convertAmount").innerText) + 1
+
+    document.getElementById("convertAmount").innerText = number;
+}
+function convertrecipeRemove(){
+    var number = parseInt(document.getElementById("convertAmount").innerText) - 1
+
+    if(number <= 1){
+        document.getElementById("convertAmount").innerText = 1;    
+    }else {
+        document.getElementById("convertAmount").innerText = number;
+    }
+}

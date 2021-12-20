@@ -212,7 +212,7 @@ function dd_showshoppinglistrecipe($data){
             </div>
         </div>
         <div class="ml-1 pt-05 border col">
-             <span class="text-bold"> '. $data['amountunit'].' '.$data['unit'].' </span>'.$data['ingredient'].'
+             <span class="text-bold converted" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold"> '.$data['unit'].' </span>'.$data['ingredient'].'
         </div>
     </div>
     ';
