@@ -84,19 +84,18 @@ function postcomment(id, comment) {
 document.getElementById("btnMinrecipe").addEventListener("click", convertrecipeRemove);
 document.getElementById("btnAddrecipe").addEventListener("click", convertrecipeadd);
 document.getElementById("BtnConvert").addEventListener("click", recipeConvert);
+document.getElementById("BtnSaveList").addEventListener("click", saverecipeingredients);
 
 function recipeConvert() {
-    amount = document.getElementById("convertAmount").innerText
-    
-    console.log(amount);
+    const amount = document.getElementById("convertAmount").innerText
+    const converted_ele = document.getElementsByClassName('converted');
 
-    var converted_ele = document.getElementsByClassName('converted');
-for (var i = 0; i < converted_ele.length; ++i) {
-    var item = converted_ele[i];  
-    console.log(item.innerText);
-    item.innerText = parseInt(item.dataset.amountunit) * parseInt(amount)
-    console.log(item.innerText);
-}
+    for (var i = 0; i < converted_ele.length; ++i) {
+        var item = converted_ele[i];  
+
+        item.innerText = parseInt(item.dataset.amountunit) * parseInt(amount)
+        item.dataset.multiplier = amount;
+    }
 }
 
 function convertrecipeadd(){
@@ -104,12 +103,23 @@ function convertrecipeadd(){
 
     document.getElementById("convertAmount").innerText = number;
 }
+
 function convertrecipeRemove(){
     var number = parseInt(document.getElementById("convertAmount").innerText) - 1
 
-    if(number <= 1){
+    if(number < 1){
         document.getElementById("convertAmount").innerText = 1;    
     }else {
         document.getElementById("convertAmount").innerText = number;
+    }
+}
+
+function saverecipeingredients(){
+    const converted_ele = document.getElementsByClassName('converted-container').childNodes;
+
+    for (var i = 0; i < converted_ele.length; ++i) {
+        var item = converted_ele[i];  
+
+        console.log(item)
     }
 }

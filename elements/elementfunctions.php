@@ -211,8 +211,8 @@ function dd_showshoppinglistrecipe($data){
                 <label for="checkbox" ></label>
             </div>
         </div>
-        <div class="ml-1 pt-05 border col">
-             <span class="text-bold converted" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold"> '.$data['unit'].' </span>'.$data['ingredient'].'
+        <div class="ml-1 pt-05 border col converted-container">
+             <span class="text-bold converted" data-multiplier="1" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold convertedUnit"> '.$data['unit'].' </span>'.$data['ingredient'].'
         </div>
     </div>
     ';

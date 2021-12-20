@@ -165,7 +165,7 @@ endif;
             <div class="main-container">
                 <div class="row mt-1">
                     <div class="col">
-                    <button class="button bg-primary w-100 txt-white r-max bs-bb">Add to list</button>
+                    <button class="button bg-primary w-100 txt-white r-max bs-bb" id="BtnSaveList">Add to list</button>
                     </div>
                 </div>
             </div>
