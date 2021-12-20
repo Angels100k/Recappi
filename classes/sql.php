@@ -263,4 +263,15 @@ WHERE amount.recipeid = ?");
       $stmt->execute([$id]); 
       return $stmt;
     }
+    public function getRecipeEdit($recipeId){
+      $stmt = $this->conn->prepare("
+      SELECT 
+      recipe.categoryid, recipe.recipe, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.description, recipe.draft, 
+      recipe_image.image, recipe_image.type, recipe_image.made
+      FROM `recipe` 
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
+      WHERE recipe.id = ? AND recipe.userid = ?");
+      $stmt->execute([$recipeId, $_SESSION["id"]]); 
+      return $stmt;
+    }
 }
