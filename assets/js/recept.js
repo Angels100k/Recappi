@@ -1,5 +1,4 @@
 const sectionContainer = document.querySelector(".homepage-container");
-
 const overviewButton = document.querySelector("#BtnOverview");
 const ingredientsButton = document.querySelector("#BtnIngredients");
 const methodButton = document.querySelector("#BtnMethod");
