@@ -2,10 +2,23 @@ const sectionContainer = document.querySelector(".homepage-container");
 const overviewButton = document.querySelector("#BtnOverview");
 const ingredientsButton = document.querySelector("#BtnIngredients");
 const methodButton = document.querySelector("#BtnMethod");
+const iconBackArrow = document.querySelector("#icon-back-arrow");
+const iconSearch = document.querySelector("#icon-search");
+const iconBulletList = document.querySelector("#icon-bullet-list");
+const iconFilter = document.querySelector("#icon-filter");
+const iconNotifications = document.querySelector("#icon-notifications");
+
 let pages = 3;
 let page1Width = (sectionContainer.scrollWidth / 6);
 let page2Width = (sectionContainer.scrollWidth /  6) * 3;
 let page3Width = (sectionContainer.scrollWidth / 6) * 5;
+
+iconFilter.style.display = "none";
+iconNotifications.style.display = "none";
+iconBulletList.style.display = "block";
+iconSearch.style.display = "none";
+iconBackArrow.style.display = "block";
+iconBackArrow.href = "/home/";
 
 sectionContainer.addEventListener("scroll", () => {
     if(sectionContainer.scrollLeft > 0 && sectionContainer.scrollLeft < page1Width){
@@ -55,7 +68,7 @@ methodButton.addEventListener("click", ()=>{
 });
 
 function postcommentinput(id, comment) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
         postcomment(id, comment)
     }
 }
@@ -67,13 +80,13 @@ function postcomment(id, comment) {
     };
 
     var opts = {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(data),
         headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json"
         },
     };
-    fetch('/request/createcomment.php', opts).then(function (response) {
+    fetch("/request/createcomment.php", opts).then(function (response) {
         comment.value = "";
         location.reload();
     })
@@ -87,7 +100,7 @@ document.getElementById("BtnSaveList").addEventListener("click", saverecipeingre
 
 function recipeConvert() {
     const amount = document.getElementById("convertAmount").innerText
-    const converted_ele = document.getElementsByClassName('converted');
+    const converted_ele = document.getElementsByClassName("converted");
 
     for (var i = 0; i < converted_ele.length; ++i) {
         var item = converted_ele[i];  
@@ -114,7 +127,7 @@ function convertrecipeRemove(){
 }
 
 function saverecipeingredients(){
-    const converted_ele = document.getElementsByClassName('converted-container').childNodes;
+    const converted_ele = document.getElementsByClassName("converted-container").childNodes;
 
     for (var i = 0; i < converted_ele.length; ++i) {
         var item = converted_ele[i];  

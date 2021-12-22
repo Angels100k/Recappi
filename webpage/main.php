@@ -46,7 +46,6 @@
     <?php require $dir.'/elements/main-footer.php';?>
 
     <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/navbar.js"></script>
 </body>
 
 </html>

@@ -45,6 +45,10 @@ endif;
             <img src="/assets/img/svg/magnifying-glass.svg" alt="magnifying glass icon">
         </a>
 
+        <!-- shopping list -->
+        <a class="icon icon-bullet-list" id="icon-bullet-list">
+            <img src="/assets/img/svg/bullet-list.svg" alt="bullet list icon">
+        </a>
     </div>
 
 
@@ -52,7 +56,7 @@ endif;
     <!-- logout -->
 
 </nav>
-<div class="topnav col text-right" id="settings-menu" style="font-size:19px">
+<div class="settings-menu col text-right" id="settings-menu" style="font-size:19px">
 
     <div id="myLinks">
         <div class="col text-left page-title" style="margin-top: 1.5rem">Social</div>
