@@ -7,7 +7,7 @@
 
 <body style="background-color: var(--background)">
 <?php require $dir.'/elements/navbar/navbar.php';?>
-    <div id="main-top" class="main-top row txt-primary">
+    <div id="main-top" class="main-top row">
         <div class="col text-center">
         <button id="Btnfriends" class="list-main list-main-active button-no-style">
         My friends

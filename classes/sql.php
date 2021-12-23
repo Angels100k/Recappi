@@ -22,7 +22,7 @@ class Sql {
       ufn_recept_count(id) AS `recepts`, 
       ufn_follower_count(id) AS `followers`, 
       ufn_following_count(id) AS `following`,
-      (SELECT COUNT(*) FROM follower WHERE user2 = ? AND user1 = user.ID ) as personfollow
+      (SELECT COUNT(*) FROM follower WHERE user1 = ? AND user2 = user.ID ) as personfollow
       FROM user WHERE user.name = ? GROUP BY 1, 2, 3, 4, 5");
       $stmt->execute([$_SESSION["id"], $user]); 
       return $stmt;
@@ -67,7 +67,7 @@ WHERE user1 = ?");
         $stmt = $this->conn->prepare("
         CALL updatefollowing(?,?,@id);
         SELECT @id;");
-        $stmt->execute([$followid, $userid]);
+        $stmt->execute([$userid, $followid]);
         return $stmt;
     }
 
@@ -272,6 +272,19 @@ WHERE amount.recipeid = ?");
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
       WHERE recipe.id = ? AND recipe.userid = ?");
       $stmt->execute([$recipeId, $_SESSION["id"]]); 
+      return $stmt;
+    }
+    public function getAllCategory(){
+      $stmt = $this->conn->prepare("
+      SELECT `id`, `name` FROM `category` WHERE 1");
+      $stmt->execute([]); 
+      return $stmt;
+    }
+
+    public function getAllTags(){
+      $stmt = $this->conn->prepare("
+      SELECT `tag` FROM `tag` WHERE userid = ?");
+      $stmt->execute([$_SESSION["id"]]); 
       return $stmt;
     }
 }

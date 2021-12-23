@@ -89,11 +89,11 @@ $title = "Recappi | Profile of ".$url;
                         <div>recepten</div>
                     </div>
                     <div class="col-1-3">
-                        <div class="text-bold"><?=$followers?></div>
+                        <div class="text-bold"><?=$following?></div>
                         <div>volgers</div>
                     </div>
                     <div class="col-1-3">
-                        <div class="text-bold"><?=$following?></div>
+                        <div class="text-bold"><?=$followers?></div>
                         <div>volgend</div>
                     </div>
                 </div>
