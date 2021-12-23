@@ -310,4 +310,10 @@ WHERE amount.recipeid = ?");
       $stmt->execute([$item]); 
       return $stmt;
     }
+    public function forgotUser($email){
+      $stmt = $this->conn->prepare("
+      SELECT `email` FROM `user` WHERE email = ? LIMIT 1");
+      $stmt->execute([$email]); 
+      return $stmt;
+    }
 }
