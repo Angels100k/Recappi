@@ -71,6 +71,15 @@ while($row = $stmt->fetch()){
         </div>
     </div>
     <?php require $dir.'/elements/main-footer.php';?>
+    <script>
+        const pageTitle = document.querySelector('#page-title');
+        const iconNotifications = document.querySelector('#icon-notifications');
+        const iconSearch = document.querySelector('#icon-search');
+
+        pageTitle.innerText = "My Recipes";
+        iconNotifications.style.display = "none";
+        iconSearch.style.display = "none";
+    </script>
 </body>
 
 </html>

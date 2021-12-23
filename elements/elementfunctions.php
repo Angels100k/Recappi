@@ -70,7 +70,8 @@ function dd_head($title, $extra ="")
     $html .= '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
     $html .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
     $html .= '<title>'. $title .'</title>';
-    $html .= '<script src="/assets/js/index.js"></script>';
+    $html .= '<script defer src="/assets/js/index.js"></script>';
+    $html .= '<script defer src="/assets/js/navbar.js"></script>';
     $html .= '<link rel="stylesheet" href="/assets/css/main.css">';
     $html .= '<link rel="manifest" href="/manifest.json">';
     $html .= '<link rel="icon" href="favicon.ico" type="image/x-icon" />';
