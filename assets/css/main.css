@@ -700,6 +700,15 @@ a {
     z-index: 2;
     top: 3rem;
 }
+.search-menu {
+    background-color: var(--background);
+    font-family: "Montserrat", serif;
+    display: none;
+    position: absolute;
+    width: 100vw;
+    z-index: 2;
+    top: 3rem;
+}
 
 /* .settings-menu.open {
     display: block;

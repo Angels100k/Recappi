@@ -19,6 +19,9 @@ endif;
         </a>
         <span class="page-title" id="page-title"></span>
     </div>
+    <div>
+        <input type="text" id="searchbar" style="width:40%">
+    </div>
     <div class="navbar-icons">
         <!-- profile -->
         <a href="/profile/<?= $navbarlink ?>" class="icon-profile" id="icon-profile">
@@ -41,9 +44,9 @@ endif;
         </a>
 
         <!-- search -->
-        <a class="icon icon-search" id="icon-search">
+        <button class="icon icon-search button-no-style" id="icon-search" onclick="openSearch()">
             <img src="/assets/img/svg/magnifying-glass.svg" alt="magnifying glass icon">
-        </a>
+        </button>
 
         <!-- shopping list -->
         <a class="icon icon-bullet-list" id="icon-bullet-list">
@@ -56,6 +59,19 @@ endif;
     <!-- logout -->
 
 </nav>
+<div class="search-menu col text-right" id="search-menu">
+    <div class="main-container">
+        <h2>people:</h2>
+    </div> 
+    
+     <div class="row mb-4 main-container" id="searchResultPeople"></div>
+
+    <div class="main-container">
+        <h2>recipe's:</h2>
+    </div>
+    
+    <div class="row mb-4 main-container" id="searchResultRecipe"></div>
+</div>
 <div class="settings-menu col text-right" id="settings-menu" style="font-size:19px">
 
     <div id="myLinks">

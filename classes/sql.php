@@ -287,4 +287,27 @@ WHERE amount.recipeid = ?");
       $stmt->execute([$_SESSION["id"]]); 
       return $stmt;
     }
+
+    public function getsearchresult($searchitem){
+      $item = "%" . $searchitem . "%";
+      $stmt = $this->conn->prepare("
+      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
+      ufn_reactions_count(recipe.id) AS repsonses 
+      FROM `recipe`
+      INNER JOIN user on user.id = recipe.userid
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
+      LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
+      LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?)
+      WHERE recipe.draft = 0 AND recipe.recipe LIKE ? ORDER BY likes DESC LIMIT 5");
+      $stmt->execute([$_SESSION["id"], $_SESSION["id"], $item]); 
+      return $stmt;
+    }
+    public function getsearchresultpeople($searchitem){
+      $item = "%" . $searchitem . "%";
+      $stmt = $this->conn->prepare("
+      SELECT `ID`, `email`, `name`, `username`, `password`, `image`, `imgtype`, `bio`, `private`, ufn_recept_count(id) AS `recepts` FROM `user` WHERE private = 0 AND username LIKE ? ORDER BY name DESC LIMIT 5");
+      $stmt->execute([$item]); 
+      return $stmt;
+    }
 }
