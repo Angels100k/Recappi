@@ -248,6 +248,11 @@ WHERE amount.recipeid = ?");
       $stmt->execute([$id, $_SESSION["id"], $comment]); 
       return $stmt;
     }
+    public function createTag($tag){
+      $stmt = $this->conn->prepare("INSERT INTO `tag`(`userid`, `tag`) VALUES (?,?)");
+      $stmt->execute([$_SESSION["id"], $tag]); 
+      return $stmt;
+    }
     public function receppiimages($id){
       $stmt = $this->conn->prepare("
       SELECT image, type, `order` FROM `recipe_image` WHERE recipeid = ?");
@@ -281,10 +286,14 @@ WHERE amount.recipeid = ?");
       return $stmt;
     }
 
-    public function getAllTags(){
+    public function getAllTags($recipeId){
       $stmt = $this->conn->prepare("
-      SELECT `tag` FROM `tag` WHERE userid = ?");
-      $stmt->execute([$_SESSION["id"]]); 
+      SELECT `tag` 
+        , CASE WHEN recipe_tag.id IS null THEN '' ELSE ' bg-primary txt-white ' END AS class
+      FROM `tag`
+      LEFT OUTER JOIN recipe_tag ON recipe_tag.tagid = tag.id AND recipe_tag.receptid = ?
+      WHERE userid = ?");
+      $stmt->execute([$recipeId, $_SESSION["id"]]); 
       return $stmt;
     }
 
