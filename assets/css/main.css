@@ -928,6 +928,11 @@ a {
     bottom: 20px;
     right: 20px;
 }
+.bl-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
 
 .slidecontainerAmount {
     width: 100%;
@@ -1014,4 +1019,38 @@ a {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .addRecipe {
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    background-color: var(--primary);
+    z-index: 1;
+    animation-fill-mode: forwards;
+  }
+  .addRecipe-show {
+    transform: scaleY(1);
+    animation: sizing-show 1s;
+  }
+  .addRecipe-remove {
+    transform: scaleY(0);
+    animation: sizing-remove 1s;
+  }
+
+
+  @keyframes sizing-show {
+    0% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes sizing-remove {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(0);
+    }
   }

@@ -1,5 +1,8 @@
 const sectionContainer = document.querySelector(".homepage-container");
 
+const btnaddRecipe = document.querySelector("#BtnAddRecipe");
+const addRecipe = document.querySelector("#addRecipe");
+
 const friendsButton = document.querySelector("#Btnfriends");
 const discoverButton = document.querySelector("#BtnDiscover");
 
@@ -32,3 +35,14 @@ friendsButton.addEventListener("click", ()=>{
 discoverButton.addEventListener("click", ()=>{
     sectionContainer.scrollLeft = page2Width;
 });
+
+btnaddRecipe.onclick = function (){
+if(addRecipe.classList.contains('addRecipe-show')){
+    addRecipe.classList.add("addRecipe-remove");
+    addRecipe.classList.remove("addRecipe-show");
+}else {
+
+    addRecipe.classList.remove("addRecipe-remove");
+    addRecipe.classList.add("addRecipe-show");
+}
+};

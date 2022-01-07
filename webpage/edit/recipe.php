@@ -8,6 +8,7 @@ $preptime = 0;
 $cooktime = 0;
 $waittime = 0;
 $made = 0;
+$portions = 0;
 $catid = 0;
 $difficulty = 0;
 if ($urlpaths[3]) {
@@ -24,6 +25,7 @@ if ($urlpaths[3]) {
         $preptime = $row["preptime"];
         $cooktime = $row["cooktime"];
         $waittime = $row["waittime"];
+        $portions = $row["portion"];
 
     }
 }
@@ -133,13 +135,19 @@ if ($urlpaths[3]) {
   </div>
 
 </div>
-    <div id="container1">
+<div class="pagerecepi" id="container1">
         <div class="main-container d-grid">
             <input required type="text" value="<?=$recipeName?>" id="recipeName" name="recipeName"
                 placeholder="Name recipe"><br>
             <div class="row mb-4">
                 <div class="col">
-                    <?=dd_img($image, $type, "150px", "150px", "", "border-small object-cover"); ?>
+                    <?=dd_img($image, $type, "150px", "150px", "", "border-small object-cover", "", "recipeimage", ' data-name="'. $image .'" data-type="'. $type .'"'); ?>
+                    <div class="col-12">
+                        <div class="choose_file txt-primary text-bold">
+                            <span>add/change photo</span>
+                            <input id="recipepic" name="Select File" type="file" accept="image/png, image/wbp, image/jpeg" />
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="row">
@@ -149,7 +157,7 @@ if ($urlpaths[3]) {
                         </div>
                         <div class="col">
                             <label class="switch rf">
-                                <input type="checkbox" <?php  if($made) echo "checked"; ?>>
+                                <input id="imgSelfMade" type="checkbox" <?php  if($made) echo "checked"; ?>>
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -159,7 +167,7 @@ if ($urlpaths[3]) {
             <span class="text-bold">
                 Decription (optional)
             </span>
-            <textarea id="" cols="30" rows="10"
+            <textarea id="txtDescription" cols="30" rows="10"
                 placeholder="Add a short description about your recipe.."><?=$description?></textarea>
             <span class="text-bold mt-2">
                 Duration
@@ -173,15 +181,12 @@ if ($urlpaths[3]) {
                     </div>
                     <div class="col">
                             <?php 
-                            
                             $preptimehours = intval($preptime / 60.00);
                             $preptimeminutes = intval($preptime  - $preptimehours * 60);
                             ?>
                             <div id="btnPrepTime" class="timer rf">
                             <?php if($preptimehours < 10) echo("0"); echo(intval($preptimehours)) . ":" ; if($preptimeminutes < 10) echo("0"); echo $preptimeminutes ?>
                             </div>
-                        <!-- <input id="appt-time" type="time" class="timer rf" name="appt-time" value=''> -->
-
                     </div>
                 </div>
             </div>
@@ -190,17 +195,14 @@ if ($urlpaths[3]) {
                     <div class="col">
                         <p>Cook time</p>
                     </div>
-                    <div class="col">
-                        <!-- <div class="rf timer"> -->
-                            <?php 
+                    <?php 
                             $cooktimehours = intval($cooktime / 60.00);
                             $cooktimeminutes = intval($cooktime  - $cooktimehours * 60);
                             ?>
-                        <!-- </div> -->
+                    <div class="col">
                         <div id="btnCookTime" class="timer rf">
-                        <?php if($cooktimehours < 10) echo("0"); echo(intval($cooktimehours)) . ":" ; if($cooktimeminutes < 10) echo("0"); echo $cooktimeminutes ?>
+                             <?php if($cooktimehours < 10) echo("0"); echo(intval($cooktimehours)) . ":" ; if($cooktimeminutes < 10) echo("0"); echo $cooktimeminutes ?>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -215,8 +217,8 @@ if ($urlpaths[3]) {
                             $totaltimehours = intval($totaltime / 60.00);
                             $totaltimeminutes = intval($totaltime  - $totaltimehours * 60);
                             ?>
-                             <div id="totalTime" class="timer rf">
-                             <?php if($totaltimehours < 10) echo("0"); echo(intval($totaltimehours)) . ":" ; if($totaltimehours < 10) echo("0"); echo $totaltimeminutes ?>
+                        <div id="totalTime" class="timer rf">
+                             <?php if($totaltimehours < 10) echo("0"); echo(intval($totaltimehours)) . ":" ; if($totaltimeminutes < 10) echo("0"); echo $totaltimeminutes ?>
                         </div>
                             
                     </div>
@@ -232,7 +234,7 @@ if ($urlpaths[3]) {
             <div class="col-12">
                 <p>Amount of portions</p>
                 <div class="slidecontainerAmount">
-                    <input type="range" min="1" max="20" value="4" class="sliderAmount" id="myRange">
+                    <input type="range" min="1" max="20" value="<?=$portions?>" class="sliderAmount" id="rangePortions">
                 </div>
                 <div class="txt-subheader">
                     <div>1 <div class="rf">20</div></div>
@@ -251,21 +253,17 @@ if ($urlpaths[3]) {
              for ($y = $x; $y <= 4; $y++):
                 echo "<button onclick='dificultychange(`".($y + 1)."`)' class='button-no-style '><span class='txt-primary dificultychoice op-30 fs-3 mr-02'>&#9679</span></button>";
              endfor;
-            ?><div><div></div></div></div>
-        <div class="main-container mt-2" id="tagContainer">
-            <span class="text-bold">
+            ?><div><div></div></div></div></div>
+        <div class="main-container mt-2" id="tagContainer"><span class="text-bold">
                 TAGS
-            </span><br>
-            <button id="AddTag" class="bg-white button ml-05 r-max border-primary">+</button>
-                <?php
+            </span><br><button id="AddTag" class="bg-white button ml-05 r-max border-primary">+</button><?php
                $stmt = $sqlQuery->getAllTags($urlpaths[3]);
     
                while($row = $stmt->fetch()){
                   
                    echo '<button onclick="addtag(`'.$row["tag"].'`, this)" class="bg-white button ml-05 r-max '. $row["class"] . ' border-primary">'.$row["tag"].'</button>';
                }
-            ?>
-        </div>
+            ?></div>
         <div class="main-container mt-2 mb-4">
             <span class="text-bold">
                 Category
@@ -286,45 +284,88 @@ if ($urlpaths[3]) {
             ?>
             </select>
         </div>
+</div>
+<div class="pagerecepi" id="container2" style="display:none;">
+    <div class="main-container d-grid">
     </div>
-    <div id="container2">
-
-    </div>
-    <div id="container3">
+</div>
+<div class="pagerecepi" id="container3"style="display:none;">
 
 </div>
-    <button class="button button-white r-max bs-bb br-button">
-        <?= dd_img("chevron-right", "svg", "20px", "20px", "") ?>
-    </button>
-
-    <script>
-        
+<button id="BtnPrev" class="button button-white r-max bs-bb bl-button" style="display:none">
+    <?= dd_img("chevron-left", "svg", "20px", "20px", "") ?>
+</button>
+<button id="BtnNext" class="button button-white r-max bs-bb br-button">
+    <?= dd_img("chevron-right", "svg", "20px", "20px", "") ?>
+</button>
+<script>
 var totalCookTime = <?=$cooktime?>;
 var totalPrepTime = <?=$preptime?>;
+var difficulty = <?=$difficulty?>;
 var totaltime = totalCookTime + totalPrepTime;
-
-
-        function dificultychange(which){
-            var container = document.getElementById("dificultycontainer").childNodes;
-            for (var i = 1; i < container.length; ++i) {
-                var item = container[(i)].childNodes[0]; 
-                if(i < which){
-                    item.classList.remove("op-30");
-                }else {
-                    item.classList.add("op-30");
-                }
-            }
-        }
-        function addtag(tagname, button) {
-            console.log(tagname)
-            button.classList.toggle("bg-primary");
-            button.classList.toggle("txt-white");
-        }
-var modalTag = document.getElementById("modalAddTag");
-var modalPrep = document.getElementById("modalPrepTime");
+var tagBtn = document.getElementById("AddTag");
+var btnNext = document.getElementById("BtnNext");
+var BtnPrev = document.getElementById("BtnPrev");
+var btnCook = document.getElementById("btnCookTime");
 var btnPrep = document.getElementById("btnPrepTime");
-var spanPrep = document.getElementsByClassName("close")[0];
+var modalTag = document.getElementById("modalAddTag");
+var modalCook = document.getElementById("modalCookTime");
+var modalPrep = document.getElementById("modalPrepTime");
+var acceptBtnCook = document.getElementById("SaveCookTime");
 var acceptBtnPrep = document.getElementById("SavePrepTime");
+var tagBtnAccept = document.getElementById("SaveTagModelBtn");
+var spanPrep = document.getElementsByClassName("close")[0];
+var spanCook = document.getElementsByClassName("close")[1];
+var tagBtnClose = document.getElementsByClassName("close")[2];
+
+function dificultychange(which){
+    difficulty = which;
+    var container = document.getElementById("dificultycontainer").childNodes;
+    for (var i = 1; i < container.length; ++i) {
+        var item = container[(i)].childNodes[0]; 
+        if(i < which){
+            item.classList.remove("op-30");
+        }else {
+            item.classList.add("op-30");
+        }
+    }
+}
+
+function addtag(tagname, button) {
+    button.classList.toggle("bg-primary");
+    button.classList.toggle("txt-white");
+}
+
+function closeWindowPrep(){
+    modalPrep.style.display = "none";
+}
+function updateTime(){
+    var newCookTime = (parseInt(btnCook.innerText.substring(0, 2)) * 60) + parseInt(btnCook.innerText.substring(btnCook.innerText.length - 2));
+    var newPrepTime = (parseInt(btnPrep.innerText.substring(0, 2)) * 60) + parseInt(btnPrep.innerText.substring(btnPrep.innerText.length - 2));
+    var totaltext = "";
+
+    totalCookTime = newCookTime;
+    totalPrepTime = newPrepTime;
+    totaltime = totalCookTime + totalPrepTime;
+
+    var totaltimehours = parseInt(totaltime / 60.00);
+    var totaltimeminutes = parseInt(totaltime  - totaltimehours * 60);
+    if(totaltimehours < 10){ totaltext += "0"}; 
+    totaltext += totaltimehours + ":" ; 
+    if(totaltimeminutes < 10) {totaltext +="0"}; 
+    totaltext +=totaltimeminutes;
+
+    document.getElementById("totalTime").innerHTML = totaltext;
+
+}
+
+function closeWindowCook(){
+    modalCook.style.display = "none";
+}
+
+function closeWindowTag(){
+    modalTag.style.display = "none";
+}
 
 btnPrep.onclick = function() {
     modalPrep.style.display = "block";
@@ -336,20 +377,12 @@ btnPrep.onclick = function() {
 spanPrep.onclick = function() {
     closeWindowPrep();
 }
+
 acceptBtnPrep.onclick = function() {
     closeWindowPrep();
     btnPrep.innerHTML = document.getElementById("prepTimeHours").value + ":" + document.getElementById("prepTimeMinutes").value
     updateTime();
 }
-
-function closeWindowPrep(){
-    modalPrep.style.display = "none";
-}
-
-var modalCook = document.getElementById("modalCookTime");
-var btnCook = document.getElementById("btnCookTime");
-var spanCook = document.getElementsByClassName("close")[1];
-var acceptBtnCook = document.getElementById("SaveCookTime");
 
 btnCook.onclick = function() {
     modalCook.style.display = "block";
@@ -379,39 +412,10 @@ window.onclick = function(event) {
   }
 }
 
-function updateTime(){
-    var newCookTime = (parseInt(btnCook.innerText.substring(0, 2)) * 60) + parseInt(btnCook.innerText.substring(btnCook.innerText.length - 2));
-    var newPrepTime = (parseInt(btnPrep.innerText.substring(0, 2)) * 60) + parseInt(btnPrep.innerText.substring(btnPrep.innerText.length - 2));
-    var totaltext = "";
-
-    totalCookTime = newCookTime;
-    totalPrepTime = newPrepTime;
-    totaltime = totalCookTime + totalPrepTime;
-
-    var totaltimehours = parseInt(totaltime / 60.00);
-    var totaltimeminutes = parseInt(totaltime  - totaltimehours * 60);
-    if(totaltimehours < 10){ totaltext += "0"}; 
-    totaltext += totaltimehours + ":" ; 
-    if(totaltimeminutes < 10) {totaltext +="0"}; 
-    totaltext +=totaltimeminutes;
-
-    document.getElementById("totalTime").innerHTML = totaltext;
-
-}
-
-function closeWindowCook(){
-    modalCook.style.display = "none";
-}
-
-var tagBtn = document.getElementById("AddTag");
-var tagBtnAccept = document.getElementById("SaveTagModelBtn");
-var tagBtnClose = document.getElementsByClassName("close")[2];
-
-
-
 tagBtnClose.onclick = function() {
     closeWindowTag();
 }
+
 tagBtnAccept.onclick = function() {
     closeWindowTag();
     var tag = document.getElementById("inputAddTag").value
@@ -435,16 +439,75 @@ tagBtnAccept.onclick = function() {
     });
 
 }
+
 tagBtn.onclick = function() {
     modalTag.style.display = "block";
     document.getElementById("inputAddTag").focus();
-
-}
-function closeWindowTag(){
-    modalTag.style.display = "none";
 }
 
+btnNext.onclick = function() {
+    var container1 = document.getElementById("container1");
+    var container2 = document.getElementById("container2");
+    var container3 = document.getElementById("container3");
 
-    </script>
+    var recipeName = document.getElementById("recipeName").value;
+    var imgMade = document.getElementById("imgSelfMade").checked;
+    var description = document.getElementById("txtDescription").value;
+    var portions = document.getElementById("rangePortions").value;
+    var categories = document.getElementById("catgories");
+    var categorie = categories.options[categories.selectedIndex].value
+
+    if(container1.style.display == ""){
+        var tags = []
+
+        var tagcontainer = document.getElementById("tagContainer");
+
+        for (var i = 0; i < tagcontainer.childNodes.length; i++) {
+            if (tagcontainer.childNodes[i].classList.contains("bg-primary")) {
+                note = tagcontainer.childNodes[i].innerText;
+                tags.push(note);
+            }        
+        }
+
+        // console.log(data);
+        profilesave().then(response => {
+            response.push(imgMade)
+            var data = {
+            "recipeId": <?=$urlpaths[3]?>,
+            "recipeName": recipeName,
+            "imgMade": imgMade,
+            "description": description,
+            "preptime":totalPrepTime,
+            "cooktime":totalCookTime,
+            "portions":portions,
+            "difficulty":difficulty,
+            "tags":tags,
+            "category":categorie,
+            "images":[response],
+        };
+            fetch("/request/updateRecipe.php", {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }).then(response => response.json())
+            .then(result => {
+                console.log(result);
+            });
+        }
+        );
+
+        BtnPrev.style.display = '';
+        container1.style.display = 'none';
+        container2.style.display = '';
+        container3.style.display = 'none';   
+    }else if(container2.style.display == ''){
+        console.log("con2")
+    }else if (container3.style.display == 'block'){
+
+    }
+}
+
+</script>
+
+<script src="/assets/js/recipe-edit.js"></script>
 </body>
 </html>

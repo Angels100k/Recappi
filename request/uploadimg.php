@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($errors){
+            echo"custom error: ";
             print_r($errors);
         } else {
             echo json_encode(($endname));

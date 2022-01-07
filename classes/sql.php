@@ -271,7 +271,7 @@ WHERE amount.recipeid = ?");
     public function getRecipeEdit($recipeId){
       $stmt = $this->conn->prepare("
       SELECT 
-      recipe.categoryid, recipe.recipe, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.description, recipe.draft, 
+      recipe.categoryid, recipe.recipe, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.portion, recipe.description, recipe.draft, 
       recipe_image.image, recipe_image.type, recipe_image.made
       FROM `recipe` 
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
@@ -292,7 +292,7 @@ WHERE amount.recipeid = ?");
         , CASE WHEN recipe_tag.id IS null THEN '' ELSE ' bg-primary txt-white ' END AS class
       FROM `tag`
       LEFT OUTER JOIN recipe_tag ON recipe_tag.tagid = tag.id AND recipe_tag.receptid = ?
-      WHERE userid = ?");
+      WHERE tag.userid = ?");
       $stmt->execute([$recipeId, $_SESSION["id"]]); 
       return $stmt;
     }
@@ -323,6 +323,34 @@ WHERE amount.recipeid = ?");
       $stmt = $this->conn->prepare("
       SELECT `email` FROM `user` WHERE email = ? LIMIT 1");
       $stmt->execute([$email]); 
+      return $stmt;
+    }
+    public function updaterecipe($json){
+      $stmt = $this->conn->prepare("
+      UPDATE `recipe` SET `categoryid`=?,`recipe`=?,`preptime`=?,`difficulty`=?,`cooktime`=?,`portion`=?,`description`=?
+       WHERE id = ? AND userid = ?;");
+      $stmt->execute([$json["category"], $json["recipeName"], $json["preptime"], $json["difficulty"], $json["cooktime"], $json["portions"], $json["description"], $json["recipeId"], $_SESSION["id"]]); 
+
+      $stmt = $this->conn->prepare("
+      DELETE FROM `recipe_tag` WHERE receptid = ? AND userid = ?");
+      $stmt->execute([$json["recipeId"], $_SESSION["id"]]); 
+
+      foreach ($json["tags"] as &$value) {
+        $stmt = $this->conn->prepare("INSERT INTO `recipe_tag`(`receptid`, `tagid`, `userid`) VALUES (?,(SELECT tag.id from tag where tag.tag = ?),?)");
+        $stmt->execute([$json["recipeId"], $value, $_SESSION["id"]]); 
+      }
+
+      $stmt = $this->conn->prepare("
+      DELETE FROM `recipe_image` WHERE recipeid = ? AND userid = ?");
+      $stmt->execute([$json["recipeId"], $_SESSION["id"]]); 
+
+      $c = 0;
+      foreach ($json["images"] as &$value) {
+        $stmt = $this->conn->prepare("INSERT INTO `recipe_image`(`recipeid`, `image`,`type`, `userid`, `order`,`made`) VALUES (?,?,?,?,?,?)");
+        $stmt->execute([$json["recipeId"], $value[0],$value[1], $_SESSION["id"],$c,$value[2]]); 
+        $c++;
+      }
+     
       return $stmt;
     }
 }

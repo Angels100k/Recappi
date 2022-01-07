@@ -4,6 +4,15 @@ if($urlpaths[1] == "recipes"){
 $color = 1; 
 }
 ?>
+<div style="position:absolute;bottom:65px;left:16px;Right:16px;background-color:white;" id="addRecipe" class="addRecipe text-center main-container border-small bs-bb ">
+    <p>ADD A RECIPE</p>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Write it yourself</a>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Copy a link</a>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Use a photo</a>
+    <button class="txt-primary button-no-style">Cancel</button>
+    
+</div>
+
 <div class="main-footer row" id="main-footer">
     <div class="col">
         <a href="/home">
@@ -22,7 +31,16 @@ $color = 1;
             </div>
         </a>
     </div>
-    <div class="col"></div>
+    <div class="col">
+        <div id="BtnAddRecipe">
+            <div class="text-center" style="height:28px;">
+                <?=dd_img("plus-square", "svg", "28px", "28px", "", "");?>
+            </div>
+            <div class="text-center">
+                Add
+            </div>
+        </div>
+    </div>
     <div class="col">
         <a href="/recipes">
         <div class="text-center" style="height:28px;">
