@@ -14,7 +14,7 @@ function dd_img($image, $type, $width = '', $height = '', $style = '', $class = 
     }
     else {
         $src = "/assets/img/svg/".$image . "." . $type;
-        return '<img src="'.$src.'" '. $custom .' width="'.$width.'" height="'.$height.'" style="'.$style.'">';
+        return '<img src="'.$src.'" '. $custom .' width="'.$width.'" height="'.$height.'" style="'.$style.'" class="'.$class.'">';
     }
 }
 
@@ -197,6 +197,22 @@ function dd_showshoppinglist($data){
         </div>
         <div class="ml-1 pt-05 border col">
             <span class="text-bold">'.$data['amount'].'</span> '.$data['ingredient'].' <span class="text-bold"> '. $data['amountunit'].' '.$data['unit'].'</span>
+        </div>
+    </div>
+    ';
+}
+
+function dd_showingradientlist($data){
+    return'
+    <div class="col-12 row  mt-1-not-first top-border">
+        <div class="pt-05">
+            <div class="custom-checkbox">
+                <input type="checkbox"/>
+                <label for="checkbox" ></label>
+            </div>
+        </div>
+        <div class="ml-1 pt-05 border col">
+            <span class="text-bold">'. $data['amountunit'].' '.$data['unit'].'</span> '.$data['ingredient'].'
         </div>
     </div>
     ';

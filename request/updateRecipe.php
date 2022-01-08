@@ -14,6 +14,12 @@ $database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWO
 $db = $database->getConnection();
 $sqlQuery = new Sql($db); 
 
-$sqlQuery->updateRecipe($json);
+if($json["recipeId"] === 0){
 
-echo json_encode($json);
+    $response = $sqlQuery->insertRecipeDraft($json);
+        echo json_encode($response);
+}else {
+    $sqlQuery->updateRecipe($json);
+    echo json_encode($json);
+}
+

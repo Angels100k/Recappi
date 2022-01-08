@@ -6,9 +6,9 @@ $color = 1;
 ?>
 <div style="position:absolute;bottom:65px;left:16px;Right:16px;background-color:white;" id="addRecipe" class="addRecipe text-center main-container border-small bs-bb ">
     <p>ADD A RECIPE</p>
-    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Write it yourself</a>
-    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Copy a link</a>
-    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Use a photo</a>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0">Write it yourself</a>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0/link">Copy a link</a>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="">Use a photo</a>
     <button class="txt-primary button-no-style">Cancel</button>
     
 </div>

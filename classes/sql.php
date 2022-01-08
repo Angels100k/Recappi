@@ -353,4 +353,42 @@ WHERE amount.recipeid = ?");
      
       return $stmt;
     }
+
+    public function insertRecipeDraft($json) {
+      $id;
+      $stmt = $this->conn->prepare("
+      INSERT INTO `recipe`(`categoryid`, `userid`, `recipe`, `preptime`, `difficulty`, `waittime`, `cooktime`, `portion`, `description`, `draft`) VALUES (?,?,?,?,?,?,?,?,?,?);SELECT LAST_INSERT_ID()");
+      $stmt->execute([$json["category"], $_SESSION["id"], $json["recipeName"], $json["preptime"], $json["difficulty"], 0, $json["cooktime"], $json["portions"], $json["description"],1]); 
+      
+      $stmt = $this->conn->prepare("SELECT MAX(`id`) AS id FROM `recipe` WHERE userid = ?");
+      $stmt->execute([$_SESSION["id"]]); 
+
+      while($row = $stmt->fetch()):
+        $id = $row["id"];
+        foreach ($json["tags"] as &$value) {
+          $stmt = $this->conn->prepare("INSERT INTO `recipe_tag`(`receptid`, `tagid`, `userid`) VALUES (?,(SELECT tag.id from tag where tag.tag = ?),?)");
+          $stmt->execute([$row["id"], $value, $_SESSION["id"]]); 
+        }
+        $c = 0;
+        foreach ($json["images"] as &$value) {
+          $stmt = $this->conn->prepare("INSERT INTO `recipe_image`(`recipeid`, `image`,`type`, `userid`, `order`,`made`) VALUES (?,?,?,?,?,?)");
+          $stmt->execute([$row["id"], $value[0],$value[1], $_SESSION["id"],$c,$value[2]]); 
+          $c++;
+        }
+      endwhile;
+      return $id;
+    }
+    public function ingredientTypes(){
+      $stmt = $this->conn->prepare("SELECT `id`, `ingredient` FROM `ingredient` WHERE userid = ?");
+      $stmt->execute([$_SESSION["id"]]); 
+      return $stmt;
+    }
+
+    public function addIngredient($json){
+      $stmt = $this->conn->prepare("
+      CALL addIngredient(?,?,?,?,?,@out);
+      SELECT @out;");
+    $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"]]); 
+    return $stmt;
+    }
 }

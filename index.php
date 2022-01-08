@@ -49,6 +49,9 @@ if($_SESSION["id"]){
         case 'edit':
             require __DIR__ . '/webpage/edit.php';
             break;
+        case 'create':
+            require __DIR__ . '/webpage/edit.php';
+            break;
         case 'logout':
             require __DIR__ . '/webpage/logout.php';
             break;
