@@ -39,7 +39,7 @@ function dd_draftrecipebigedit($data){
         $img = dd_img("placeholder", "png", "150px", "150px", "", "bg-img");
     endif;
     return '
-        <a href="/edit/recipe/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
+        <a onmousedown="openModal(`/edit/recipe/'.$data["id"].'`, '.$data["id"].' , this)" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
         '.$img.'
         <h3 class="txt-white text-center">'.$data['recipe'].'</h3>
             '.dd_img("pen-white", "svg", "18px", "18px", "    position: absolute; right: 10px; bottom: 10px;", "").'

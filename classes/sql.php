@@ -173,7 +173,7 @@ WHERE amount.recipeid = ?");
       SELECT recipe.id, recipe.recipe, recipe_image.image AS image, recipe_image.type AS type
       FROM `recipe`
       INNER JOIN user on user.id = ?
-      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
+      LEFT OUTER JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
       WHERE recipe.userid = user.id AND recipe.draft = 1");
  $stmt->execute([$_SESSION["id"]]); 
  return $stmt;
@@ -411,5 +411,11 @@ WHERE amount.recipeid = ? ORDER BY 1 ");
       $stmt = $this->conn->prepare("
       UPDATE `recipe` SET `draft`= 0 WHERE userid = ? AND id = ?");
       $stmt->execute([$_SESSION["id"], $json["recipeId"]]); 
+    }
+
+    public function deleteRecipe($id){
+      $stmt = $this->conn->prepare("
+      DELETE FROM `recipe` WHERE id = ? AND userid = ?");
+      $stmt->execute([$id, $_SESSION["id"]]); 
     }
 }

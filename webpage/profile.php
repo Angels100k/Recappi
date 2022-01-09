@@ -56,6 +56,19 @@ $title = "Recappi | Profile of " . $url;
 
 <body style="background-color: var(--background)">
     <?php require $dir . '/elements/navbar/navbar.php'; ?>
+    <div id="modalAddTag" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p class="text-bold">are you sure you want to delete draft?</p>
+    <p class="text-bold" id="deleteTitle"></p>
+    <div>
+        <button id="deleteModal" class="timer lf" >Delete</button>
+        <button id="closeModal" class="timer rf" >cancel</button>
+    </div>
+  </div>
+
+</div>
     <?php
     if ($y === 1) : ?>
         <div class="profile-main main-container shadow row">
@@ -190,6 +203,72 @@ $title = "Recappi | Profile of " . $url;
         <?php if ($_SESSION["id"] != $id): ?>
             iconSettings.style.display = "none"
         <?php endif; ?>
+
+        var mouseTimer;
+        var mouseRelease;
+        var urlLink;
+        var recipeId;
+        var currentElement;
+
+        var spanPrep = document.getElementsByClassName("close")[0];
+        var closeBtn = document.getElementById("closeModal");
+        var deleteBtn = document.getElementById("deleteModal");
+
+
+        deleteBtn.onclick = function(){
+            var data = {
+                "recipeId" : recipeId
+            };
+            fetch("/request/deleteRecipe.php", {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }).then(response => response.json())
+            .then(result => {
+                currentElement.remove();
+                document.getElementById("modalAddTag").style.display = "none";
+            });
+        }
+        closeBtn.onclick = function(){
+            closeWindowTag()
+        }
+        spanPrep.onclick = function(){
+            closeWindowTag()
+        }
+
+        function closeWindowTag(){
+            document.getElementById("modalAddTag").style.display = "none";
+        }
+
+        function openModal(link, recipeid, element) { 
+            currentElement = element
+            mouseRelease = 0;
+            urlLink = link;
+            recipeId = recipeid;
+            console.log("open?")
+           
+            mouseTimer = window.setTimeout(function() {
+                execMouseDown(element);
+            },2000);
+        }
+    
+        function mouseUp() { 
+            if (mouseTimer) window.clearTimeout(mouseTimer);
+            if(mouseRelease != 1){
+                console.log("not opened")
+                location.href = urlLink;
+            }            
+        }
+    
+        function execMouseDown(element) { 
+            console.log(element.childNodes[3].innerText)
+            mouseRelease = 1
+            document.getElementById("modalAddTag").style.display = "block";
+            document.getElementById("deleteTitle").innerHTML = element.childNodes[3].innerText;
+            console.log("open now")
+            
+        }
+    
+        document.body.addEventListener("mouseup", mouseUp);
     </script>
 </body>
 </html>
