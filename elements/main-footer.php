@@ -8,7 +8,7 @@ $color = 1;
     <p>ADD A RECIPE</p>
     <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0">Write it yourself</a>
     <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0/link">Copy a link</a>
-    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="">Use a photo</a>
+    <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0">Use a photo</a>
     <button class="txt-primary button-no-style">Cancel</button>
     
 </div>

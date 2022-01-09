@@ -57,6 +57,10 @@ nav {
     z-index: 5;
 }
 
+.w-auto {
+    width: auto !important;
+}
+
 .main-top {
     position: fixed;
     top: var(--navbar);
@@ -403,7 +407,12 @@ a {
 .col {
     flex: 1 0 0%;
 }
-
+.col-1 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 8.3333333333333333333333333333333%;
+    flex: 0 0 8.3333333333333333333333333333333%;
+    max-width: 8.3333333333333333333333333333333%;
+}
 .col-4 {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 33.33333333%;
@@ -533,6 +542,10 @@ a {
 
 .f {
     margin-right: 0.2rem;
+}
+
+.mt-05-not-first:not(:first-child) {
+    margin-left: 0.5rem;
 }
 
 .ml-05 {
@@ -1055,3 +1068,4 @@ a {
       transform: scaleY(0);
     }
   }
+  

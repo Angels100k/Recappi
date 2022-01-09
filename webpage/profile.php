@@ -128,7 +128,7 @@ $title = "Recappi | Profile of " . $url;
                         <?php }
                     $draftrecepts = $sqlQuery->getcookbookdraftbig();
                     if ($draftrecepts->fetchColumn() > 0) {
-                        ?>?>
+                        ?>
                         <div class="row">
                             <h2 class="text-bold"><?= dd_img("pen-black", "svg", '18px', '18px') ?> <span class="ml-05">Drafts</span></h2>
                         </div>

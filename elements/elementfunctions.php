@@ -34,12 +34,12 @@ function dd_input($text, $name, $type = "text", $class="",$style =""){
 
 function dd_draftrecipebigedit($data){
     if($data["image"] && $data["type"]):
-        $img = dd_img($data["image"], $data["type"], "150px", "150px", "", "border-small object-cover");
+        $img = dd_img($data["image"], $data["type"], "150px", "150px", "", "border-small object-cover bg-img");
     else:
         $img = dd_img("placeholder", "png", "150px", "150px", "", "bg-img");
     endif;
     return '
-        <a href="/edit/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
+        <a href="/edit/recipe/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
         '.$img.'
         <h3 class="txt-white text-center">'.$data['recipe'].'</h3>
             '.dd_img("pen-white", "svg", "18px", "18px", "    position: absolute; right: 10px; bottom: 10px;", "").'
@@ -54,7 +54,7 @@ function dd_DraftRecipeBigShow($data){
         $img = dd_img("placeholder", "png", "150px", "150px", "", "bg-img");
     endif;
     return '
-        <a href="/recipe/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
+        <a href="/edit/recipe/'.$data["id"].'" style="flex-shrink:0;" class="shadow mr-2 border-small bs-bb w-150 h-150 img-bg">
         '.$img.'
         <h3 class="txt-white text-center">'.$data['recipe'].'</h3>
             '.dd_img("savefill", "svg", "18px", "18px", "    position: absolute; right: 10px; bottom: 10px;", "").'

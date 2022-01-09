@@ -271,7 +271,7 @@ WHERE amount.recipeid = ?");
     public function getRecipeEdit($recipeId){
       $stmt = $this->conn->prepare("
       SELECT 
-      recipe.categoryid, recipe.recipe, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.portion, recipe.description, recipe.draft, 
+      recipe.categoryid, recipe.link, recipe.recipe, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.portion, recipe.description, recipe.draft, 
       recipe_image.image, recipe_image.type, recipe_image.made
       FROM `recipe` 
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
@@ -327,9 +327,9 @@ WHERE amount.recipeid = ?");
     }
     public function updaterecipe($json){
       $stmt = $this->conn->prepare("
-      UPDATE `recipe` SET `categoryid`=?,`recipe`=?,`preptime`=?,`difficulty`=?,`cooktime`=?,`portion`=?,`description`=?
+      UPDATE `recipe` SET `categoryid`=?,`recipe`=?,`preptime`=?,`difficulty`=?,`cooktime`=?,`portion`=?,`description`=?, `link`=?
        WHERE id = ? AND userid = ?;");
-      $stmt->execute([$json["category"], $json["recipeName"], $json["preptime"], $json["difficulty"], $json["cooktime"], $json["portions"], $json["description"], $json["recipeId"], $_SESSION["id"]]); 
+      $stmt->execute([$json["category"], $json["recipeName"], $json["preptime"], $json["difficulty"], $json["cooktime"], $json["portions"], $json["description"],$json["link"], $json["recipeId"], $_SESSION["id"]]); 
 
       $stmt = $this->conn->prepare("
       DELETE FROM `recipe_tag` WHERE receptid = ? AND userid = ?");
@@ -357,8 +357,8 @@ WHERE amount.recipeid = ?");
     public function insertRecipeDraft($json) {
       $id;
       $stmt = $this->conn->prepare("
-      INSERT INTO `recipe`(`categoryid`, `userid`, `recipe`, `preptime`, `difficulty`, `waittime`, `cooktime`, `portion`, `description`, `draft`) VALUES (?,?,?,?,?,?,?,?,?,?);SELECT LAST_INSERT_ID()");
-      $stmt->execute([$json["category"], $_SESSION["id"], $json["recipeName"], $json["preptime"], $json["difficulty"], 0, $json["cooktime"], $json["portions"], $json["description"],1]); 
+      INSERT INTO `recipe`(`categoryid`, `userid`, `recipe`, `preptime`, `difficulty`, `waittime`, `cooktime`, `portion`, `description`, `draft`, `link`) VALUES (?,?,?,?,?,?,?,?,?,?,?);SELECT LAST_INSERT_ID()");
+      $stmt->execute([$json["category"], $_SESSION["id"], $json["recipeName"], $json["preptime"], $json["difficulty"], 0, $json["cooktime"], $json["portions"], $json["description"],1,$json["link"]]); 
       
       $stmt = $this->conn->prepare("SELECT MAX(`id`) AS id FROM `recipe` WHERE userid = ?");
       $stmt->execute([$_SESSION["id"]]); 
@@ -390,5 +390,26 @@ WHERE amount.recipeid = ?");
       SELECT @out;");
     $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"]]); 
     return $stmt;
+    }
+
+    public function currentIngredientlistRecipe($recipeId){
+      $stmt = $this->conn->prepare("
+      SELECT DISTINCT(ingredient.ingredient) FROM `amount` 
+INNER JOIN ingredient ON ingredient.id = amount.ingredientid AND ingredient.userid = ?
+WHERE amount.recipeid = ? ORDER BY 1 ");
+    $stmt->execute([$_SESSION["id"], $recipeId]); 
+    return $stmt;
+    }
+
+    public function createMethod($json) {
+      $stmt = $this->conn->prepare("
+      INSERT INTO `instruction`(`receptid`, `step`, `text`) VALUES (?,?,?)");
+      $stmt->execute([$json["recipeId"], $json["methodStep"], $json["methodText"]]); 
+    }
+
+    public function publishRecipe($json) {
+      $stmt = $this->conn->prepare("
+      UPDATE `recipe` SET `draft`= 0 WHERE userid = ? AND id = ?");
+      $stmt->execute([$_SESSION["id"], $json["recipeId"]]); 
     }
 }
