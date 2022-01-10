@@ -213,6 +213,7 @@ $title = "Recappi | Profile of " . $url;
         var spanPrep = document.getElementsByClassName("close")[0];
         var closeBtn = document.getElementById("closeModal");
         var deleteBtn = document.getElementById("deleteModal");
+        var editBtns = document.getElementsByClassName("edit-draft-close");
 
 
         deleteBtn.onclick = function(){
@@ -268,7 +269,9 @@ $title = "Recappi | Profile of " . $url;
             
         }
     
-        document.body.addEventListener("mouseup", mouseUp);
+        for (var i = 0; i < editBtns.length; i++) {
+            editBtns[i].addEventListener("mouseup", mouseUp);
+        }
     </script>
 </body>
 </html>
