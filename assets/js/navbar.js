@@ -9,6 +9,7 @@ function openSettings() {
   const iconNotifications = document.querySelector('#icon-notifications');
   const iconProfile = document.querySelector('#icon-profile');
   const settingsMenu = document.querySelector('#settings-menu');
+  const backArrow = document.querySelector('#icon-back-arrow');
   // const iconBackArrow = document.querySelector('#icon-back-arrow');
 
   settingsMenu.style.display = 'block';
@@ -20,9 +21,30 @@ function openSettings() {
   iconSettings.style.display = 'none';
   iconNotifications.style.display = "none";
   iconProfile.style.display = 'none';
+  backArrow.style.display = 'block';
   pageTitle.innerText = 'Settings';
 }
+function closeSettings(){
+  const pageTitle = document.querySelector('#page-title');
+  const iconSettings = document.querySelector('#icon-settings');
+  const iconNotifications = document.querySelector('#icon-notifications');
+  const iconProfile = document.querySelector('#icon-profile');
+  const settingsMenu = document.querySelector('#settings-menu');
+  const backArrow = document.querySelector('#icon-back-arrow');
+  // const iconBackArrow = document.querySelector('#icon-back-arrow');
 
+  settingsMenu.style.display = 'none';
+  // iconBackArrow.removeAttribute('href');
+  // iconBackArrow.addEventListener('click', () => {
+  //   settingsMenu.classList.remove('open');
+  // });
+  // settingsMenu.classList.add('open');
+  iconSettings.style.display = 'block';
+  iconNotifications.style.display = "block";
+  iconProfile.style.display = 'block';
+  backArrow.style.display = 'none';
+  pageTitle.innerText = '';
+}
 function openNotifications() {
   const pageTitle = document.querySelector('#page-title');
   const iconBackArrow = document.querySelector('#icon-back-arrow');
@@ -38,6 +60,24 @@ function openNotifications() {
 
   iconBackArrow.href = '/home/'
 }
+/*function searchbarOutline(){
+  const searchForm = document.querySelector('#search-form');
+  const searchInput = document.querySelector('.searchInput');
+  const searchFa = document.querySelector('#searchFa');
+  if(searchFa.style.backgroundColor != 'lightgray'){
+    searchForm.style.width = '400px';
+    searchForm.style.cursor = 'pointer';
+    searchInput.style.display = 'block';
+    searchFa.style.backgroundColor = 'lightgray';
+  }else{
+    searchForm.style.width = '25px';
+    searchInput.style.display = 'none';
+    searchFa.style.backgroundColor = 'var(--primary)';
+  }
+
+}
+
+ */
 
 function userProfile() {
   const pageTitle = document.querySelector('#page-title');

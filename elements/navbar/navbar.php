@@ -14,14 +14,14 @@ endif;
 ?>
 <nav class="main-navbar">
     <div class="navbar-title">
-        <a class="icon icon-back-arrow" id="icon-back-arrow">
+        <a class="icon icon-back-arrow" id="icon-back-arrow" onclick="closeSettings()">
             <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
         </a>
         <span class="page-title" id="page-title"></span>
     </div>
-    <div>
-        <input type="text" id="searchbar" style="width:40%">
-    </div>
+
+
+
     <div class="navbar-icons">
         <!-- profile -->
         <a href="/profile/<?= $navbarlink ?>" class="icon-profile" id="icon-profile">
@@ -39,14 +39,19 @@ endif;
         </a>
 
         <!-- filter -->
-        <a class="icon icon-slider" id="icon-filter">
+        <a class="icon icon-slider" id="icon-filter" onclick="openfilters()">
             <img src="/assets/img/svg/sliders-white.svg" alt="control sliders icon">
         </a>
 
         <!-- search -->
-        <button class="icon icon-search button-no-style" id="icon-search" onclick="openSearch()">
-            <img src="/assets/img/svg/magnifying-glass.svg" alt="magnifying glass icon">
-        </button>
+        <a onclick="searchbarOutline()">
+            <form id="search-form" >
+                <input id="searchbar" class="searchInput" type="search" placeholder="Zoeken">
+                <i class="fa fa-search" id="searchFa"><img src="/assets/img/svg/magnifying-glass.svg"></i>
+            </form>
+        </a>
+
+
 
         <!-- shopping list -->
         <a class="icon icon-bullet-list" id="icon-bullet-list">
