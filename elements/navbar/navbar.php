@@ -14,7 +14,7 @@ endif;
 ?>
 <nav class="main-navbar">
     <div class="navbar-title">
-        <a class="icon icon-back-arrow" id="icon-back-arrow" onclick="closeSettings()">
+        <a class="icon icon-back-arrow" id="icon-back-arrow">
             <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
         </a>
         <span class="page-title" id="page-title"></span>
@@ -43,12 +43,18 @@ endif;
             <img src="/assets/img/svg/sliders-white.svg" alt="control sliders icon">
         </a>
 
-        <!-- search -->
-        <a onclick="searchbarOutline()">
-            <form id="search-form" >
-                <input id="searchbar" class="searchInput" type="search" placeholder="Zoeken">
-                <i class="fa fa-search" id="searchFa"><img src="/assets/img/svg/magnifying-glass.svg"></i>
-            </form>
+        <!-- search-->
+        <a id="icon-search">
+            <div class="search-box">
+                <input type="text" id="searchbar" placeholder="Type to search..."/>
+                <div class="search-btn icon-search" onclick="searchOpen()">
+                    <i class="icon-search"><img src="/assets/img/svg/magnifying-glass.svg"></i>
+                </div>
+
+                <div class="cancel-btn icon-search-close" onclick="searchClose()">
+                    <i><img src="/assets/img/svg/cross.svg" style="height: 50%; width: 50%;"></i>
+                </div>
+            </div>
         </a>
 
 

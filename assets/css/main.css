@@ -728,63 +728,78 @@ a {
     top: 3rem;
 }
 /* search input styling Vera*/
-form{
-    position: relative;
-    margin-top: 4px;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    transition: all 1s;
-    width: 25px;
-    height: 25px;
-    box-sizing: border-box;
-    border-radius: 50%;
-
-    padding: 5px;
+.search-box{
+    position:relative;
+    height:60px;
+    width:0px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
 }
 
-input{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;;
-    height: 42.5px;
-    line-height: 30px;
-    outline: 0;
-    border: 0;
+.search-box.active{
+    width: 350px;
+}
+
+.search-box.active input{
+    opacity:1;
+}
+.search-box input{
     display: none;
-    font-size: 1em;
-    border-radius: 20px;
-    padding: 0 20px;
+    height: 60%;
+    width: 89%;
+    border:none;
+    margin-top: 25px;
+    margin-left: -10px;
+    background:#fff;
+    font-size:16px;
+
+    padding: 0 60px 0 20px;
+    outline:none;
+    opacity:1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
 }
 
-.fa{
-    box-sizing: border-box;
-    padding: 10px;
-    width: 42.5px;
-    height: 42.5px;
+.search-box .search-btn{
+    height:45px;
+    width:45px;
+    background: var(--primary);
+    color:#664AFF;
     position: absolute;
-    top: 0;
+    top:50%;
+    right:0;
+    transform: translateY(-50%);
+    line-height:50px;
+    text-align:center;
+    border-radius:50%;
+    font-size:20px;
+    cursor:pointer;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+    z-index:2;
+}
+
+
+
+.search-box .cancel-btn{
+    position: absolute;
+    top:25%;
     right: 0;
-    border-radius: 50%;
-    color: #07051a;
-    text-align: center;
-    font-size: 1.2em;
-    transition: all 1s;
+    transform: translateY(-50%);
+    font-size:25px;
+    cursor:pointer;
+    height:45px;
+    width:45px;
+    line-height:50px;
+    text-align:center;
+    border-radius:50%;
+    opacity:0;
 }
 
-form:hover{
-    width: 400px;
-    cursor: pointer;
+.search-box.active .cancel-btn{
+    right: 0;
+    opacity:1;
+    color:#fff;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
 }
 
-form:hover input{
-    display: block;
-}
-
-form:hover .fa{
-    background: #07051a;
-    color: white;
-}
 
 /* .settings-menu.open {
     display: block;

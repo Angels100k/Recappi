@@ -10,6 +10,7 @@ function openSettings() {
   const iconProfile = document.querySelector('#icon-profile');
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
+  const searchBox = document.querySelector('#icon-search');
   // const iconBackArrow = document.querySelector('#icon-back-arrow');
 
   settingsMenu.style.display = 'block';
@@ -21,8 +22,10 @@ function openSettings() {
   iconSettings.style.display = 'none';
   iconNotifications.style.display = "none";
   iconProfile.style.display = 'none';
+  searchBox.style.display = 'none';
   backArrow.style.display = 'block';
   pageTitle.innerText = 'Settings';
+  backArrow.href = '/home/';
 }
 function closeSettings(){
   const pageTitle = document.querySelector('#page-title');
@@ -31,6 +34,7 @@ function closeSettings(){
   const iconProfile = document.querySelector('#icon-profile');
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
+  const searchBox = document.querySelector('#icon-search');
   // const iconBackArrow = document.querySelector('#icon-back-arrow');
 
   settingsMenu.style.display = 'none';
@@ -42,8 +46,9 @@ function closeSettings(){
   iconSettings.style.display = 'block';
   iconNotifications.style.display = "block";
   iconProfile.style.display = 'block';
+  searchBox.style.display = 'block';
   backArrow.style.display = 'none';
-  pageTitle.innerText = '';
+  pageTitle.innerText = 'Settings';
 }
 function openNotifications() {
   const pageTitle = document.querySelector('#page-title');
@@ -55,29 +60,32 @@ function openNotifications() {
   iconBackArrow.style.display = 'block';
   iconSearch.style.display = 'none';
   iconFilter.style.display = 'none';
-  iconSettings.style.display = 'block';
+  iconSettings.style.display = 'none';
   pageTitle.innerText = 'Notifications';
 
   iconBackArrow.href = '/home/'
 }
-/*function searchbarOutline(){
-  const searchForm = document.querySelector('#search-form');
-  const searchInput = document.querySelector('.searchInput');
-  const searchFa = document.querySelector('#searchFa');
-  if(searchFa.style.backgroundColor != 'lightgray'){
-    searchForm.style.width = '400px';
-    searchForm.style.cursor = 'pointer';
-    searchInput.style.display = 'block';
-    searchFa.style.backgroundColor = 'lightgray';
-  }else{
-    searchForm.style.width = '25px';
-    searchInput.style.display = 'none';
-    searchFa.style.backgroundColor = 'var(--primary)';
-  }
 
+function searchOpen(){
+  const searchBtn = document.querySelector(".search-btn");
+  const searchBox = document.querySelector(".search-box");
+  const searchBoxInput = document.querySelector(".search-box input");
+
+  searchBox.classList.add("active");
+  searchBtn.style.display = 'none';
+  searchBoxInput.style.display = 'block';
+}
+function searchClose(){
+  const searchBtn = document.querySelector(".search-btn");
+  const searchBox = document.querySelector(".search-box");
+  const searchBoxInput = document.querySelector(".search-box input");
+
+  searchBox.classList.remove("active");
+  searchBtn.style.display = 'block';
+  searchBoxInput.style.display = 'none';
 }
 
- */
+
 
 function userProfile() {
   const pageTitle = document.querySelector('#page-title');
