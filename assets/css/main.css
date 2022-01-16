@@ -738,6 +738,79 @@ a {
     z-index: 2;
     top: 3rem;
 }
+/* search input styling Vera*/
+.search-box{
+    position:relative;
+    height:60px;
+    width:0px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+}
+
+.search-box.active{
+    width: 350px;
+}
+
+.search-box.active input{
+    opacity:1;
+}
+.search-box input{
+    display: none;
+    height: 60%;
+    width: 89%;
+    border:none;
+    margin-top: 25px;
+    margin-left: -10px;
+    background:#fff;
+    font-size:16px;
+
+    padding: 0 60px 0 20px;
+    outline:none;
+    opacity:1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+}
+
+.search-box .search-btn{
+    height:45px;
+    width:45px;
+    background: var(--primary);
+    color:#664AFF;
+    position: absolute;
+    top:50%;
+    right:0;
+    transform: translateY(-50%);
+    line-height:50px;
+    text-align:center;
+    border-radius:50%;
+    font-size:20px;
+    cursor:pointer;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+    z-index:2;
+}
+
+
+
+.search-box .cancel-btn{
+    position: absolute;
+    top:25%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size:25px;
+    cursor:pointer;
+    height:45px;
+    width:45px;
+    line-height:50px;
+    text-align:center;
+    border-radius:50%;
+    opacity:0;
+}
+
+.search-box.active .cancel-btn{
+    right: 0;
+    opacity:1;
+    color:#fff;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+}
+
 
 /* .settings-menu.open {
     display: block;
@@ -789,7 +862,7 @@ a {
 }
 
 .main-navbar .navbar-icons .icon-settings {
-    display: none;
+    display: block;
 }
 
 .main-navbar .navbar-icons .icon-bullet-list {

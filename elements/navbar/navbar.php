@@ -19,9 +19,9 @@ endif;
         </a>
         <span class="page-title" id="page-title"></span>
     </div>
-    <div>
-        <input type="text" id="searchbar" style="width:40%">
-    </div>
+
+
+
     <div class="navbar-icons">
         <!-- profile -->
         <a href="/profile/<?= $navbarlink ?>" class="icon-profile" id="icon-profile">
@@ -39,14 +39,25 @@ endif;
         </a>
 
         <!-- filter -->
-        <a class="icon icon-slider" id="icon-filter">
+        <a class="icon icon-slider" id="icon-filter" onclick="openfilters()">
             <img src="/assets/img/svg/sliders-white.svg" alt="control sliders icon">
         </a>
 
-        <!-- search -->
-        <button class="icon icon-search button-no-style" id="icon-search" onclick="openSearch()">
-            <img src="/assets/img/svg/magnifying-glass.svg" alt="magnifying glass icon">
-        </button>
+        <!-- search-->
+        <a id="icon-search">
+            <div class="search-box">
+                <input type="text" id="searchbar" placeholder="Type to search..."/>
+                <div class="search-btn icon-search" onclick="searchOpen()">
+                    <i class="icon-search"><img src="/assets/img/svg/magnifying-glass.svg"></i>
+                </div>
+
+                <div class="cancel-btn icon-search-close" onclick="searchClose()">
+                    <i><img src="/assets/img/svg/cross.svg" style="height: 50%; width: 50%;"></i>
+                </div>
+            </div>
+        </a>
+
+
 
         <!-- shopping list -->
         <a class="icon icon-bullet-list" id="icon-bullet-list">
