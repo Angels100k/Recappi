@@ -202,6 +202,30 @@ function dd_showshoppinglist($data){
     ';
 }
 
+function dd_showshoppinglistedit($data){
+    if($data["owned"] == 1){
+        $own = "checked";
+    }else {
+        $own = "";
+    }
+    return'
+    <div class="col-12 row  mt-1-not-first top-border">
+        <div class="pt-05">
+            <div class="custom-checkbox"  onclick="klikaj(`checkbox_'.$data["id"].'`)">
+                <input type="checkbox" '.$own.' id="checkbox_'.$data["id"].'" />
+                <label for="checkbox" ></label>
+            </div>
+        </div>
+        <div class="ml-1 pt-05 border col row">
+            <div class="col" onclick="klikajEdit(`'.$data["amountId"].'`,`'.$data['amount'].'`, `'.$data['ingredient'].'`, `'. $data['amountunit'].'`, `'.$data['unit'].'`, this)">
+                <span class="text-bold">'.$data['amount'].'</span> '.$data['ingredient'].' <span class="text-bold"> '. $data['amountunit'].' '.$data['unit'].'</span>
+            </div>
+            <span class="rf text-h-primary text-bold" onclick="klikajDel(`checkbox_'.$data["id"].'`, `shoppingListContainer`)">DELETE</span>
+        </div>
+    </div>
+    ';
+}
+
 function dd_showingradientlist($data){
     return'
     <div class="col-12 row  mt-1-not-first top-border">
@@ -219,17 +243,17 @@ function dd_showingradientlist($data){
 }
 
 
-function dd_showshoppinglistrecipe($data){
+function dd_showshoppinglistrecipe($data, $multiplier){
     return'
     <div class="col-12 row  mt-1-not-first top-border">
         <div class="pt-05">
-            <div class="custom-checkbox">
-                <input type="checkbox" />
+            <div class="custom-checkbox" onclick="klikadd(`checkbox_'.$data["amountId"].'`)">
+                <input type="checkbox" class="checkbox" id="checkbox_'.$data["amountId"].'"/>
                 <label for="checkbox" ></label>
             </div>
         </div>
         <div class="ml-1 pt-05 border col converted-container">
-             <span class="text-bold converted" data-multiplier="1" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold convertedUnit"> '.$data['unit'].' </span>'.$data['ingredient'].'
+             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['amountId'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
         </div>
     </div>
     ';

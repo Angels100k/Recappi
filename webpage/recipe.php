@@ -25,7 +25,7 @@ endif;
 
 <body style="background-color: var(--background)">
     <?php require $dir.'/elements/navbar/navbar.php';?>
-
+    <span class="popuptext" id="myPopup">A Simple Popup!</span>
     <div class="main-top row">
         <div class="col text-center">
             <button id="BtnOverview" class="list-main list-main-active button-no-style">
@@ -139,7 +139,7 @@ endif;
                          <button class="button-no-style lf" id="btnMinrecipe">
                             <?=dd_img("minus", "svg", '15px', '15px');?>
                          </button>
-                        <span id="convertAmount">1</span> 
+                        <span id="convertAmount"><?= $info["portion"] ?></span> 
                         <button class="button-no-style rf" id="btnAddrecipe">
                             <?=dd_img("plus", "svg", '15px', '15px');?>
                         </button>
@@ -157,7 +157,7 @@ endif;
                 <?php 
                 $ingredients = $sqlQuery->ingredientlistrecipe($recipeid); 
                 while($row = $ingredients->fetch()):
-                    echo dd_showshoppinglistrecipe($row);
+                    echo dd_showshoppinglistrecipe($row, $info["portion"]);
                 endwhile;
                 
                 ?>

@@ -87,6 +87,13 @@ WHERE user1 = ?");
       $stmt->execute([$postid, $userid]); 
       return $stmt;
     }
+    public function deletegrocery($postid){
+      $userid = $_SESSION["id"];
+      $stmt = $this->conn->prepare("
+      DELETE FROM `grocery_list` WHERE id = ? AND userid = ?");
+      $stmt->execute([$postid, $userid]); 
+      return $stmt;
+    }
 
     public function updatesave($postid){
       $userid = $_SESSION["id"];
@@ -99,7 +106,7 @@ WHERE user1 = ?");
 
     public function ingredientlist(){
       $stmt = $this->conn->prepare("
-      SELECT grocery_list.amount, grocery_list.id as id, grocery_list.owned, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `grocery_list`
+      SELECT grocery_list.amount, grocery_list.id as id, amount.id as amountId, grocery_list.owned, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `grocery_list`
 INNER JOIN amount on amount.id = grocery_list.amountid
 INNER JOIN ingredient on ingredient.id = amount.ingredientid
 WHERE grocery_list.userid = ?");
@@ -109,7 +116,7 @@ WHERE grocery_list.userid = ?");
 
     public function ingredientlistrecipe($id){
       $stmt = $this->conn->prepare("
-      SELECT amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `amount` 
+      SELECT amount.id as amountId, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `amount` 
 INNER JOIN ingredient ON ingredient.id =  amount.ingredientid
 WHERE amount.recipeid = ?");
       $stmt->execute([$id]);
@@ -228,9 +235,18 @@ WHERE amount.recipeid = ?");
       return $stmt;
     }
 
+    public function addToShoppingList($data){
+      foreach ($data["ids"] as &$value) {
+        $stmt = $this->conn->prepare("CALL addShoppingList(?,?,?,?);");
+        $stmt->execute([$value, $_SESSION["id"], $data["amount"],0]); 
+      }
+      
+    return $stmt;
+    }
+
     public function getrecipedefault($id){
       $stmt = $this->conn->prepare("
-      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.waittime, recipe.cooktime, recipe.description,
+      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.portion, recipe.waittime, recipe.cooktime, recipe.description,
       ufn_likes_count(recipe.id) AS likes, ufn_reactions_count(recipe.id) AS repsonses,
       (SELECT COUNT(*) FROM saved_recipe WHERE  saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?) AS saved,
       (SELECT COUNT(*) FROM liked WHERE  liked.receptid = recipe.id AND liked.userid = ?) AS liked,
@@ -386,10 +402,15 @@ WHERE amount.recipeid = ?");
 
     public function addIngredient($json){
       $stmt = $this->conn->prepare("
-      CALL addIngredient(?,?,?,?,?,@out);
+      CALL addIngredient(?,?,?,?,?,?,@out);
       SELECT @out;");
-    $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"]]); 
+    $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"], 0]); 
     return $stmt;
+    }
+
+    public function addIngredientShoppinglist($json){
+      $stmt = $this->conn->prepare("CALL addNewShoppingList(?,?,?,?,?,?,?);");
+      $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientVolume"], $json["ingredientAmount"], $json["ingredientUntit"],  $json["id"]]); 
     }
 
     public function currentIngredientlistRecipe($recipeId){

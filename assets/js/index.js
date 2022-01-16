@@ -131,3 +131,66 @@ function klikaj(i) {
      );
 }
 
+function klikadd(i) {
+  const ids = i.split("_");
+  y = document.getElementById(i);
+  id = ids[1];
+     if(y.checked == false){
+      y.checked = true;
+    }else {
+      y.checked = false;
+    }
+    
+}
+
+
+function klikajEdit(id, amount, ingredient, amountunit, unit, container) {
+  document.getElementById("ingredientAmount").value = amount
+  document.getElementById("ingredientDesc").value = ingredient
+  document.getElementById("ingredientVolume").value = amountunit
+  document.getElementById("ingredientUntit").value = unit
+
+  document.getElementById("addIngredient").innerHTML = "Update ingredient";
+  document.getElementById("cancelIngredient").classList.remove("d-none");;
+
+  document.getElementById("addIngredient").dataset.id = id;
+
+console.log(container);
+}
+
+function klikajCancel(){
+  document.getElementById("ingredientAmount").value = ""
+  document.getElementById("ingredientDesc").value = ""
+  document.getElementById("ingredientVolume").value = ""
+  document.getElementById("ingredientUntit").value = ""
+
+  document.getElementById("addIngredient").innerHTML = "Add ingredient";
+  document.getElementById("cancelIngredient").classList.add("d-none");;
+
+  document.getElementById("addIngredient").dataset.id = 0;
+}
+
+function klikajDel(i, container) {
+  const ids = i.split("_");
+  y = document.getElementById(i);
+  id = ids[1];
+  data = {
+    "postID": id,
+  }
+  var opts = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    },
+  };
+   fetch('/request/deletegrocerys.php', opts).then(response => response.json())
+   .then(data =>{
+    document.getElementById(container).innerHTML = data;
+    console.log(data);
+   }
+     );
+  console.log(id)
+}
+
+

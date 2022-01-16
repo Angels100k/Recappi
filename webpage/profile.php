@@ -147,11 +147,7 @@ $title = "Recappi | Profile of " . $url;
                         </div>
                         <div class="row">
                             <div class="row main-container flex-wrap-no w-100 overflow-x-auto mr--1">
-                                <?php
-                                while ($row = $draftrecepts->fetch()) :
-                                    echo dd_draftrecipebigedit($row);
-                                endwhile;
-                                ?>
+                                <?php while ($row = $draftrecepts->fetch()):echo dd_draftrecipebigedit($row);endwhile;?>
                             </div>
                         </div>
                 <?php }

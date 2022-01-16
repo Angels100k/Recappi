@@ -55,6 +55,10 @@ if($_SESSION["id"]){
         case 'logout':
             require __DIR__ . '/webpage/logout.php';
             break;
+        case 'shoppinglist':
+        case 'boodschappenlijst':
+            require __DIR__ . '/webpage/shoplist.php';
+            break;
         default:
             require __DIR__ . '/webpage/404.php';
             header("HTTP/1.1 404 Not Found");
