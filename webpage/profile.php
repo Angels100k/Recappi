@@ -86,9 +86,9 @@ $title = "Recappi | Profile of " . $url;
                             if ($_SESSION["id"] != $id) {
                                 ?>  <button onclick="invitefollower(<?= $id ?>, this)" class="button-no-style  p-r"> <?php
                                 if ($followingperson == 0) {
-                                    echo dd_img("user-plus-solid", "svg", "30px", "30px", "", "");
+                                    echo dd_img("user-plus-solid", "svg", "30px", "30px", "", "profile-user-add");
                                 } else {
-                                    echo dd_img("user-minus-solid", "svg", "30px", "30px", "", "");
+                                    echo dd_img("user-minus-solid", "svg", "30px", "30px", "", "profile-user-add");
                                 }
                                 ?> </button> <?php
                             } else {

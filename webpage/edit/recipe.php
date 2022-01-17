@@ -13,11 +13,13 @@ $portions = 0;
 $catid = 0;
 $currentstep = 0;
 $difficulty = 0;
+$count = 0;
 
 if ($urlpaths[3] && $urlpaths[3] != 0) {
     $stmt = $sqlQuery->getRecipeEdit($urlpaths[3]);
     
-        while($row = $stmt->fetch()){
+    while($row = $stmt->fetch()){
+        $count++;
         $recipeName = $row["recipe"];
         $image = $row["image"];
         $type = $row["type"];
@@ -30,7 +32,9 @@ if ($urlpaths[3] && $urlpaths[3] != 0) {
         $waittime = $row["waittime"];
         $portions = $row["portion"];
         $link = $row["link"];
-
+    }
+    if($count === 0){
+        header("Location: /create/recipe");
     }
 }
 if($link === ""){

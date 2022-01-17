@@ -74,7 +74,7 @@ function dd_head($title, $extra ="")
     $html .= '<script defer src="/assets/js/navbar.js"></script>';
     $html .= '<link rel="stylesheet" href="/assets/css/main.css">';
     $html .= '<link rel="manifest" href="/manifest.json">';
-    $html .= '<link rel="icon" href="favicon.ico" type="image/x-icon" />';
+    $html .= '<link rel="icon" href="/favicon.ico" type="image/x-icon" />';
     $html .= '<link rel="apple-touch-icon" href="images/hello-icon-152.png">';
     $html .= '<meta name="theme-color" content="white"/>';
     $html .= '<meta name="apple-mobile-web-app-capable" content="yes">';

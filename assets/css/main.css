@@ -741,6 +741,12 @@ a {
     margin-right: 1rem;
 }
 
+.profile-user-add {
+    background: var(--primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
 /* settingburger */
 .settings-menu {
     background-color: var(--background);
