@@ -745,10 +745,10 @@ a {
 .search-box input{
     display: none;
     height: 60%;
-    width: 89%;
+    width: 53%;
     border:none;
     margin-top: 25px;
-    margin-left: -10px;
+    margin-left: 130px;
     background:#fff;
     font-size:16px;
 
@@ -796,6 +796,7 @@ a {
 .search-box.active .cancel-btn{
     right: 0;
     opacity:1;
+    margin-right: -0.5625rem;
     color:#fff;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
 }
