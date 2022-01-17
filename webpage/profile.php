@@ -97,17 +97,17 @@ $title = "Recappi | Profile of " . $url;
                     </div>
                 </div>
                 <div class="row text-center">
-                    <div class="col-1-3">
+                    <div class="col-1-3 profile-counter">
                         <div class="text-bold"><?= $recepts ?></div>
-                        <div>recepten</div>
+                        <div class="txt-medium">recepten</div>
                     </div>
-                    <div class="col-1-3">
+                    <div class="col-1-3 profile-counter">
                         <div class="text-bold"><?=$following?></div>
-                        <div>volgers</div>
+                        <div class="txt-medium">volgers</div>
                     </div>
-                    <div class="col-1-3">
+                    <div class="col-1-3 profile-counter">
                         <div class="text-bold"><?=$followers?></div>
-                        <div>volgend</div>
+                        <div class="txt-medium">volgend</div>
                     </div>
                 </div>
                 <div class="row mt-1">
@@ -159,8 +159,8 @@ $title = "Recappi | Profile of " . $url;
                     <?php while ($row = $cookbook->fetch()) : ?>
                         <a href="/profile/<?= $url ?>/<?= $row[0] ?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                             <div>
-                                <span class="text-bold"><?= $row[0] ?></span>
-                                <div><?= $row[1] ?> recipes</div>
+                                <span class="text-semibold"><?= $row[0] ?></span>
+                                <div class="txt-subheader" style="font-size: 0.6875rem"><?= $row[1] ?> recipes</div>
                             </div>
                         </a>
                     <?php endwhile; ?>
