@@ -378,7 +378,7 @@ if($link === ""){
 <button id="BtnPrev" class="button button-white r-max bs-bb bl-button" style="display:none">
     <?= dd_img("chevron-left", "svg", "20px", "20px", "") ?>
 </button>
-<button id="BtnNext" class="button button-white r-max bs-bb br-button">
+<button id="BtnNext" class="button button-white r-max bs-bb br-button" style="display: flex">
     <?= dd_img("chevron-right", "svg", "20px", "20px", "") ?>
 </button>
 <script>
@@ -676,7 +676,7 @@ if(document.getElementById("recipeLink")){
         }
         );
 
-        BtnPrev.style.display = '';
+        BtnPrev.style.display = 'flex';
         container1.style.display = 'none';
         container2.style.display = '';
         container3.style.display = 'none';
@@ -743,7 +743,7 @@ BtnPrev.onclick = function() {
         const pageTitle = document.querySelector(".page-title");
         pageTitle.innerText = 'add recipe';
     }else if(container3.style.display == ''){
-        BtnNext.style.display = '';
+        BtnNext.style.display = 'flex';
         container1.style.display = 'none';
         container2.style.display = ''
         container3.style.display = 'none';

@@ -778,10 +778,10 @@ a {
 .search-box input{
     display: none;
     height: 60%;
-    width: 53%;
+    width: 56%;
     border:none;
     margin-top: 25px;
-    margin-left: 130px;
+    margin-left: 120px;
     background:#fff;
     font-size:16px;
 
