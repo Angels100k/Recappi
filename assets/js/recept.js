@@ -104,9 +104,10 @@ function recipeConvert() {
 
     for (var i = 0; i < converted_ele.length; ++i) {
         var item = converted_ele[i];  
-
-        item.innerText = parseInt(item.dataset.amountunit) * parseInt(amount)
-        item.dataset.multiplier = amount;
+        console.log(item.dataset.amountunit)
+        console.log(item.dataset.multiplier)
+        console.log(amount)
+        item.innerText = Math.round((item.dataset.amountunit / item.dataset.multiplier)* (amount)* 100) / 100
     }
 }
 
@@ -127,11 +128,39 @@ function convertrecipeRemove(){
 }
 
 function saverecipeingredients(){
-    const converted_ele = document.getElementsByClassName("converted-container").childNodes;
+    const converted_check = document.getElementsByClassName("custom-checkbox");
+    const converted_ele = document.getElementsByClassName("converted-container");
+    const amount = document.getElementById("convertAmount").innerText
+    customArr = [];
 
-    for (var i = 0; i < converted_ele.length; ++i) {
-        var item = converted_ele[i];  
-
-        console.log(item)
+    for (var i = 0; i < converted_check.length; ++i) {
+        // var unit = converted_ele[i].querySelector('.converted-unit').innerText;  
+        // var amountunit = converted_ele[i].querySelector('.converted-amountunit').innerText;  
+        // var ingredient = converted_ele[i].querySelector('.converted-ingredient').innerText;  
+        if( converted_check[i].querySelector('.checkbox').checked === true) {
+            var id = converted_ele[i].querySelector('.converted-ingredient').dataset.id;  
+            customArr.push(id);
+        }
     }
+    console.log(customArr)
+    var data = {
+        "ids": customArr,
+        "amount": amount,
+        "id":0
+    };
+
+    var opts = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "content-type": "application/json"
+        },
+    };
+    fetch("/request/addShoppingList.php", opts).then(function (response) {
+        for (var i = 0; i < converted_check.length; ++i) {
+            converted_check[i].querySelector('.checkbox').checked = false;
+        }
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    })
 }
