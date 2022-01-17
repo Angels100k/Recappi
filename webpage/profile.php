@@ -73,26 +73,28 @@ $title = "Recappi | Profile of " . $url;
     if ($y === 1) : ?>
         <div class="profile-main main-container shadow row">
             <div class="col-5">
-                <?php if ($_SESSION["id"] != $id) {
-                ?>
-                    <button onclick="invitefollower(<?= $id ?>, this)" class="button-no-style  p-r">
-                    <?php
-                    if ($followingperson == 0) {
-                        echo dd_img("user-plus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");
-                    } else {
-                        echo dd_img("user-minus-solid", "svg", "20px", "20px", "position: absolute; right: 0px; bottom: 0px;", "");
-                    }
-                } ?>
-
                     <?= dd_img($profileImage, $profileImagetype, '98px', '98px', '', "profile-main-picture") ?>
-                    <?php if ($_SESSION["id"] === 1) { ?> </button> <?php } ?>
-
             </div>
             <div class="col-7">
                 <div class="row">
-                    <div class="col-12">
-                        <div>
+                    <div class="col-12 row">
+                        <div class="col-6">
                             <h1 class="mt-0"><?= $username ?></h1>
+                        </div>
+                        <div class="col-6">
+                            <?php
+                            if ($_SESSION["id"] != $id) {
+                                ?>  <button onclick="invitefollower(<?= $id ?>, this)" class="button-no-style  p-r"> <?php
+                                if ($followingperson == 0) {
+                                    echo dd_img("user-plus-solid", "svg", "30px", "30px", "", "");
+                                } else {
+                                    echo dd_img("user-minus-solid", "svg", "30px", "30px", "", "");
+                                }
+                                ?> </button> <?php
+                            } else {
+                                echo "<a href='/edit/profile/'>". dd_img("pen-black", "svg", "30px", "30px", "", ""). "</a>";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
