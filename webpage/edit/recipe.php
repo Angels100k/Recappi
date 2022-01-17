@@ -48,6 +48,7 @@ if($link === ""){
 </head>
 
 <body style="background-color: var(--background)">
+<?php require $dir.'/elements/navbar/navbar-addrecipe.php';?>
 <div id="modalPrepTime" class="modal">
 
   <!-- Modal content -->
@@ -608,6 +609,10 @@ tagBtn.onclick = function() {
     modalTag.style.display = "block";
     document.getElementById("inputAddTag").focus();
 }
+if(document.getElementById("container1").style.display != 'none' ){
+    const pageTitle = document.querySelector(".page-title");
+    pageTitle.innerText = 'add recipe';
+}
 
 
 
@@ -674,7 +679,9 @@ if(document.getElementById("recipeLink")){
         BtnPrev.style.display = '';
         container1.style.display = 'none';
         container2.style.display = '';
-        container3.style.display = 'none';   
+        container3.style.display = 'none';
+        const pageTitle = document.querySelector(".page-title");
+        pageTitle.innerText = 'add ingredients';
     }else if(container2.style.display == ''){
 
         var data = {
@@ -695,7 +702,9 @@ if(document.getElementById("recipeLink")){
         BtnNext.style.display = 'none';
         container1.style.display = 'none';
         container2.style.display = 'none'
-        container3.style.display = '';   
+        container3.style.display = '';
+        const pageTitle = document.querySelector(".page-title");
+        pageTitle.innerText = 'add preparation';
     }
 }
 
@@ -730,12 +739,16 @@ BtnPrev.onclick = function() {
         BtnPrev.style.display = 'none';
         container1.style.display = '';
         container2.style.display = 'none'
-        container3.style.display = 'none';   
+        container3.style.display = 'none';
+        const pageTitle = document.querySelector(".page-title");
+        pageTitle.innerText = 'add recipe';
     }else if(container3.style.display == ''){
         BtnNext.style.display = '';
         container1.style.display = 'none';
         container2.style.display = ''
         container3.style.display = 'none';
+        const pageTitle = document.querySelector(".page-title");
+        pageTitle.innerText = 'add ingredients';
     }
 }
 
