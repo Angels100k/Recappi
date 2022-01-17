@@ -65,8 +65,16 @@
         </div>
 
         <div class="main-container text-center">
+            <?php
+            $link;
+                    if($urlpaths[1] == "" || $urlpaths[1] == "/" || $urlpaths[1] == "index"){
+                       $link = "href='/login'";
+                    }else {
+                        $link = "href='/login?nextUrl=". $url["path"] ."'";
+                    }
+            ?> 
             <?= dd_button("Create an account", "href='/register'", "a", "button button-white r-max bs-bb", "bottom: 55px;position: absolute;left: 16px;right: 16px;") ?>
-            <?= dd_button("Already have a account? Log in", "href='/login'", "a", "txt-white", "bottom: 20px;position: absolute;left: 0;right: 0;") ?>
+            <?= dd_button("Already have a account? Log in", $link, "a", "txt-white", "bottom: 20px;position: absolute;left: 0;right: 0;") ?>
         </div>
     </div>
     <!-- end bottom side -->

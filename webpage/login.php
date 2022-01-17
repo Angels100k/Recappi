@@ -6,6 +6,9 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /home");
 }
 
+
+parse_str($url['query'], $results);
+var_dump($results);
 $error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -15,7 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while($row = $returned->fetch()): 
             if (password_verify($password, $row["password"])):
                 $_SESSION["id"] = $row["id"];
-                header("Location: /home");
+                if($results){
+                    header("Location: ".$results["nextUrl"]);
+                }else {
+                    header("Location: /home");
+                }
             else:
                     $error = 1;
             endif;

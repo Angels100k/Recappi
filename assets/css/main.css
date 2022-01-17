@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
 
 :root {
     --background: #FAEFEC;
@@ -14,6 +13,7 @@
 
     --tag: #E6320F;
     --white: white;
+    --grey: #A2A0A0;
 
     --error: #FD3B2F;
     --success: #4DBB24;
@@ -169,6 +169,11 @@ a {
     border-radius: 50%;
 }
 
+.profile-counter {
+    font-family: "Montserrat", serif;
+    font-size: 0.6875rem;
+}
+
 .button-no-style {
     background: none;
     color: inherit;
@@ -322,15 +327,22 @@ a {
 }
 
 .txt-subheader {
-    color: var(--txt-subheader)
+    color: var(--txt-subheader);
+    font-family: "Montserrat", serif;
+    font-weight: 600;
 }
 
 .txt-white {
     color: white;
 }
 
+.txt-medium {
+    font-family: "Montserrat", serif;
+    color: var(--grey);
+}
+
 .text-grey {
-    color: grey;
+    color: var(--grey);
 }
 
 .txt-primary {
@@ -351,6 +363,12 @@ a {
 
 .text-bold {
     font-weight: bold;
+    font-family: "Montserrat", serif;
+}
+
+.text-semibold {
+    font-weight: 600;
+    font-family: "Montserrat", serif;
 }
 
 .text-normal {
@@ -603,6 +621,10 @@ a {
     margin-right: -1rem;
 }
 
+.mr-02 {
+    margin-right: 0.2rem;
+}
+
 .w-150.h-150 {
     height: 150px;
     width: 150px;
@@ -789,7 +811,7 @@ a {
 
 
 
-.search-box .cancel-btn{
+.cancel-btn{
     position: absolute;
     top:25%;
     right: 0;

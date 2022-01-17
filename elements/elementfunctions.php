@@ -129,7 +129,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
     }
     $dots = "";
    
-    for ($x = 0; $x <= $difficulty; $x++):
+    for ($x = 0; $x < $difficulty; $x++):
         $dots.= "<span class='text-black mr-02'>&#9679</span>";
     endfor;
     for ($y = $x; $y <= 4; $y++):
@@ -139,9 +139,9 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
     <div class="row">
         <div class="col-12"><h2 class="text-bold">'.$receptname.'</h2></div>
         <div class="col-7">
-            prep time<br>
+            <div class="txt-subheader">Prep time</div>
             <span class="text-bold">'.$preptime.' min</span><br>
-            difficulty<br>
+            <div class="txt-subheader">Difficulty</div>
             '.$dots.'
             <div class="text-bold">
                 <button onclick="likepost(`'. $id .'`, this); return false;" class="button-no-style">
@@ -172,8 +172,8 @@ function dd_layout_friend($row){
             <div class="row">
                 <div class="text-bold text-size-1-5">'.$row["username"].'</div>
             </div>
-            <div class="row">
-                <div class="text-bold">'.$row["recepts"].'</div><div class="ml-05">     recepten</div>
+            <div class="row" style="align-content: center; align-items: center">
+                <div class="text-bold">'.$row["recepts"].'</div><div class="ml-05 text-grey txt-medium">recepten</div>
             </div>
         </div>
     </div>
