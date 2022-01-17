@@ -371,7 +371,6 @@ WHERE amount.recipeid = ?");
     }
 
     public function insertRecipeDraft($json) {
-      $id;
       $stmt = $this->conn->prepare("
       INSERT INTO `recipe`(`categoryid`, `userid`, `recipe`, `preptime`, `difficulty`, `waittime`, `cooktime`, `portion`, `description`, `draft`, `link`) VALUES (?,?,?,?,?,?,?,?,?,?,?);SELECT LAST_INSERT_ID()");
       $stmt->execute([$json["category"], $_SESSION["id"], $json["recipeName"], $json["preptime"], $json["difficulty"], 0, $json["cooktime"], $json["portions"], $json["description"],1,$json["link"]]); 

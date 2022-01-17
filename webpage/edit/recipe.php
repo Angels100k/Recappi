@@ -645,7 +645,7 @@ if(document.getElementById("recipeLink")){
         profilesave().then(response => {
             response.push(imgMade)
             var data = {
-            "recipeId": <?=$urlpaths[3]?>,
+            "recipeId": <?php if($urlpaths[3]){echo $urlpaths[3];} else{echo 0;}; ?>,
             "recipeName": recipeName,
             "imgMade": imgMade,
             "description": description,
