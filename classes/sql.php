@@ -193,9 +193,7 @@ WHERE amount.recipeid = ?");
       LEFT JOIN recipe on recipe.id = saved_recipe.receptid 
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
       WHERE saved_recipe.userid = ? 
-      AND recipe.draft = 0 
-      AND saved_recipe.creation_date >= DATE_SUB(CURDATE(), INTERVAL DAYOFMONTH(CURDATE())-1 DAY) 
-      ORDER BY saved_recipe.creation_date DESC");
+      AND recipe.draft = 0 LIMIT 5");
  $stmt->execute([$_SESSION["id"]]); 
  return $stmt;
     }

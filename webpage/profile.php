@@ -131,7 +131,7 @@ $title = "Recappi | Profile of " . $url;
                 ?>
 
                         <div class="row">
-                            <h2 class="text-bold"><?= dd_img("list-ul", "svg", '18px', '18px') ?> <span class="ml-05">My shopping list</span></h2>
+                            <h2 class="text-bold"><?= dd_img("list-ul", "svg", '18px', '18px') ?> <a class="ml-05" href="/shoppinglist">My shopping list</a></h2>
                         </div>
                         <div class="row shadow bg-white p-1 border-small bs-bb mt-05">
                             <?php

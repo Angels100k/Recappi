@@ -97,7 +97,7 @@ $title = "Recappi | Profile of " . $url;
         <p class="text-bold">Add unit (Optional)</p>
         <input type="text" id="ingredientUntit" placeholder="Add unit">
     </div>
-    <div class="main-container d-flex">
+    <div class="main-container d-flex mb-4">
                 <a class="mt-2 text-end text-bold txt-primary d-none" data-id="0" id="cancelIngredient">Cancel</a>
                 <a class="mt-2 text-end ml-auto text-bold txt-primary" data-id="0" id="addIngredient">Add ingredient</a>
 </div>
