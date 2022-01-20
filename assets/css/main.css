@@ -849,7 +849,7 @@ a {
 .icon-cross{
     position: absolute;
     top: 25%;
-    left: -25px;
+    left: -15px;
     transform: translateY(-50%);
     font-size: 25px;
     cursor: pointer;

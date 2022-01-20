@@ -84,7 +84,10 @@ function searchClose(){
   searchBtn.style.display = 'block';
   searchBoxInput.style.display = 'none';
 }
-
+function homeArrow(){
+  const iconBackArrow = document.querySelector('#icon-cross');
+  iconBackArrow.href = '/home/';
+}
 
 
 function userProfile() {

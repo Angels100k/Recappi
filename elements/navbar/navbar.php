@@ -38,14 +38,16 @@ endif;
             <img src="/assets/img/svg/cog.svg" alt="cog wheel icon">
         </a>
 
-        <!-- filter -->
+        <!-- filter
         <a class="icon icon-slider" id="icon-filter" onclick="openfilters()">
             <img src="/assets/img/svg/sliders-white.svg" alt="control sliders icon">
         </a>
+        -->
+        <!-- search-->
         <a class="search-btn icon-search" onclick="searchOpen()">
             <i class="icon-search"><img src="/assets/img/svg/magnifying-glass.svg"></i>
         </a>
-        <!-- search-->
+
         <a id="icon-search">
             <div class="search-box">
                 <input type="text" id="searchbar" placeholder="Type to search..."/>

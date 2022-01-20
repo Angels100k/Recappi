@@ -2,10 +2,10 @@
 ?>
 <nav class="main-navbar">
     <div class="navbar-title">
-        <a class="icon icon-cross" id="icon-cross">
+        <a class="icon icon-cross" id="icon-cross" onclick="homeArrow()">
             <img style="height: 50%; width: 50%;" src="/assets/img/svg/cross.svg" alt="left arrow icon">
         </a>
-        <span class="page-title" id="page-title"></span>
+        <span style="margin-left: 25px;margin-top: -3%;" class="page-title" id="page-title"></span>
     </div>
 
 

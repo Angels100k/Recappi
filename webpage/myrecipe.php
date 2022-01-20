@@ -40,7 +40,7 @@ while($row = $stmt->fetch()){
     <div class="main-body">
         <div class="main-container mt-5 row">
            <div class="col-12">
-           what do you feel like eating
+               <input class="txt-subheader" type="text" id="searchbar" placeholder="What do you feel like eating?"/>
 
             </div>
             <div class="mt-2 col-12">
