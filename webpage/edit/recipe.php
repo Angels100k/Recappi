@@ -277,12 +277,12 @@ if($link === ""){
             ?><div><div></div></div></div></div>
         <div class="main-container mt-2" id="tagContainer"><span class="text-bold">
                 TAGS
-            </span><br><button id="AddTag" class="bg-white button ml-05 r-max border-primary">+</button><?php
+            </span><br><button id="AddTag" class="mt-1 bg-white button ml-05 r-max border-primary">+</button><?php
                $stmt = $sqlQuery->getAllTags($urlpaths[3]);
     
                while($row = $stmt->fetch()){
                   
-                   echo '<button onclick="addtag(`'.$row["tag"].'`, this)" class="bg-white button ml-05 r-max '. $row["class"] . ' border-primary">'.$row["tag"].'</button>';
+                   echo '<button onclick="addtag(`'.$row["tag"].'`, this)" class="mt-1 bg-white button ml-05 r-max '. $row["class"] . ' border-primary">'.$row["tag"].'</button>';
                }
             ?></div>
         <div class="main-container mt-2 mb-4">

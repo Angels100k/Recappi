@@ -18,14 +18,13 @@ endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?=dd_head($title, $extra)?>
+
 </head>
 
 <body style="background-color: var(--background)">
     <?php require $dir.'/elements/navbar/navbar.php';?>
-    <span class="popuptext" id="myPopup">A Simple Popup!</span>
     <div class="main-top row">
         <div class="col text-center">
             <button id="BtnOverview" class="list-main list-main-active button-no-style">
@@ -188,6 +187,60 @@ endif;
             </div>
         </div>
     </div>
+    <div class="main-footer row" id="main-footer">
+    <div class="col">
+            <div class="text-center" style="height:28px;">
+                <button class="button-no-style share-button" type="button" title="Share this recipe">
+                    <?= dd_img("share", "svg", "26px", "26px", "", "") ?>
+                </button>
+            </div>
+    </div>
+    <?php if($info["userid"] != $_SESSION["id"]){ ?>
+    <div class="col">
+        <div id="BtnAddRecipe">
+            <div class="text-center">
+                <button onclick="savepost(`<?= $info['id'] ?>`, this); return false;" class="button-no-style">
+                    <div></div>
+                    <?php 
+                    if($info["saved"] != 0):
+                        echo dd_img("savefill", "svg", "26px", "26px", "filter: grayscale(100%);", "");
+                    else:
+                        echo dd_img("saveempty", "svg", "26px", "26px", "filter: grayscale(100%);", "");
+                    endif;
+                    ?>
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+    <?php if($info["userid"] === $_SESSION["id"]){ ?>
+        <div class="col">
+            <a href="/edit/recipes/<?= $info["id"] ?>">
+                <div class="text-center" style="height:28px;">
+                    <?= dd_img("edit-pen", "svg", "26px", "26px", "", "") ?>
+                </div>
+            </a>
+        </div>
+    <?php } ?>
+</div>
 </body>
+<script>
+const shareButton = document.querySelector('.share-button');
+
+shareButton.addEventListener('click', event => {
+  if (navigator.share) { 
+   navigator.share({
+      title: 'Recipe',
+      url: '<?php  echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']; ?>'
+    }).then(() => {
+      console.log('Thanks for sharing!');
+    })
+    .catch(console.error);
+    } else {
+        alert("Coudnt share, try again later")
+    }
+});
+
+</script>
 <script src="/assets/js/recept.js"></script>
 </html>
