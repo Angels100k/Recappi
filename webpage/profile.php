@@ -56,19 +56,6 @@ $title = "Recappi | Profile of " . $url;
 
 <body style="background-color: var(--background)">
     <?php require $dir . '/elements/navbar/navbar.php'; ?>
-    <div id="modalAddTag" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p class="text-bold">are you sure you want to delete draft?</p>
-    <p class="text-bold" id="deleteTitle"></p>
-    <div>
-        <button id="deleteModal" class="timer lf" >Delete</button>
-        <button id="closeModal" class="timer rf" >cancel</button>
-    </div>
-  </div>
-
-</div>
     <?php
     if ($y === 1) : ?>
         <div class="profile-main main-container shadow row">

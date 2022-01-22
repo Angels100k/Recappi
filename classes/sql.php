@@ -95,12 +95,12 @@ WHERE user1 = ?");
       return $stmt;
     }
 
-    public function updatesave($postid){
+    public function updatesave($postid, $catid){
       $userid = $_SESSION["id"];
       $stmt = $this->conn->prepare("
-        CALL savePost(?,?,@id);
+        CALL savePost(?,?,?,@id);
         SELECT @id;");
-      $stmt->execute([$postid, $userid]); 
+      $stmt->execute([$postid,$catid, $userid]); 
       return $stmt;
     }
 
@@ -155,8 +155,18 @@ WHERE amount.recipeid = ?");
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
       LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
       LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?)
-      WHERE recipe.userid = user.id AND categoryid = category.id AND recipe.draft = 0");
- $stmt->execute([$cat, $user, $_SESSION["id"], $_SESSION["id"]]); 
+      WHERE recipe.userid = user.id AND recipe.categoryid = category.id AND recipe.draft = 0
+      UNION ALL
+      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.userid AS userid, recipe_image.image,
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
+      ufn_reactions_count(recipe.id) AS repsonses FROM `saved_recipe`
+      INNER JOIN category on category.name = ?
+      INNER JOIN user on user.name = ?
+      INNER JOIN recipe ON (recipe.id = saved_recipe.receptid)
+      LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
+      LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
+      WHERE saved_recipe.userid = user.id AND saved_recipe.categoryid = category.id");
+ $stmt->execute([$cat, $user, $_SESSION["id"], $_SESSION["id"],$cat,$user, $_SESSION["id"]]); 
  return $stmt;
     }
     public function getcookbookdiscover(){
@@ -244,7 +254,7 @@ WHERE amount.recipeid = ?");
 
     public function getrecipedefault($id){
       $stmt = $this->conn->prepare("
-      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.portion, recipe.waittime, recipe.cooktime, recipe.description,
+      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.portion, recipe.waittime, recipe.cooktime, recipe.description, recipe.userid as userid, recipe.id as id,
       ufn_likes_count(recipe.id) AS likes, ufn_reactions_count(recipe.id) AS repsonses,
       (SELECT COUNT(*) FROM saved_recipe WHERE  saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?) AS saved,
       (SELECT COUNT(*) FROM liked WHERE  liked.receptid = recipe.id AND liked.userid = ?) AS liked,
@@ -259,7 +269,7 @@ WHERE amount.recipeid = ?");
     public function createComment($id, $comment){
       $stmt = $this->conn->prepare("
       INSERT INTO `comment`(`recipeid`, `userid`, `comment`) VALUES (?,?,?)");
-      $stmt->execute([$id, $_SESSION["id"], $comment]); 
+      $stmt->execute([$id, $_SESSION["id"], htmlspecialchars($comment)]); 
       return $stmt;
     }
     public function createTag($tag){

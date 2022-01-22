@@ -1,3 +1,5 @@
+var catitembutton;
+
 window.onload = () => {
   'use strict';
 
@@ -49,26 +51,82 @@ function likepost(id, item){
      );
 }
 
-function savepost(id,item){
+function savecategory(id,catid){
+  
   data = {
-    "postID": id,
-  }
-  var opts = {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'content-type': 'application/json'
-    },
-  };
-   fetch('/request/updatesave.php', opts).then(response => response.json())
-   .then(data =>{
-     if(data.OUT_result == 1){
-      item.children[1].src = "/assets/img/svg/savefill.svg";
-    }else {
-      item.children[1].src = "/assets/img/svg/saveempty.svg";
+      "postID": id,
+      "catID": catid,
     }
-   }
-     );
+    var opts = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json'
+      },
+    };
+    fetch('/request/updatesave.php', opts).then(response => response.json())
+    .then(data =>{
+      
+      if(data.OUT_result == 1){
+        catitembutton.children[1].src = "/assets/img/svg/savefill.svg";
+        debugger
+        document.getElementById('modalCategory').remove();
+    }else {
+        debugger
+        catitembutton.children[1].src = "/assets/img/svg/saveempty.svg";
+        debugger
+      }
+    }
+      );
+}
+
+function savepost(id,item){
+  catitembutton = item;
+    
+    console.log(item.children[1].src)
+  if(item.children[1].src.indexOf("savefill") >= 0){
+    
+    savecategory(id,1)
+  }else {
+    
+
+    var opts = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+    };
+    fetch('/request/getCategory.php', opts).then(response => response.json())
+     .then(data =>{  
+      var categories = "";
+  
+      data.forEach(async function(innerdata) {
+        categories += `
+        <button onclick="savecategory(`+id+`,`+innerdata["id"]+`)" class="button-no-style txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+          <div>
+              <span class="text-semibold">`+ innerdata["name"] +`</span>
+          </div>
+        </button>
+        `
+      })
+      document.getElementsByTagName("BODY")[0].innerHTML += 
+      `    <div id="modalCategory" style="display:block;" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="document.getElementById('modalCategory').remove();">&times;</span>
+        <p class="text-bold">Select catogory to save recipe</p>
+        <div class="row">
+        `+
+        categories
+        +`
+        </div>
+        <p class="text-bold" id="deleteTitle"></p>
+        <div>
+            <button id="closeModal" onclick="document.getElementById('modalCategory').remove();" class="timer rf" >cancel</button>
+        </div>
+      </div>
+      </div>`;
+     })  
+  }
 }
 
 function imgerror(item, url){

@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-$json = json_decode(file_get_contents('php://input'), true);
+// $json = json_decode(file_get_contents('php://input'), true);
 require ($_SERVER['DOCUMENT_ROOT']."/includes/classloader.php");
 
 (new EnvReader($_SERVER['DOCUMENT_ROOT'] . '/.env'))->load();
-$item;
+$item = [];
 $source = $_SERVER['DOCUMENT_ROOT'];
 $dir = $source.'/elements/';
 require($dir . "elementfunctions.php");
@@ -15,9 +15,10 @@ $db = $database->getConnection();
 $sqlQuery = new Sql($db); 
 
 
-$hank = $sqlQuery->updatesave($json["postID"],$json["catID"]);
+$data = $sqlQuery->getAllCategory();
 
-while($row = $hank->fetch()): 
-    $item = $row;
+while($row = $data->fetch()): 
+    array_push($item, array('name'=>$row["name"],'id'=> $row["id"]));
 endwhile;
+
 echo json_encode($item);

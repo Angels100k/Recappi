@@ -215,7 +215,7 @@ endif;
     <?php } ?>
     <?php if($info["userid"] === $_SESSION["id"]){ ?>
         <div class="col">
-            <a href="/edit/recipes/<?= $info["id"] ?>">
+            <a href="/edit/recipe/<?= $info["id"] ?>">
                 <div class="text-center" style="height:28px;">
                     <?= dd_img("edit-pen", "svg", "26px", "26px", "", "") ?>
                 </div>
