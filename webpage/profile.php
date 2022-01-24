@@ -184,7 +184,6 @@ $title = "Recappi | Profile of " . $url;
         iconFilter.style.display = "none";
         iconSettings.style.display = "block";
         iconProfile.style.display = "none";
-        iconBackArrow.href = "/home/";
         <?php if ($_SESSION["id"] != $id): ?>
             iconSettings.style.display = "none"
         <?php endif; ?>

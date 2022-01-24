@@ -371,7 +371,7 @@ if($link === ""){
     <div class="main-container mt-3">
         <div>
             <div id="methodStep" class="bg-white  button ml-05 r-max border-primary mr-1"><?php echo $currentstep + 1 ?></div>
-            <input type="text" id="methodText" class="w-auto" placeholer="Add step">
+            <input type="text" id="methodText" class="w-auto" placeholder="Add step">
             <div id="methodStepAdd" class="bg-white button ml-05 r-max border-primary">+</div>
         </div>
     </div>
