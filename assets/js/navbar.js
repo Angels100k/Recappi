@@ -11,21 +11,18 @@ function openSettings() {
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
   const searchBox = document.querySelector('#icon-search');
-  // const iconBackArrow = document.querySelector('#icon-back-arrow');
+  const iconBackArrow = document.querySelector('#icon-back-arrow');
+  const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
 
   settingsMenu.style.display = 'block';
-  // iconBackArrow.removeAttribute('href');
-  // iconBackArrow.addEventListener('click', () => {
-  //   settingsMenu.classList.remove('open');
-  // });
-  // settingsMenu.classList.add('open');
   iconSettings.style.display = 'none';
   iconNotifications.style.display = "none";
   iconProfile.style.display = 'none';
   searchBox.style.display = 'none';
   backArrow.style.display = 'block';
   pageTitle.innerText = 'Settings';
-  backArrow.href = '/home/';
+  iconBackArrow.style.display = 'none';
+  iconBackArrow2.style.display = 'block';
 }
 function closeSettings(){
   const pageTitle = document.querySelector('#page-title');
@@ -35,14 +32,9 @@ function closeSettings(){
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
   const searchBox = document.querySelector('#icon-search');
-  // const iconBackArrow = document.querySelector('#icon-back-arrow');
 
   settingsMenu.style.display = 'none';
-  // iconBackArrow.removeAttribute('href');
-  // iconBackArrow.addEventListener('click', () => {
-  //   settingsMenu.classList.remove('open');
-  // });
-  // settingsMenu.classList.add('open');
+
   iconSettings.style.display = 'block';
   iconNotifications.style.display = "block";
   iconProfile.style.display = 'block';
@@ -53,17 +45,16 @@ function closeSettings(){
 function openNotifications() {
   const pageTitle = document.querySelector('#page-title');
   const iconBackArrow = document.querySelector('#icon-back-arrow');
+  const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
   const iconSearch = document.querySelector('#icon-search');
-  const iconFilter = document.querySelector('#icon-filter');
   const iconSettings = document.querySelector('#icon-settings');
 
   iconBackArrow.style.display = 'block';
   iconSearch.style.display = 'none';
-  iconFilter.style.display = 'none';
   iconSettings.style.display = 'none';
   pageTitle.innerText = 'Notifications';
-
-  iconBackArrow.href = '/home/'
+  iconBackArrow.style.display = 'none';
+  iconBackArrow2.style.display = 'block';
 }
 
 function searchOpen(){
@@ -75,6 +66,7 @@ function searchOpen(){
   searchBtn.style.display = 'none';
   searchBoxInput.style.display = 'block';
 }
+
 function searchClose(){
   const searchBtn = document.querySelector(".search-btn");
   const searchBox = document.querySelector(".search-box");
@@ -84,11 +76,9 @@ function searchClose(){
   searchBtn.style.display = 'block';
   searchBoxInput.style.display = 'none';
 }
-function homeArrow(){
-  const iconBackArrow = document.querySelector('#icon-cross');
-  iconBackArrow.href = '/home/';
-}
 
+function homeArrow(){
+}
 
 function userProfile() {
   const pageTitle = document.querySelector('#page-title');
@@ -97,7 +87,7 @@ function userProfile() {
 }
 
 searchbar.addEventListener("keyup", () => {
-  if (searchbar.value == "") {
+  if (searchbar.value === "") {
     searchmenu.style.display = "none";
   } else {
     searchmenu.style.display = "block";
@@ -105,12 +95,11 @@ searchbar.addEventListener("keyup", () => {
   }
 });
 
-
 function search(value) {
   data = {
     "item": value,
   }
-  var opts = {
+  let opts = {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

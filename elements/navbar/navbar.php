@@ -17,6 +17,9 @@ endif;
         <a class="icon icon-back-arrow" id="icon-back-arrow">
             <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
         </a>
+        <a class="icon icon-back-arrow" id="icon-back-arrow-2">
+            <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
+        </a>
         <span class="page-title" id="page-title"></span>
     </div>
 
@@ -91,7 +94,7 @@ endif;
         <div class="col text-left page-title" style="margin-top: 1.5rem">Social</div>
         <div class="parts shadow">
             <div class="text-settings">
-                <img class="setting-icon" src="/assets/img/svg/user-plus-solid.svg">
+                <img class="setting-icon" src="/assets/img/svg/user-plus-solid-black.svg">
                 <span>Find friends</span>
             </div>
             <div class="text-settings">

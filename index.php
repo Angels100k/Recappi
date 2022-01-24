@@ -59,6 +59,9 @@ if($userid != 0){
         case 'boodschappenlijst':
             require __DIR__ . '/webpage/shoplist.php';
             break;
+        case 'admin':
+            require __DIR__ . '/webpage/admin.php';
+            break;
         default:
             require __DIR__ . '/webpage/404.php';
             header("HTTP/1.1 404 Not Found");
