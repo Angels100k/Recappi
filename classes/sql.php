@@ -140,9 +140,24 @@ WHERE amount.recipeid = ?");
 
     public function loginUser($email){
       $stmt = $this->conn->prepare("
-      SELECT id, password FROM user where email = ?;");
+      SELECT user.id, user.password, admin.email FROM `user`
+LEFT OUTER JOIN admin ON admin.userid = user.ID
+WHERE user.email = ?;");
     $stmt->execute([$email]); 
     return $stmt;
+    }
+    public function getcookbooknotdiscover(){
+        $stmt = $this->conn->prepare("
+      SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, 
+             recipe_image.image, recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes, 
+             ufn_reactions_count(recipe.id) AS repsonses FROM `recipe` 
+                 LEFT JOIN user on user.id = recipe.userid 
+                 LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0) 
+                 LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid >= 0) 
+                 LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid >= 0) 
+                WHERE recipe.draft = 0 ORDER BY recipe.id ASC;");
+        $stmt->excute([$_SESSION["id"], $_SESSION["id"]]);
+        return $stmt;
     }
 
     public function getcookbookcat($cat, $user){

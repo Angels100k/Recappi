@@ -41,9 +41,7 @@
                     endwhile;
                 ?>
             </div>
-        </div>
-        <div class="main-container pagediscover mb--4">
-            <h2>On Discover Now</h2>
+            <h2>Not Discoverd Yet</h2>
             <div class="row mb-4">
                 <?php
                 $stmt = $sqlQuery->getcookbooknotdiscover();

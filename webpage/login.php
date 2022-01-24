@@ -18,11 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while($row = $returned->fetch()): 
             if (password_verify($password, $row["password"])):
                 $_SESSION["id"] = $row["id"];
+            if($row['email'] != null){
+                header("Location: /admin");
+            }
+            else{
                 if($results){
                     header("Location: ".$results["nextUrl"]);
                 }else {
                     header("Location: /home");
                 }
+            }
+
             else:
                     $error = 1;
             endif;

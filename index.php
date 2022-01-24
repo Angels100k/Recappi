@@ -28,6 +28,9 @@ if($userid != 0){
         case 'home':
             require __DIR__ . '/webpage/main.php';
             break;
+        case 'admin':
+            require __DIR__ . '/webpage/adminmain.php';
+            break;
         case 'recipes':
             require __DIR__ . '/webpage/myrecipe.php';
             break;
