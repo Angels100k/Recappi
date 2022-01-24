@@ -113,9 +113,6 @@ $title = "Recappi | Profile of " . $url;
             <div class="main-container mt-3">
                 <?php
                 if ($id == $_SESSION["id"]) {
-                    
-                var_dump($id);
-                var_dump($_SESSION["id"]);
                     $draftrecepts = $sqlQuery->ingredientlist();
                     // if ($draftrecepts->fetchColumn() > 0) {
                         
