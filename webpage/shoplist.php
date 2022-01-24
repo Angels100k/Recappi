@@ -103,19 +103,26 @@ $title = "Recappi | Profile of " . $url;
 </div>
     </div>
 <script>
-    var addIngredient = document.getElementById("addIngredient");   
-    var cancelIngredient = document.getElementById("cancelIngredient");
-    var shoppingListContainer = document.getElementById("shoppingListContainer");
-    var ingredientAmount = document.getElementById("ingredientAmount");
-    var ingredientVolume = document.getElementById("ingredientVolume");
-    var ingredientUntit = document.getElementById("ingredientUntit");
-    var ingredientDesc = document.getElementById("ingredientDesc");
-    var ingredientsOptions = document.getElementById("ingredients");
+    const addIngredient = document.getElementById("addIngredient");
+    const cancelIngredient = document.getElementById("cancelIngredient");
+    const shoppingListContainer = document.getElementById("shoppingListContainer");
+    const ingredientAmount = document.getElementById("ingredientAmount");
+    const ingredientVolume = document.getElementById("ingredientVolume");
+    const ingredientUntit = document.getElementById("ingredientUntit");
+    const ingredientDesc = document.getElementById("ingredientDesc");
+    const ingredientsOptions = document.getElementById("ingredients");
+    const searchIcon = document.getElementById("icon-search");
+    const backArrow = document.getElementById("icon-back-arrow");
+    const profileIcon = document.getElementById("icon-profile");
+
+    searchIcon.style.display = "none";
+    profileIcon.style.display = "none";
+    backArrow.style.display = "block";
 
     cancelIngredient.onclick = function() {klikajCancel()};
 
     addIngredient.onclick = function() {
-        var data = {
+        let data = {
             "ingredientAmount" : ingredientAmount.value,
             "ingredientVolume" : ingredientVolume.value,
             "ingredientUntit"  : ingredientUntit.value,
@@ -123,7 +130,7 @@ $title = "Recappi | Profile of " . $url;
             "id": addIngredient.dataset.id,
             "recipeId" : null
         }
-        if(ingredientAmount.value != "" && ingredientDesc.value != ""){
+        if(ingredientAmount.value !== "" && ingredientDesc.value !== ""){
             fetch("/request/addIngredientShoppinglist.php", {
                 method: 'POST',
                 body: JSON.stringify(data),

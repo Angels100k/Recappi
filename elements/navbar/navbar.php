@@ -47,7 +47,7 @@ endif;
         </a>
         -->
         <!-- search-->
-        <a class="search-btn icon-search" onclick="searchOpen()">
+        <a class="search-btn icon-search" onclick="searchOpen()" id="icon-search">
             <i class="icon-search"><img src="/assets/img/svg/magnifying-glass.svg"></i>
         </a>
 
