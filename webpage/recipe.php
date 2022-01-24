@@ -240,7 +240,6 @@ shareButton.addEventListener('click', event => {
         alert("Coudnt share, try again later")
     }
 });
-
 </script>
 <script src="/assets/js/recept.js"></script>
 </html>

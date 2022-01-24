@@ -69,12 +69,9 @@ function savecategory(id,catid){
       
       if(data.OUT_result == 1){
         catitembutton.children[1].src = "/assets/img/svg/savefill.svg";
-        debugger
         document.getElementById('modalCategory').remove();
     }else {
-        debugger
         catitembutton.children[1].src = "/assets/img/svg/saveempty.svg";
-        debugger
       }
     }
       );

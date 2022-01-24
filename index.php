@@ -14,13 +14,13 @@ $sqlQuery = new Sql($db);
 $databases;
 
 $dir = __DIR__;
-
+$userid = $_SESSION["id"] ?? 0;
 
 $request = $_SERVER['REQUEST_URI'];
 $url = parse_url($request);
 
 $urlpaths = explode("/", $url["path"]);
-if($_SESSION["id"]){
+if($userid != 0){
     switch($urlpaths[1]) {
         case '/':
         case '':

@@ -6,9 +6,9 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /home");
 }
 
+$pathtwo = $urlpaths[2] ?? 0;
 
 parse_str($url['query'], $results);
-var_dump($results);
 $error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -95,7 +95,7 @@ mail($to, $subject, $message, $headers);
 
     <div class="main-container text-center" style="bottom: 20px;position: absolute;left: 16px;right: 16px;">
     <?php
-if($urlpaths[2]){
+if($pathtwo != 0){
    ?>
    <?=dd_field_wrapper("Forgot password", "h1", "text-center f-100")?>
         <?=dd_field_wrapper("Enter your email and we will send you a link to reset your password", "h2", "text-center text-normal f-100")?>

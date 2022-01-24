@@ -278,7 +278,7 @@ if($link === ""){
         <div class="main-container mt-2" id="tagContainer"><span class="text-bold">
                 TAGS
             </span><br><button id="AddTag" class="mt-1 bg-white button ml-05 r-max border-primary">+</button><?php
-               $stmt = $sqlQuery->getAllTags($urlpaths[3]);
+               $stmt = $sqlQuery->getAllTags($urlpaths[3] ?? 0);
     
                while($row = $stmt->fetch()){
                   
@@ -761,6 +761,21 @@ function addIngredientStep(name, element){
 
     document.getElementById("methodText").focus();
 }
+
+const deleteBtn = document.querySelector('#icon-trashCan');
+
+deleteBtn.onclick = function(){
+            var data = {
+                "recipeId" : <?= $urlpaths[3]?>
+            };
+            fetch("/request/deleteRecipe.php", {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }).then(response => response.json())
+            .then(result => {
+                window.location.replace("/home");
+            });
+        }
 </script>
 
 <script src="/assets/js/recipe-edit.js"></script>

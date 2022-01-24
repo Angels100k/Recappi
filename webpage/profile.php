@@ -113,8 +113,12 @@ $title = "Recappi | Profile of " . $url;
             <div class="main-container mt-3">
                 <?php
                 if ($id == $_SESSION["id"]) {
+                    
+                var_dump($id);
+                var_dump($_SESSION["id"]);
                     $draftrecepts = $sqlQuery->ingredientlist();
-                    if ($draftrecepts->fetchColumn() > 0) {
+                    // if ($draftrecepts->fetchColumn() > 0) {
+                        
                 ?>
 
                         <div class="row">
@@ -127,9 +131,9 @@ $title = "Recappi | Profile of " . $url;
                             endwhile;
                             ?>
                         </div>
-                        <?php }
+                        <?php 
                     $draftrecepts = $sqlQuery->getcookbookdraftbig();
-                    if ($draftrecepts->fetchColumn() > 0) {
+                    // if ($draftrecepts->fetchColumn() > 0) {
                         ?>
                         <div class="row">
                             <h2 class="text-bold"><?= dd_img("pen-black", "svg", '18px', '18px') ?> <span class="ml-05">Drafts</span></h2>
@@ -139,7 +143,7 @@ $title = "Recappi | Profile of " . $url;
                                 <?php while ($row = $draftrecepts->fetch()):echo dd_draftrecipebigedit($row);endwhile;?>
                             </div>
                         </div>
-                <?php }
+                <?php 
                 } ?>
                 <div class="row">
                     <h2 class="text-bold"><?= dd_img("bars", "svg", '18px', '18px') ?> <span class="ml-05">Cookbook</span></h2>
