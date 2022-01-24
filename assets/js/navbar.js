@@ -15,11 +15,6 @@ function openSettings() {
   const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
 
   settingsMenu.style.display = 'block';
-  // iconBackArrow.removeAttribute('href');
-  // iconBackArrow.addEventListener('click', () => {
-  //   settingsMenu.classList.remove('open');
-  // });
-  // settingsMenu.classList.add('open');
   iconSettings.style.display = 'none';
   iconNotifications.style.display = "none";
   iconProfile.style.display = 'none';
@@ -37,15 +32,8 @@ function closeSettings(){
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
   const searchBox = document.querySelector('#icon-search');
-  const iconBackArrow = document.querySelector('#icon-back-arrow');
 
   settingsMenu.style.display = 'none';
-
-  // iconBackArrow.removeAttribute('href');
-  // iconBackArrow.addEventListener('click', () => {
-  //   settingsMenu.classList.remove('open');
-  // });
-  // settingsMenu.classList.add('open');
 
   iconSettings.style.display = 'block';
   iconNotifications.style.display = "block";
@@ -65,7 +53,6 @@ function openNotifications() {
   iconSearch.style.display = 'none';
   iconSettings.style.display = 'none';
   pageTitle.innerText = 'Notifications';
-  console.log(iconBackArrow);
   iconBackArrow.style.display = 'none';
   iconBackArrow2.style.display = 'block';
 }
@@ -91,8 +78,6 @@ function searchClose(){
 }
 
 function homeArrow(){
-  const iconBackArrow = document.querySelector('#icon-cross');
-  /*iconBackArrow.href = '/home/';*/
 }
 
 function userProfile() {
@@ -102,7 +87,7 @@ function userProfile() {
 }
 
 searchbar.addEventListener("keyup", () => {
-  if (searchbar.value == "") {
+  if (searchbar.value === "") {
     searchmenu.style.display = "none";
   } else {
     searchmenu.style.display = "block";
@@ -114,7 +99,7 @@ function search(value) {
   data = {
     "item": value,
   }
-  var opts = {
+  let opts = {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

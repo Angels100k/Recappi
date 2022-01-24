@@ -7,5 +7,3 @@ document.getElementById('icon-back-arrow-2').addEventListener('click', (e) => {
   e.preventDefault();
   window.location.reload();
 })
-
-console.log('hallo');
