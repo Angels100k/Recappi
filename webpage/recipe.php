@@ -135,14 +135,14 @@ endif;
             <div class="main-container">
                 <div class="row mt-2">
                     <div class="col-5 container-buttons button-white r-max bs-bb">
-                         <button class="button-no-style lf" id="btnMinrecipe">
+                         <button class="button-no-style lf" id="btnMinrecipeCount">
                             <?=dd_img("minus", "svg", '15px', '15px');?>
                          </button>
                         <span id="convertAmount"><?= $info["portion"] ?></span> 
-                        <button class="button-no-style rf" id="btnAddrecipe">
+                        <button class="button-no-style rf" id="btnAddrecipeCount">
                             <?=dd_img("plus", "svg", '15px', '15px');?>
                         </button>
-                        
+
                     </div>
                     <div class="col"><button class="button button-secondary r-max bs-bb rf" id="BtnConvert">convert</button></div>
                 </div>    
