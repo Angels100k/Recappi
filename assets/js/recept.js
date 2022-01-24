@@ -13,12 +13,12 @@ let page1Width = (sectionContainer.scrollWidth / 6);
 let page2Width = (sectionContainer.scrollWidth /  6) * 3;
 let page3Width = (sectionContainer.scrollWidth / 6) * 5;
 
-iconFilter.style.display = "none";
-iconNotifications.style.display = "none";
-iconBulletList.style.display = "block";
-iconSearch.style.display = "none";
-iconBackArrow.style.display = "block";
-iconBackArrow.href = "/home/";
+// iconFilter.style.display = "none";
+// iconNotifications.style.display = "none";
+// iconBulletList.style.display = "block";
+// iconSearch.style.display = "none";
+// iconBackArrow.style.display = "block";
+// iconBackArrow.href = "/home/";
 
 sectionContainer.addEventListener("scroll", () => {
     if(sectionContainer.scrollLeft > 0 && sectionContainer.scrollLeft < page1Width){
@@ -93,8 +93,8 @@ function postcomment(id, comment) {
 }
 
 
-document.getElementById("btnMinrecipe").addEventListener("click", convertrecipeRemove);
-document.getElementById("btnAddrecipe").addEventListener("click", convertrecipeadd);
+document.getElementById("btnMinrecipeCount").addEventListener("click", convertrecipeRemove);
+document.getElementById("btnAddrecipeCount").addEventListener("click", convertrecipeadd);
 document.getElementById("BtnConvert").addEventListener("click", recipeConvert);
 document.getElementById("BtnSaveList").addEventListener("click", saverecipeingredients);
 
@@ -112,6 +112,7 @@ function recipeConvert() {
 }
 
 function convertrecipeadd(){
+    console.log("test");    
     var number = parseInt(document.getElementById("convertAmount").innerText) + 1
 
     document.getElementById("convertAmount").innerText = number;
@@ -128,15 +129,13 @@ function convertrecipeRemove(){
 }
 
 function saverecipeingredients(){
+    console.log("test");
     const converted_check = document.getElementsByClassName("custom-checkbox");
     const converted_ele = document.getElementsByClassName("converted-container");
     const amount = document.getElementById("convertAmount").innerText
     customArr = [];
 
     for (var i = 0; i < converted_check.length; ++i) {
-        // var unit = converted_ele[i].querySelector('.converted-unit').innerText;  
-        // var amountunit = converted_ele[i].querySelector('.converted-amountunit').innerText;  
-        // var ingredient = converted_ele[i].querySelector('.converted-ingredient').innerText;  
         if( converted_check[i].querySelector('.checkbox').checked === true) {
             var id = converted_ele[i].querySelector('.converted-ingredient').dataset.id;  
             customArr.push(id);
@@ -164,3 +163,5 @@ function saverecipeingredients(){
         popup.classList.toggle("show");
     })
 }
+
+console.log("testing")
