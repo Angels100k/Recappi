@@ -10,7 +10,7 @@
     <div id="main-top" class="main-top row">
         <div class="col text-center">
         <button id="Btnfriends" class="list-main list-main-active button-no-style">
-        My friends
+        Categories
         </button>    
         </div>
         <div class="col text-center">
@@ -32,13 +32,24 @@
             </div>
         </div>
         <div class="main-container pagediscover mb--4">
-            <h2>Recipe feed</h2>
+            <h2>On Discover Now</h2>
             <div class="row mb-4">
                 <?php 
                 $stmt = $sqlQuery->getcookbookdiscover();
                 while($row = $stmt->fetch()):
                         echo dd_layout_post($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);
                     endwhile;
+                ?>
+            </div>
+        </div>
+        <div class="main-container pagediscover mb--4">
+            <h2>On Discover Now</h2>
+            <div class="row mb-4">
+                <?php
+                $stmt = $sqlQuery->getcookbooknotdiscover();
+                while($row = $stmt->fetch()):
+                    echo dd_layout_post($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);
+                endwhile;
                 ?>
             </div>
         </div>
