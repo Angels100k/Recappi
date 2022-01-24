@@ -46,7 +46,7 @@
                 <?php
                 $stmt = $sqlQuery->getcookbooknotdiscover();
                 while($row = $stmt->fetch()):
-                    echo dd_layout_post($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);
+                    echo dd_layout_adminpost($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);
                 endwhile;
                 ?>
             </div>
