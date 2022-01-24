@@ -60,7 +60,7 @@ if($userid != 0){
             require __DIR__ . '/webpage/shoplist.php';
             break;
         case 'admin':
-            require __DIR__ . '/webpage/admin.php';
+            require __DIR__ . '/webpage/adminmain.php';
             break;
         default:
             require __DIR__ . '/webpage/404.php';

@@ -6,7 +6,6 @@ const searchbar = document.querySelector("#searchbar");
 function openSettings() {
   const pageTitle = document.querySelector('#page-title');
   const iconSettings = document.querySelector('#icon-settings');
-  const iconNotifications = document.querySelector('#icon-notifications');
   const iconProfile = document.querySelector('#icon-profile');
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
@@ -16,7 +15,6 @@ function openSettings() {
 
   settingsMenu.style.display = 'block';
   iconSettings.style.display = 'none';
-  iconNotifications.style.display = "none";
   iconProfile.style.display = 'none';
   searchBox.style.display = 'none';
   backArrow.style.display = 'block';
@@ -27,7 +25,6 @@ function openSettings() {
 function closeSettings(){
   const pageTitle = document.querySelector('#page-title');
   const iconSettings = document.querySelector('#icon-settings');
-  const iconNotifications = document.querySelector('#icon-notifications');
   const iconProfile = document.querySelector('#icon-profile');
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
@@ -36,13 +33,13 @@ function closeSettings(){
   settingsMenu.style.display = 'none';
 
   iconSettings.style.display = 'block';
-  iconNotifications.style.display = "block";
   iconProfile.style.display = 'block';
   searchBox.style.display = 'block';
   backArrow.style.display = 'none';
   pageTitle.innerText = 'Settings';
 }
-function openNotifications() {
+
+/*function openNotifications() {
   const pageTitle = document.querySelector('#page-title');
   const iconBackArrow = document.querySelector('#icon-back-arrow');
   const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
@@ -55,7 +52,7 @@ function openNotifications() {
   pageTitle.innerText = 'Notifications';
   iconBackArrow.style.display = 'none';
   iconBackArrow2.style.display = 'block';
-}
+}*/
 
 function searchOpen(){
   const searchBtn = document.querySelector(".search-btn");

@@ -174,14 +174,12 @@ $title = "Recappi | Profile of " . $url;
     <script>
         const iconBackArrow = document.querySelector('#icon-back-arrow');
         const iconSearch = document.querySelector('#icon-search');
-        const iconNotifications = document.querySelector('#icon-notifications');
         const iconFilter = document.querySelector('#icon-filter');
         const iconSettings = document.querySelector('#icon-settings');
         const iconProfile = document.querySelector('#icon-profile');
 
         iconBackArrow.style.display = "block";
         iconSearch.style.display = "none";
-        iconNotifications.style.display = "block";
         iconFilter.style.display = "none";
         iconSettings.style.display = "block";
         iconProfile.style.display = "none";
@@ -239,7 +237,7 @@ $title = "Recappi | Profile of " . $url;
     
         function mouseUp() { 
             if (mouseTimer) window.clearTimeout(mouseTimer);
-            if(mouseRelease != 1){
+            if(mouseRelease !== 1){
                 console.log("not opened")
                 location.href = urlLink;
             }            

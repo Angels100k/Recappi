@@ -6,19 +6,15 @@ const iconBackArrow = document.querySelector("#icon-back-arrow");
 const iconSearch = document.querySelector("#icon-search");
 const iconBulletList = document.querySelector("#icon-bullet-list");
 const iconFilter = document.querySelector("#icon-filter");
-const iconNotifications = document.querySelector("#icon-notifications");
 
 let pages = 3;
 let page1Width = (sectionContainer.scrollWidth / 6);
 let page2Width = (sectionContainer.scrollWidth /  6) * 3;
 let page3Width = (sectionContainer.scrollWidth / 6) * 5;
 
-// iconFilter.style.display = "none";
-// iconNotifications.style.display = "none";
-// iconBulletList.style.display = "block";
-// iconSearch.style.display = "none";
-// iconBackArrow.style.display = "block";
-// iconBackArrow.href = "/home/";
+let page1Scroll = 10;
+let page2Scroll = (sectionContainer.scrollWidth / 3) + 10;
+let page3Scroll = ((sectionContainer.scrollWidth / 3) * 2) + 10;
 
 sectionContainer.addEventListener("scroll", () => {
     if(sectionContainer.scrollLeft > 0 && sectionContainer.scrollLeft < page1Width){
@@ -54,17 +50,14 @@ sectionContainer.addEventListener("scroll", () => {
 });
 
 overviewButton.addEventListener("click", ()=>{
-    sectionContainer.scrollLeft = 0;
-    console.log(page1Width)
+    sectionContainer.scrollLeft = page1Scroll;
 });
 
 ingredientsButton.addEventListener("click", ()=>{
-    sectionContainer.scrollLeft = page2Width;
-    console.log(page2Width)
+    sectionContainer.scrollLeft = page2Scroll;
 });
 methodButton.addEventListener("click", ()=>{
-    sectionContainer.scrollLeft = page3Width;
-    console.log(page3Width)
+    sectionContainer.scrollLeft = page3Scroll;
 });
 
 function postcommentinput(id, comment) {
