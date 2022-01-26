@@ -313,9 +313,14 @@ if($link === ""){
     <div class="row shadow bg-white p-1 border-small bs-bb mt-05" id="ingredientContainer">
         <?php
             $draftrecepts = $sqlQuery->ingredientlistRecipe($urlpaths[3]);
+            $ingredientlist = 0;
             while ($row = $draftrecepts->fetch()) :
                 echo dd_showingradientlist($row);
+                $ingredientlist++;
             endwhile;
+            if($ingredientlist == 0 ){
+                echo "Currently no ingredients added";
+            }
         ?>
     </div>
     <div class="main-container d-grid">
@@ -352,10 +357,15 @@ if($link === ""){
     <div class="row shadow bg-white p-1 border-small bs-bb mt-1" id="methodContainer">
         <?php 
             $ingredients = $sqlQuery->ingredientMethodRecipe($urlpaths[3]); 
+            $ingredientMethod = 0;
             while($row = $ingredients->fetch()):
                 echo dd_preprecipe($row);
                 $currentstep = $row["step"];
+                $ingredientMethod++;
             endwhile;
+            if($ingredientMethod == 0){
+                echo "Currently no preparations added";
+            }
         ?>
     </div>
 
