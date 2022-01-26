@@ -171,7 +171,33 @@ $title = "Recappi | Profile of " . $url;
     <?php else : ?>
         <h1 class="profile-not-found">profile not found</h1>
     <?php endif; ?>
+    <?php require $dir.'/elements/main-footer.php';?>
+        <script>
+            window.addEventListener('DOMContentLoaded', (event) => {
+                const btnaddRecipe = document.querySelector("#BtnAddRecipe");
+                const btnCancelRecipe = document.querySelector("#btnCancelRecipe");
+        
+                btnaddRecipe.onclick = function (){
+                    console.log("click")
+                    toggleAddRecipe()
+                };
+                btnCancelRecipe.onclick = function (){
+                    toggleAddRecipe()
+                };
+                function toggleAddRecipe(){
+                    if(addRecipe.classList.contains('addRecipe-show')){
+                        addRecipe.classList.add("addRecipe-remove");
+                        addRecipe.classList.remove("addRecipe-show");
+                    }else {
+                    
+                        addRecipe.classList.remove("addRecipe-remove");
+                        addRecipe.classList.add("addRecipe-show");
+                    }
+                }
+            });
+        </script>
     <script>
+        
         const iconBackArrow = document.querySelector('#icon-back-arrow');
         const iconSearch = document.querySelector('#icon-search');
         const iconNotifications = document.querySelector('#icon-notifications');
@@ -199,7 +225,6 @@ $title = "Recappi | Profile of " . $url;
         var closeBtn = document.getElementById("closeModal");
         var deleteBtn = document.getElementById("deleteModal");
         var editBtns = document.getElementsByClassName("edit-draft-close");
-
 
         deleteBtn.onclick = function(){
             var data = {

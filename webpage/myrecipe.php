@@ -75,10 +75,30 @@ while($row = $stmt->fetch()){
         const pageTitle = document.querySelector('#page-title');
         const iconNotifications = document.querySelector('#icon-notifications');
         const iconSearch = document.querySelector('#icon-search');
+        const btnaddRecipe = document.querySelector("#BtnAddRecipe");
+        const btnCancelRecipe = document.querySelector("#btnCancelRecipe");
 
         pageTitle.innerText = "My Recipes";
         iconNotifications.style.display = "none";
         iconSearch.style.display = "none";
+
+
+        btnaddRecipe.onclick = function (){
+          toggleAddRecipe()
+        };
+        btnCancelRecipe.onclick = function (){
+          toggleAddRecipe()
+        };
+        function toggleAddRecipe(){
+          if(addRecipe.classList.contains('addRecipe-show')){
+              addRecipe.classList.add("addRecipe-remove");
+              addRecipe.classList.remove("addRecipe-show");
+          }else {
+        
+              addRecipe.classList.remove("addRecipe-remove");
+              addRecipe.classList.add("addRecipe-show");
+          }
+        }
     </script>
 </body>
 
