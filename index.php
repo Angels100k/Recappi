@@ -49,6 +49,9 @@ if($userid != 0){
         case 'edit':
             require __DIR__ . '/webpage/edit.php';
             break;
+        case 'settings':
+            require __DIR__ . '/webpage/settings.php';
+            break;
         case 'create':
             require __DIR__ . '/webpage/edit.php';
             break;
@@ -60,7 +63,8 @@ if($userid != 0){
             require __DIR__ . '/webpage/shoplist.php';
             break;
         default:
-            if($_SESSION["admin"] === 1 && $urlpaths[1] == "admin"){
+            $admin = $_SESSION["admin"] ?? 0;
+            if($admin === 1 && $urlpaths[1] == "admin"){
                 require __DIR__ . '/webpage/adminmain.php';
             }else {
                 require __DIR__ . '/webpage/404.php';

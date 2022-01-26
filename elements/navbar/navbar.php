@@ -16,13 +16,27 @@ endif;
 ?>
 <nav class="main-navbar">
     <div class="navbar-title">
-        <a class="icon icon-back-arrow" id="icon-back-arrow">
-            <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
-        </a>
-        <a class="icon icon-back-arrow" id="icon-back-arrow-2">
-            <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
-        </a>
-        <span class="page-title" id="page-title"></span>
+        <?php 
+        if($urlpaths[1] === "settings"){
+            $backurl = $_SERVER['HTTP_REFERER'] ?? "/home";
+            ?>
+            <a class="icon" href="<?=$backurl?>">
+                <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
+            </a>
+            <?php
+        }else {
+            ?>
+            <a class="icon icon-back-arrow" id="icon-back-arrow">
+                <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
+            </a>
+            <a class="icon icon-back-arrow" id="icon-back-arrow-2">
+                <img src="/assets/img/svg/left-arrow.svg" alt="left arrow icon">
+            </a>
+            <span class="page-title" id="page-title"></span>
+            <?php
+        }
+        ?>
+       
     </div>
 
 
