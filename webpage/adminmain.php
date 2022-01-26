@@ -33,14 +33,24 @@
                     foreach($stmt as $stmts) {
                         echo"<tr>";
                         echo "<td>". htmlspecialchars($stmts->name)."</td>";
-                        echo "<td><a class='icon icon-notifications' id='icon-notifications' onclick='openNotifications()'>
-                                <img src='/assets/img/svg/edit-pen.svg' alt='bell icon'>
+                        echo "<td><a href='/category' class='icon icon-notifications' id='icon-notifications'>
+                                <img src='/assets/img/svg/edit-pen-black.svg' alt='bell icon'>
                               </a></td>";
                         echo "<td><a class='icon icon-notifications' id='icon-notifications' onclick='openNotifications()'>
                                 <img src='/assets/img/svg/trash-can-black.svg' alt='bell icon'>
                               </a></td>";
                     }
                     ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a class="button sign-out-btn r-max bs-bb txt-whitetext-settings" href="/category"><span class="setting-signout-text">Create Category</span></a></td>
+                        <td></td>
+                    </tr>
                 </table>
 
             </div>
@@ -57,12 +67,7 @@
             </div>
             <h2>Not Discoverd Yet</h2>
             <div class="row mb-4">
-                <?php
-                $stmt = $sqlQuery->getcookbooknotdiscover();
-                while($row = $stmt->fetch()):
-                    echo dd_layout_adminpost($row['id'], $row["recipe"], $row["preptime"],$row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);
-                endwhile;
-                ?>
+                <input type="text" id="searchbar" placeholder="Type to search..."/>
             </div>
         </div>
     </div>

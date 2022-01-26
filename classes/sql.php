@@ -333,6 +333,11 @@ WHERE user.email = ?;");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
 
     }
+    public function getCategory($categoryname){
+        $stmt = $this->conn->prepare("SELECT `id`, `name` FROM `category` WHERE `name`= ?");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function getAllTags($recipeId){
       $stmt = $this->conn->prepare("

@@ -31,6 +31,9 @@ if($userid != 0){
         case 'admin':
             require __DIR__ . '/webpage/adminmain.php';
             break;
+        case 'category':
+            require __DIR__ . '/webpage/category.php';
+            break;
         case 'recipes':
             require __DIR__ . '/webpage/myrecipe.php';
             break;
