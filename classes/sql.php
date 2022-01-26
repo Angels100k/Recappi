@@ -255,8 +255,8 @@ WHERE user.email = ?;");
       return $stmt;
     }
 
-    public function getprofileimg($id){
-      $stmt = $this->conn->prepare("SELECT `image`, `name`, `imgtype` FROM `user` WHERE `id` = ?");
+    public function getprofilenavbarinfo($id){
+      $stmt = $this->conn->prepare("SELECT `image`, `name`, `imgtype`, `private` FROM `user` WHERE `id` = ?");
       $stmt->execute([$id]); 
       return $stmt;
     }
@@ -352,7 +352,7 @@ WHERE user.email = ?;");
       recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
       ufn_reactions_count(recipe.id) AS repsonses 
       FROM `recipe`
-      INNER JOIN user on user.id = recipe.userid
+      INNER JOIN user on (user.id = recipe.userid and user.private = 0)
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
       LEFT JOIN `liked` ON (liked.receptid = recipe.id AND liked.userid = ?)
       LEFT JOIN `saved_recipe` ON (saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?)
@@ -363,7 +363,7 @@ WHERE user.email = ?;");
     public function getsearchresultpeople($searchitem){
       $item = "%" . $searchitem . "%";
       $stmt = $this->conn->prepare("
-      SELECT `ID`, `email`, `name`, `username`, `password`, `image`, `imgtype`, `bio`, `private`, ufn_recept_count(id) AS `recepts` FROM `user` WHERE private = 0 AND username LIKE ? ORDER BY name DESC LIMIT 5");
+      SELECT `ID`, `email`, `name`, `username`, `image`, `imgtype`, `bio`, `private`, ufn_recept_count(id) AS `recepts` FROM `user` WHERE private = 0 AND username LIKE ? ORDER BY name DESC LIMIT 5");
       $stmt->execute([$item]); 
       return $stmt;
     }
@@ -463,6 +463,12 @@ WHERE amount.recipeid = ? ORDER BY 1 ");
       $stmt = $this->conn->prepare("
       UPDATE `recipe` SET `draft`= 0 WHERE userid = ? AND id = ?");
       $stmt->execute([$_SESSION["id"], $json["recipeId"]]); 
+    }
+
+    public function updateprofileprivate($json) {
+      $stmt = $this->conn->prepare("
+      UPDATE `user` SET `private`= ? WHERE id = ?");
+      $stmt->execute([$json["item"], $_SESSION["id"]]); 
     }
 
     public function deleteRecipe($id){

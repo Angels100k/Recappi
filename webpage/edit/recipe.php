@@ -339,9 +339,9 @@ if($link === ""){
             ?>
         </datalist>
     </div>
-    <div class="main-container d-grid">
-                <a class="mt-2 text-end text-bold txt-primary" id="addIngredient">Add ingredient</a>
-</div>
+    <div class="main-container d-grid mb-4">
+        <a class="mt-2 text-end text-bold txt-primary" id="addIngredient">Add ingredient</a>
+    </div>
 
 </div>
 <div class="pagerecepi" id="container3"style="display:none;">
@@ -375,7 +375,7 @@ if($link === ""){
             <div id="methodStepAdd" class="bg-white button ml-05 r-max border-primary">+</div>
         </div>
     </div>
-    <div class="main-container mt-3">
+    <div class="main-container mt-3 mb-4">
         <button id="publishRecipe" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Publish recipe</button>
     </div>
 </div>

@@ -7,8 +7,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 }
 
 $pathtwo = $urlpaths[2] ?? 0;
-
-parse_str($url['query'], $results);
+$query = $url['query'] ?? "nextUrl=/";
+parse_str($query, $results);
 $error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
