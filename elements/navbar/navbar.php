@@ -32,12 +32,6 @@ endif;
         <a href="/profile/<?= $navbarlink ?>" class="icon-profile" id="icon-profile">
             <?= dd_img($navbarimage, $navbartype, '30px', '30px', '', "profile_picture") ?>
         </a>
-
-        <!-- notifications -->
-        <a class="icon icon-notifications" id="icon-notifications" onclick="openNotifications()">
-            <img src="/assets/img/svg/bell-white.svg" alt="bell icon">
-        </a>
-
         <!-- settings -->
         <a class="icon icon-settings" id="icon-settings" onclick="openSettings()">
             <img src="/assets/img/svg/cog.svg" alt="cog wheel icon">
@@ -102,17 +96,6 @@ endif;
             <div class="text-settings">
                 <img class="setting-icon" src="/assets/img/svg/facebook.svg">
                 <span>Connect with Facebook</span>
-            </div>
-        </div>
-        <div class="col text-left page-title" style="margin-top: 2.625rem">Notifications</div>
-        <div class="parts shadow">
-            <div class="text-settings">
-                <img class="setting-icon" src="/assets/img/svg/bell.svg">
-                <span>Allow Notifications</span>
-            </div>
-            <div class="text-settings">
-                <img class="setting-icon" src="/assets/img/svg/envelope.svg">
-                <span>Notifications via email</span>
             </div>
         </div>
         <div class="col text-left page-title" style="margin-top: 2.625rem">Privacy</div>

@@ -28,12 +28,6 @@ if($userid != 0){
         case 'home':
             require __DIR__ . '/webpage/main.php';
             break;
-        case 'admin':
-            require __DIR__ . '/webpage/adminmain.php';
-            break;
-        case 'category':
-            require __DIR__ . '/webpage/category.php';
-            break;
         case 'recipes':
             require __DIR__ . '/webpage/myrecipe.php';
             break;
@@ -65,13 +59,13 @@ if($userid != 0){
         case 'boodschappenlijst':
             require __DIR__ . '/webpage/shoplist.php';
             break;
-        case 'admin':
-            require __DIR__ . '/webpage/admin.php';
-            break;
         default:
-            require __DIR__ . '/webpage/404.php';
-            header("HTTP/1.1 404 Not Found");
-            break;
+            if($_SESSION["admin"] === 1 && $urlpaths[1] == "admin"){
+                require __DIR__ . '/webpage/adminmain.php';
+            }else {
+                require __DIR__ . '/webpage/404.php';
+                break;
+            }
     }
 }else {
     switch($urlpaths[1]) {

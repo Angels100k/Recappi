@@ -6,6 +6,12 @@
 </head>
 
 <body style="background-color: var(--background)">
+<?php 
+if($urlpaths[2] == "category"){
+    require $dir.'/webpage/category.php';
+}else {
+
+?>
 <?php require $dir.'/elements/navbar/navbar.php';?>
     <div id="main-top" class="main-top row">
         <div class="col text-center">
@@ -48,7 +54,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><a class="button sign-out-btn r-max bs-bb txt-whitetext-settings" href="/category"><span class="setting-signout-text">Create Category</span></a></td>
+                        <td><a class="button sign-out-btn r-max bs-bb txt-whitetext-settings" href="/admin/category"><span class="setting-signout-text">Create Category</span></a></td>
                         <td></td>
                     </tr>
                 </table>
@@ -71,6 +77,9 @@
             </div>
         </div>
     </div>
+    <?php
+}
+?>
     <?php require $dir.'/elements/main-footer.php';?>
 
     <script src="/assets/js/main.js"></script>
