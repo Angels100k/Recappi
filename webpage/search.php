@@ -20,12 +20,22 @@ $title = "settings page recappi"
         case 'friend':
         case 'friends':
             echo '<script>
+            const friendscontainer = document.querySelector("#friendscontainer");
             function findfriends(element){
-                const searchResultPeople = document.querySelector("#friendscontainer");
-                data = {"item": element.value,"limit": 100}
+                if (element.value === "") {
+                    friendscontainer.style.display = "none";
+                  } else {
+                    friendscontainer.style.display = "flex";
+                    searchfriend(element.value)
+                  }
+                
+            }
+            function searchfriend(val) {
+                data = {"item": val,"limit": 100}
                 let opts = {method: "POST",body: JSON.stringify(data),headers: {"content-type": "application/json"},};
-                fetch("/request/getsearchfriends.php", opts).then(response => response.json()).then(data => {searchResultPeople.innerHTML = data;});
-            }</script>';
+                fetch("/request/getsearchfriends.php", opts).then(response => response.json()).then(data => {friendscontainer.innerHTML = data;});
+            }
+            </script>';
             break;
         default:
             echo "not working";
