@@ -38,8 +38,8 @@ if($urlpaths[2] == "category"){
                     $stmt = $sqlQuery->getCategories();
                     foreach($stmt as $stmts) {
                         echo"<tr>";
-                        echo "<td>". htmlspecialchars($stmts->name)."</td>";
-                        echo "<td><a href='/category' class='icon icon-notifications' id='icon-notifications'>
+                        echo "<td id='hoi'>". htmlspecialchars($stmts->name)."</td>";
+                        echo "<td><a href='/category' class='icon icon-notifications' id='btnedit'>
                                 <img src='/assets/img/svg/edit-pen-black.svg' alt='bell icon'>
                               </a></td>";
                         echo "<td><a class='icon icon-notifications' id='icon-notifications' onclick='openNotifications()'>
@@ -83,6 +83,13 @@ if($urlpaths[2] == "category"){
     <?php require $dir.'/elements/main-footer.php';?>
 
     <script src="/assets/js/main.js"></script>
+    <script>
+        var btnedit = document.getElementById('btnedit');
+
+        btnedit.onclick = function (){
+            document.getElementById('hoi').value = 
+        }
+    </script>
 </body>
 
 </html>
