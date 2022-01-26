@@ -254,8 +254,8 @@ WHERE user.email = ?;");
       return $stmt;
     }
 
-    public function getprofileimg($id){
-      $stmt = $this->conn->prepare("SELECT `image`, `name`, `imgtype` FROM `user` WHERE `id` = ?");
+    public function getprofilenavbarinfo($id){
+      $stmt = $this->conn->prepare("SELECT `image`, `name`, `imgtype`, `private` FROM `user` WHERE `id` = ?");
       $stmt->execute([$id]); 
       return $stmt;
     }
@@ -456,6 +456,12 @@ WHERE amount.recipeid = ? ORDER BY 1 ");
       $stmt = $this->conn->prepare("
       UPDATE `recipe` SET `draft`= 0 WHERE userid = ? AND id = ?");
       $stmt->execute([$_SESSION["id"], $json["recipeId"]]); 
+    }
+
+    public function updateprofileprivate($json) {
+      $stmt = $this->conn->prepare("
+      UPDATE `user` SET `private`= ? WHERE id = ?");
+      $stmt->execute([$json["item"], $_SESSION["id"]]); 
     }
 
     public function deleteRecipe($id){

@@ -1,13 +1,15 @@
 <?php
 $image = "";
 $type = "";
+$private = 0;
 $y = 0;
 if ($_SESSION['id']) :
-    $stmt = $sqlQuery->getprofileimg($_SESSION["id"]);
+    $stmt = $sqlQuery->getprofilenavbarinfo($_SESSION["id"]);
     while ($row = $stmt->fetch()) :
         $navbarlink = $row['name'];
         $navbarimage = $row['image'];
         $navbartype = $row['imgtype'];
+        $private = $row['private'];
         $y++;
     endwhile;
 endif;
@@ -114,12 +116,17 @@ endif;
             </div>
         </div>
         <div class="col text-left page-title" style="margin-top: 2.625rem">Privacy</div>
-        <div class="parts shadow">
-            <div class="text-settings">
+        <div class="parts shadow row">
+            <div class="text-settings col">
                 <img class="setting-icon" src="/assets/img/svg/lock-open.svg" alt="open locket icon">
                 <span>Private account</span>
             </div>
-
+            <div class="col d-flex">
+                <label class="switch rf-flex">
+                    <input id="imgSelfMade" type="checkbox" onclick='updateAccountPrivate(this);' <?php if($private == 1){echo "checked";} ?>>
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
         <div class="col text-left page-title" style="margin-top: 2.625rem">Security</div>
         <div class="parts shadow">
@@ -155,3 +162,27 @@ endif;
         </a>
     </div>
 </div>
+
+<script>
+    function updateAccountPrivate(element){
+        if(element.checked === true){
+            item = 1
+        }else {
+            item = 0
+        }
+        data = {
+            "item": item,
+        }
+        let opts = {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'content-type': 'application/json'
+          },
+        };
+        fetch('/request/updateprofileprivate.php', opts).then(response => response.json())
+        .then(data => {
+          console.log(data);
+        });
+    }
+</script>
