@@ -1,5 +1,5 @@
 <?php 
-$title = "settings page recappi"
+$title = "search page recappi"
 ?>
 <!DOCTYPE html>
 <html lang="en">

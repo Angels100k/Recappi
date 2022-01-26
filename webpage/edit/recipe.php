@@ -644,58 +644,62 @@ btnNext.onclick = function() {
     var categorie = categories.options[categories.selectedIndex].value;
 
 
-if(document.getElementById("recipeLink")){
-    var link = document.getElementById("recipeLink").value;
-}
+    if(document.getElementById("recipeLink")){
+        var link = document.getElementById("recipeLink").value;
+    }
 
     if(container1.style.display == ""){
         var tags = []
 
-        var tagcontainer = document.getElementById("tagContainer");
+        if(recipeName != "" & categorie != ""){
+            var tagcontainer = document.getElementById("tagContainer");
 
-        for (var i = 0; i < tagcontainer.childNodes.length; i++) {
-            if (tagcontainer.childNodes[i].classList.contains("bg-primary")) {
-                note = tagcontainer.childNodes[i].innerText;
-                tags.push(note);
-            }        
+            for (var i = 0; i < tagcontainer.childNodes.length; i++) {
+                if (tagcontainer.childNodes[i].classList.contains("bg-primary")) {
+                    note = tagcontainer.childNodes[i].innerText;
+                    tags.push(note);
+                }        
+            }
+
+            // console.log(data);
+            profilesave().then(response => {
+                response.push(imgMade)
+                var data = {
+                "recipeId": <?php if($urlpaths[3]){echo $urlpaths[3];} else{echo 0;}; ?>,
+                "recipeName": recipeName,
+                "imgMade": imgMade,
+                "description": description,
+                "preptime":totalPrepTime,
+                "cooktime":totalCookTime,
+                "portions":portions,
+                "difficulty":difficulty,
+                "tags":tags,
+                "category":categorie,
+                "images":[response],
+                "link": link
+            };
+                fetch("/request/updateRecipe.php", {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                }).then(response => response.json())
+                .then(result => {
+                    if(<?=$urlpaths[3]?> === 0){
+                        recipeId = result;
+                        window.history.pushState("", "edit recipe", "/edit/recipe/" + result);
+                    }
+                });
+            }
+            );
+
+            BtnPrev.style.display = 'flex';
+            container1.style.display = 'none';
+            container2.style.display = '';
+            container3.style.display = 'none';
+            const pageTitle = document.querySelector(".page-title");
+            pageTitle.innerText = 'add ingredients';
+        }else {
+            window.alert("please add a recipe name and a category before continueing");
         }
-
-        // console.log(data);
-        profilesave().then(response => {
-            response.push(imgMade)
-            var data = {
-            "recipeId": <?php if($urlpaths[3]){echo $urlpaths[3];} else{echo 0;}; ?>,
-            "recipeName": recipeName,
-            "imgMade": imgMade,
-            "description": description,
-            "preptime":totalPrepTime,
-            "cooktime":totalCookTime,
-            "portions":portions,
-            "difficulty":difficulty,
-            "tags":tags,
-            "category":categorie,
-            "images":[response],
-            "link": link
-        };
-            fetch("/request/updateRecipe.php", {
-                method: 'POST',
-                body: JSON.stringify(data),
-            }).then(response => response.json())
-            .then(result => {
-                if(<?=$urlpaths[3]?> === 0){
-                    recipeId = result;
-                    window.history.pushState("", "edit recipe", "/edit/recipe/" + result);
-                }
-            });
-        }
-        );
-
-        BtnPrev.style.display = 'flex';
-        container1.style.display = 'none';
-        container2.style.display = '';
-        container3.style.display = 'none';
-        const pageTitle = document.querySelector(".page-title");
-        pageTitle.innerText = 'add ingredients';
     }else if(container2.style.display == ''){
 
         var data = {
