@@ -123,9 +123,14 @@ $title = "Recappi | Profile of " . $url;
                         </div>
                         <div class="row shadow bg-white p-1 border-small bs-bb mt-05">
                             <?php
+                            $countShopList = 0;
                             while ($row = $draftrecepts->fetch()) :
                                 echo dd_showshoppinglist($row);
+                                $countShopList++;
                             endwhile;
+                            if($countShopList === 0){
+                                echo "No current items in shopping list";
+                            }
                             ?>
                         </div>
                         <?php 

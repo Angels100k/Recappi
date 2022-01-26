@@ -63,10 +63,15 @@ $title = "Recappi | Profile of " . $url;
         </div>
         <div class="row shadow bg-white p-1 border-small bs-bb mt-05" id="shoppingListContainer">
             <?php
-            $draftrecepts = $sqlQuery->ingredientlist();
+                $countShopList = 0;
+                $draftrecepts = $sqlQuery->ingredientlist();
             while ($row = $draftrecepts->fetch()) :
                 echo dd_showshoppinglistedit($row);
+                $countShopList++;
             endwhile;
+            if($countShopList === 0){
+                echo "No current items in shopping list";
+            }
             ?>
         </div>
 

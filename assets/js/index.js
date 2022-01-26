@@ -241,7 +241,12 @@ function klikajDel(i, container) {
   };
    fetch('/request/deletegrocerys.php', opts).then(response => response.json())
    .then(data =>{
-    document.getElementById(container).innerHTML = data;
+     if(data == ""){
+      document.getElementById(container).innerHTML = "No current items in shopping list";
+
+     }else {
+      document.getElementById(container).innerHTML = data;
+     }
     console.log(data);
    }
      );

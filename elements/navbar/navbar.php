@@ -120,22 +120,22 @@ endif;
         </div>
         <div class="col text-left page-title" style="margin-top: 2.625rem">About</div>
         <div class="parts shadow">
-            <div class="text-settings">
+            <a class="text-settings" target="_blank" href="https://www.recappi.com/about">
                 <img class="setting-icon" src="/assets/img/svg/info.svg">
                 <span>Read more about Recappi</span>
-            </div>
-            <div class="text-settings">
+            </a>
+            <a class="text-settings" target="_blank" href="https://www.recappi.com/help">
                 <img class="setting-icon" src="/assets/img/svg/question-mark.svg">
                 <span>Get help</span>
-            </div>
-            <div class="text-settings">
+            </a>
+            <a class="text-settings" target="_blank" href="https://www.recappi.com/feedback">
                 <img class="setting-icon" src="/assets/img/svg/thumbs-up.svg">
                 <span>Feedback</span>
-            </div>
-            <div class="text-settings">
+            </a>
+            <a class="text-settings" target="_blank" href="https://www.recappi.com/terms">
                 <img class="setting-icon" src="/assets/img/svg/judges-hammer.svg">
                 <span>Terms and conditions</span>
-            </div>
+            </a>
         </div>
 
         <div class="col text-left" style="margin-top: 2.625rem;"></div>
