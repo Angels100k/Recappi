@@ -21,14 +21,28 @@
     </div>
     <div id="main-body" class="main-body homepage-container row flex-wrap-no">
         <div class="main-container pagefriends">
-            <h2>following</h2>
             <div class="row">
-                <?php 
-                    $stmt = $sqlQuery->getfriends();
-                    while($row = $stmt->fetch()):
-                        echo dd_layout_friend($row);
-                    endwhile;
+                <table>
+                    <tr>
+                        <th><h2>Category</h2></th>
+                        <th><h2>edit</h2></th>
+                        <th><h2>delete</h2></th>
+                    </tr>
+                    <?php
+                    $stmt = $sqlQuery->getCategories();
+                    foreach($stmt as $stmts) {
+                        echo"<tr>";
+                        echo "<td>". htmlspecialchars($stmts->name)."</td>";
+                        echo "<td><a class='icon icon-notifications' id='icon-notifications' onclick='openNotifications()'>
+                                <img src='/assets/img/svg/edit-pen.svg' alt='bell icon'>
+                              </a></td>";
+                        echo "<td><a class='icon icon-notifications' id='icon-notifications' onclick='openNotifications()'>
+                                <img src='/assets/img/svg/trash-can-black.svg' alt='bell icon'>
+                              </a></td>";
+                    }
                     ?>
+                </table>
+
             </div>
         </div>
         <div class="main-container pagediscover mb--4">

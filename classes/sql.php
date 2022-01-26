@@ -123,6 +123,7 @@ WHERE amount.recipeid = ?");
       return $stmt;
     }
 
+
     public function ingredientMethodRecipe($id){
       $stmt = $this->conn->prepare("
       SELECT  `step`, `text` FROM `instruction` WHERE receptid = ? ORDER BY step asc");
@@ -325,6 +326,12 @@ WHERE user.email = ?;");
       SELECT `id`, `name` FROM `category` WHERE 1");
       $stmt->execute([]); 
       return $stmt;
+    }
+    public function getCategories(){
+        $stmt = $this->conn->prepare("SELECT `id`, `name` FROM `category`");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
     }
 
     public function getAllTags($recipeId){
