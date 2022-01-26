@@ -65,10 +65,10 @@ $title = "Recappi | Profile of " . $url;
             <div class="col-7">
                 <div class="row">
                     <div class="col-12 row">
-                        <div class="col-6">
+                        <div class="col-9">
                             <h1 class="mt-0"><?= $username ?></h1>
                         </div>
-                        <div class="col-6">
+                        <div class="col-1">
                             <?php
                             if ($_SESSION["id"] != $id) {
                                 ?>  <button onclick="invitefollower(<?= $id ?>, this)" class="button-no-style  p-r"> <?php
@@ -145,7 +145,7 @@ $title = "Recappi | Profile of " . $url;
                 <div class="row">
                     <h2 class="text-bold"><?= dd_img("bars", "svg", '18px', '18px') ?> <span class="ml-05">Cookbook</span></h2>
                 </div>
-                <div class="row">
+                <div class="row mb-4">
                     <?php while ($row = $cookbook->fetch()) : ?>
                         <a href="/profile/<?= $url ?>/<?= $row[0] ?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                             <div>
@@ -159,7 +159,7 @@ $title = "Recappi | Profile of " . $url;
         <?php elseif ($x === 2) :
             $stmt = $sqlQuery->getcookbookcat($cat, $url);
         ?>
-            <div class="row main-container mt-3">
+            <div class="row main-container mt-3 mb-4">
                 <h2><?= $cat ?></h2>
                 <?php
                 while ($row = $stmt->fetch()) :
