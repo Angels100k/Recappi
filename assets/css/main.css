@@ -899,6 +899,12 @@ a {
     text-align: center;
     border-radius: 50%;
 }
+
+th, td{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
 /* .settings-menu.open {
     display: block;
 } */

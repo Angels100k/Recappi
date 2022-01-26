@@ -162,66 +162,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
             
     </a>';
 }
-function dd_layout_adminpost($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID, $userid){
-    if($image && $type):
-        $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
-    else:
-        $img = dd_img("placeholder", "png", "120px", "120px", "", "border-small object-cover ");
-    endif;
-    if($likedID != null):
-        $likeimg = dd_img("heartfill", "svg", "20px", "20px", "", "");
-    else:
-        $likeimg = dd_img("heartempty", "svg", "20px", "20px", "", "");
-    endif;
-    if($saveID != null):
-        $saveimg = dd_img("savefill", "svg", "20px", "20px", "    position: absolute; right: 10px; bottom: 10px;", "");
-    else:
-        $saveimg = dd_img("saveempty", "svg", "20px", "20px", "    position: absolute; right: 10px; bottom: 10px;", "");
-    endif;
-    if($userid != $_SESSION["id"]){
-        $button = ' <button onclick="savepost(`'. $id .'`, this); return false;" class="p-r button-no-style rf">
-        '.$img.'
-        '. $saveimg .'
-    </button>';
-    }else {
-        $button = ' <div class="p-r button-no-style rf">
-        '.$img.'
-    </div>';
-    }
-    $dots = "";
 
-    for ($x = 0; $x < $difficulty; $x++):
-        $dots.= "<span class='text-black mr-02'>&#9679</span>";
-    endfor;
-    for ($y = $x; $y <= 4; $y++):
-        $dots.= "<span class='text-grey mr-02'>&#9679</span>";
-    endfor;
-    return '<a href="/recipe/'.$id.'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
-    <div class="row">
-        <div class="col-12"><h2 class="text-bold">'.$receptname.'</h2></div>
-        <div class="col-7">
-            <div class="txt-subheader">Prep time</div>
-            <span class="text-bold">'.$preptime.' min</span><br>
-            <div class="txt-subheader">Difficulty</div>
-            '.$dots.'
-            <div class="text-bold">
-                <button onclick="likepost(`'. $id .'`, this); return false;" class="button-no-style">
-                '. $likeimg .'<span>'.$likes.'</span> 
-                </button>
-                    
-                <button class="button-no-style" onclick="location.href=`/recipe/'.$id.'/#comments`;return false;">
-                    '. dd_img("comment", "svg", "20px", "20px", "", "") .''.$repsonses.'
-                </button>
-                 
-            </div>
-        </div>
-        <div class="col-5 jc-center">
-           '.$button.'
-        </div>
-    </div>
-            
-    </a>';
-}
 
 function dd_layout_friend($row){
     return '<a href="/profile/'.$row["name"].'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
