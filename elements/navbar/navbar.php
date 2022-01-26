@@ -103,10 +103,10 @@ endif;
     <div id="myLinks">
         <div class="col text-left page-title" style="margin-top: 1.5rem">Social</div>
         <div class="parts shadow">
-            <div class="text-settings">
+            <a class="text-settings" href="/search/friend">
                 <img class="setting-icon" src="/assets/img/svg/user-plus-solid-black.svg">
                 <span>Find friends</span>
-            </div>
+            </a>
             <div class="text-settings">
                 <img class="setting-icon" src="/assets/img/svg/facebook.svg">
                 <span>Connect with Facebook</span>

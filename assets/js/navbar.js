@@ -99,6 +99,7 @@ searchbar.addEventListener("keyup", () => {
 function search(value) {
   data = {
     "item": value,
+    "limit": 5
   }
   let opts = {
     method: 'POST',

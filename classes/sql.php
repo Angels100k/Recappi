@@ -372,6 +372,13 @@ WHERE user.email = ?;");
       $stmt->execute([$item]); 
       return $stmt;
     }
+    public function getsearchresultfriends($searchitem){
+      $item = "%" . $searchitem . "%";
+      $stmt = $this->conn->prepare("
+      SELECT `ID`, `email`, `name`, `username`, `image`, `imgtype`, `bio`, `private`, ufn_recept_count(id) AS `recepts` FROM `user` WHERE private = 0 AND ID <> ? AND username LIKE ? ORDER BY name DESC");
+      $stmt->execute([$_SESSION["id"],$item]); 
+      return $stmt;
+    }
     public function forgotUser($email){
       $stmt = $this->conn->prepare("
       SELECT `email` FROM `user` WHERE email = ? LIMIT 1");

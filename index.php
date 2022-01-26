@@ -58,6 +58,9 @@ if($userid != 0){
         case 'logout':
             require __DIR__ . '/webpage/logout.php';
             break;
+        case 'search':
+            require __DIR__ . '/webpage/search.php';
+            break;
         case 'shoppinglist':
         case 'boodschappenlijst':
             require __DIR__ . '/webpage/shoplist.php';
