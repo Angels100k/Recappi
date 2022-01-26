@@ -43,7 +43,27 @@ $title = "settings page recappi"
     }
     ?>
     <?php require $dir.'/elements/main-footer.php';?>
-    <script src="/assets/js/main.js"></script>
+    <script>
+        
+        const btnaddRecipe = document.querySelector("#BtnAddRecipe");
+        const btnCancelRecipe = document.querySelector("#btnCancelRecipe");
+        btnaddRecipe.onclick = function (){
+            toggleAddRecipe()
+        };
+        btnCancelRecipe.onclick = function (){
+            toggleAddRecipe()
+        };
+        function toggleAddRecipe(){
+            if(addRecipe.classList.contains('addRecipe-show')){
+                addRecipe.classList.add("addRecipe-remove");
+                addRecipe.classList.remove("addRecipe-show");
+            }else {
+            
+                addRecipe.classList.remove("addRecipe-remove");
+                addRecipe.classList.add("addRecipe-show");
+            }
+        }
+    </script>
 
     </body>
 </html>
