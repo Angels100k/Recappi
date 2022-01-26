@@ -4,25 +4,26 @@ const searchResultPeople = document.querySelector("#searchResultPeople");
 const searchbar = document.querySelector("#searchbar");
 
 function openSettings() {
-  const pageTitle = document.querySelector('#page-title');
-  const iconSettings = document.querySelector('#icon-settings');
-  const iconNotifications = document.querySelector('#icon-notifications');
-  const iconProfile = document.querySelector('#icon-profile');
-  const settingsMenu = document.querySelector('#settings-menu');
-  const backArrow = document.querySelector('#icon-back-arrow');
-  const searchBox = document.querySelector('#icon-search');
-  const iconBackArrow = document.querySelector('#icon-back-arrow');
-  const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
+  // const pageTitle = document.querySelector('#page-title');
+  // const iconSettings = document.querySelector('#icon-settings');
+  // const iconNotifications = document.querySelector('#icon-notifications');
+  // const iconProfile = document.querySelector('#icon-profile');
+  // const settingsMenu = document.querySelector('#settings-menu');
+  // const backArrow = document.querySelector('#icon-back-arrow');
+  // const searchBox = document.querySelector('#icon-search');
+  // const iconBackArrow = document.querySelector('#icon-back-arrow');
+  // const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
 
-  settingsMenu.style.display = 'block';
-  iconSettings.style.display = 'none';
-  iconNotifications.style.display = "none";
-  iconProfile.style.display = 'none';
-  searchBox.style.display = 'none';
-  backArrow.style.display = 'block';
-  pageTitle.innerText = 'Settings';
-  iconBackArrow.style.display = 'none';
-  iconBackArrow2.style.display = 'block';
+  // settingsMenu.style.display = 'block';
+  // iconSettings.style.display = 'none';
+  // iconNotifications.style.display = "none";
+  // iconProfile.style.display = 'none';
+  // searchBox.style.display = 'none';
+  // backArrow.style.display = 'block';
+  // pageTitle.innerText = 'Settings';
+  // iconBackArrow.style.display = 'none';
+  // iconBackArrow2.style.display = 'block';
+  location.href = "/settings"
 }
 function closeSettings(){
   const pageTitle = document.querySelector('#page-title');
