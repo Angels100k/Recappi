@@ -123,7 +123,7 @@ WHERE grocery_list.userid = ?");
 
     public function ingredientlistrecipe($id){
       $stmt = $this->conn->prepare("
-      SELECT amount.id as amountId, amount.amount as amountunit, amount.unit, ingredient.ingredient, amount.id as id  FROM `amount` 
+      SELECT amount.id as amountId, amount.amount as amountunit, amount.unit, ingredient.ingredient, ingredient.id as id  FROM `amount` 
 INNER JOIN ingredient ON ingredient.id =  amount.ingredientid
 WHERE amount.recipeid = ?");
       $stmt->execute([$id]);
@@ -269,9 +269,9 @@ WHERE user.email = ?;");
     }
 
     public function addToShoppingList($data){
-      foreach ($data["ids"] as &$value) {
-        $stmt = $this->conn->prepare("CALL addShoppingList(?,?,?,?);");
-        $stmt->execute([$value, $_SESSION["id"], $data["amount"],0]); 
+      foreach ($data["ingredients"] as &$value) {
+        $stmt = $this->conn->prepare("CALL addShoppingList(?,?,?,?,?,?);");
+        $stmt->execute([$value[0], $_SESSION["id"], $data["amount"],0,$value[1], $value[2]]); 
       }
       
     return $stmt;

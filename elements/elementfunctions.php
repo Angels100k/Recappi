@@ -274,7 +274,7 @@ function dd_showshoppinglistrecipe($data, $multiplier){
             </div>
         </div>
         <div class="ml-1 pt-05 border col converted-container">
-             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['amountId'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
+             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['id'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
         </div>
     </div>
     ';

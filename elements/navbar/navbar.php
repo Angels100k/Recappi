@@ -127,10 +127,10 @@ endif;
         </div>
         <div class="col text-left page-title" style="margin-top: 2.625rem">Security</div>
         <div class="parts shadow">
-            <div class="text-settings">
+            <a class="text-settings" href="/login/forgotpassword">
                 <img class="setting-icon" src="/assets/img/svg/lock-closed.svg">
                 <span>My password</span>
-            </div>
+            </a>
         </div>
         <div class="col text-left page-title" style="margin-top: 2.625rem">About</div>
         <div class="parts shadow">

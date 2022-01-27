@@ -7,7 +7,17 @@ navbar -
 profile - 
 
 settings - 
-    my passwords doet niks
+
+shoppinglist - 
+
+    editen werk niet meer
+
+
+recipe view page -
+
+  no ingredients message
+  no method message
+
 recipe -
     ingredient save melding
     ingredient save logic fixen
