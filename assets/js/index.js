@@ -127,16 +127,21 @@ function savepost(id,item){
 }
 
 function imgerror(item, url){
-  var xhr = new XMLHttpRequest();
-  xhr.open('HEAD', url, false);
-  xhr.send();
-   
-  if (xhr.status == "404") {
-      item.src = "/assets/img/placeholder.png";
-  } else {
-      item.src = url;
+  if(url != "/assets/img/."){
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', url, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        item.src = "/assets/img/placeholder.png";
+    } else {
+        item.src = url;
+    }
+    console.log("error")
+  }else{
+    item.src = "/assets/img/placeholder.png";
   }
-  console.log("error")
+  
 }
 
 function invitefollower(id, item){

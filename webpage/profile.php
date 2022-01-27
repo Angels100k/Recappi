@@ -219,12 +219,24 @@ $title = "Recappi | Profile of " . $url;
         const iconSettings = document.querySelector('#icon-settings');
         const iconProfile = document.querySelector('#icon-profile');
 
-        iconBackArrow.style.display = "block";
-        iconSearch.style.display = "none";
-        iconNotifications.style.display = "block";
-        iconFilter.style.display = "none";
-        iconSettings.style.display = "block";
-        iconProfile.style.display = "none";
+        if(iconBackArrow){
+            iconBackArrow.style.display = "block";
+        }
+        if(iconSearch){
+            iconSearch.style.display = "none";
+        }
+        if(iconNotifications){
+            iconNotifications.style.display = "block";
+        }
+        if(iconFilter){
+            iconFilter.style.display = "none";
+        }
+        if(iconSettings){
+            iconSettings.style.display = "block";
+        }
+        if(iconProfile){
+            iconProfile.style.display = "none";
+        }
         <?php if ($_SESSION["id"] != $id): ?>
             iconSettings.style.display = "none"
         <?php endif; ?>
@@ -240,25 +252,32 @@ $title = "Recappi | Profile of " . $url;
         var deleteBtn = document.getElementById("deleteModal");
         var editBtns = document.getElementsByClassName("edit-draft-close");
 
-        deleteBtn.onclick = function(){
-            var data = {
-                "recipeId" : recipeId
-            };
-            fetch("/request/deleteRecipe.php", {
-                method: 'POST',
-                body: JSON.stringify(data),
-            }).then(response => response.json())
-            .then(result => {
-                currentElement.remove();
-                document.getElementById("modalAddTag").style.display = "none";
-            });
+        if(deleteBtn){
+            deleteBtn.onclick = function(){
+                var data = {
+                    "recipeId" : recipeId
+                };
+                fetch("/request/deleteRecipe.php", {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                }).then(response => response.json())
+                .then(result => {
+                    currentElement.remove();
+                    document.getElementById("modalAddTag").style.display = "none";
+                });
+            }
         }
-        closeBtn.onclick = function(){
-            closeWindowTag()
+        if(closeBtn){
+            closeBtn.onclick = function(){
+                closeWindowTag()
+            }
         }
-        spanPrep.onclick = function(){
-            closeWindowTag()
+        if(spanPrep){
+            spanPrep.onclick = function(){
+                closeWindowTag()
+            }
         }
+        
 
         function closeWindowTag(){
             document.getElementById("modalAddTag").style.display = "none";

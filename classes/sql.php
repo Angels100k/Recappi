@@ -272,7 +272,8 @@ WHERE user.email = ?;");
 
     public function getrecipedefault($id){
       $stmt = $this->conn->prepare("
-      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.portion, recipe.waittime, recipe.cooktime, recipe.description, recipe.userid as userid, recipe.id as id,
+      SELECT recipe.recipe AS recipe, recipe.preptime, recipe.portion, recipe.waittime, recipe.cooktime, recipe.description, recipe.userid as userid, recipe.id as id, recipe.draft as draft,
+      user.id as userid,
       ufn_likes_count(recipe.id) AS likes, ufn_reactions_count(recipe.id) AS repsonses,
       (SELECT COUNT(*) FROM saved_recipe WHERE  saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?) AS saved,
       (SELECT COUNT(*) FROM liked WHERE  liked.receptid = recipe.id AND liked.userid = ?) AS liked,

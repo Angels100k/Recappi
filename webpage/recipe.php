@@ -1,9 +1,7 @@
 <?php 
 // var_dump($urlpaths[2]);
 $recipeid = $urlpaths[2];
-if($recipeid == 0){
-    header("location: /create/recipe/0");
-}
+
 $recipedefault = $sqlQuery->getrecipedefault($recipeid);
 $title = "Recipe";
 $info = "";
@@ -18,6 +16,9 @@ if($info["liked"] != 0):
 else:
     $likeimg = dd_img("heartempty", "svg", "20px", "20px", "", "");
 endif;
+if($recipeid == 0 || $info["draft"] == 1 && $info["userid"] != $_SESSION["id"]){
+    header("location: /create/recipe/0");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
