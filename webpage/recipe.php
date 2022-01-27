@@ -1,6 +1,9 @@
 <?php 
 // var_dump($urlpaths[2]);
 $recipeid = $urlpaths[2];
+if($recipeid == 0){
+    header("location: /create/recipe/0");
+}
 $recipedefault = $sqlQuery->getrecipedefault($recipeid);
 $title = "Recipe";
 $info = "";

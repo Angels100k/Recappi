@@ -22,7 +22,7 @@ recipes -
 create/edit recipe -
     Duration add hours and minutes to modal
     save icon doet niks
-    preview icon doet niks
+  
     als je publisht maar niks hebt ingevult dan krijg je een lelijke php error
     kan niet ingredients editen
     kan niet method editen

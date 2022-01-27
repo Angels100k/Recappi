@@ -34,7 +34,7 @@ if ($urlpaths[3] && $urlpaths[3] != 0) {
         $link = $row["link"];
     }
     if($count === 0){
-        header("Location: /create/recipe");
+        header("Location: /create/recipe/0");
     }
 }
 if($link === ""){
