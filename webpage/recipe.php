@@ -159,9 +159,14 @@ if($recipeid == 0 || $info["draft"] == 1 && $info["userid"] != $_SESSION["id"]){
             <div class="row shadow bg-white p-1 border-small bs-bb mt-1">
                 <?php 
                 $ingredients = $sqlQuery->ingredientlistrecipe($recipeid); 
+                $countingredients = 0;
                 while($row = $ingredients->fetch()):
                     echo dd_showshoppinglistrecipe($row, $info["portion"]);
+                    $countingredients++;
                 endwhile;
+                if($countingredients == 0){
+                    echo "This recipe doesn't seem to have any ingredients";
+                }
                 
                 ?>
             </div>
@@ -182,9 +187,14 @@ if($recipeid == 0 || $info["draft"] == 1 && $info["userid"] != $_SESSION["id"]){
             <div class="row shadow bg-white p-1 border-small bs-bb mt-1">
                 <?php 
                  $ingredients = $sqlQuery->ingredientMethodRecipe($recipeid); 
-                 while($row = $ingredients->fetch()):
+                $countingredients = 0;
+                while($row = $ingredients->fetch()):
                      echo dd_preprecipe($row);
-                 endwhile;
+                     $countingredients++;
+                endwhile;
+                 if($countingredients == 0){
+                    echo "This recipe doesn't seem to have any preperations";
+                }
                  
                 ?>
 

@@ -269,13 +269,13 @@ function dd_showshoppinglistrecipe($data, $multiplier){
     return'
     <div class="col-12 row  mt-1-not-first top-border">
         <div class="pt-05">
-            <div class="custom-checkbox" onclick="klikadd(`checkbox_'.$data["amountId"].'`)">
-                <input type="checkbox" class="checkbox" id="checkbox_'.$data["amountId"].'"/>
+            <div class="custom-checkbox" onclick="klikadd(`checkbox_'.$data["id"].'`)">
+                <input type="checkbox" class="checkbox" id="checkbox_'.$data["id"].'"/>
                 <label for="checkbox" ></label>
             </div>
         </div>
         <div class="ml-1 pt-05 border col converted-container">
-             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['id'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
+             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['ingredientid'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
         </div>
     </div>
     ';
