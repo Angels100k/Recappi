@@ -79,6 +79,7 @@ function searchClose(){
 }
 
 function homeArrow(){
+  
 }
 
 function userProfile() {
@@ -87,14 +88,16 @@ function userProfile() {
   pageTitle.innerText = 'Profile';
 }
 
-searchbar.addEventListener("keyup", () => {
-  if (searchbar.value === "") {
-    searchmenu.style.display = "none";
-  } else {
-    searchmenu.style.display = "block";
-    search(searchbar.value)
-  }
-});
+if(searchbar){
+  searchbar.addEventListener("keyup", () => {
+    if (searchbar.value === "") {
+      searchmenu.style.display = "none";
+    } else {
+      searchmenu.style.display = "block";
+      search(searchbar.value)
+    }
+  });
+}
 
 function search(value) {
   data = {

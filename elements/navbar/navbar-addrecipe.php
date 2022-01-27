@@ -2,7 +2,7 @@
 ?>
 <nav class="main-navbar">
     <div class="navbar-title">
-        <a class="icon icon-cross" id="icon-cross" onclick="homeArrow()">
+        <a class="icon icon-cross" id="icon-cross" href="/home">
             <img style="height: 50%; width: 50%;" src="/assets/img/svg/cross.svg" alt="left arrow icon">
         </a>
         <span style="margin-left: 25px;margin-top: -3%;" class="page-title" id="page-title"></span>

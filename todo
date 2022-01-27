@@ -22,8 +22,6 @@ recipes -
 create/edit recipe -
     Duration add hours and minutes to modal
     save icon doet niks
-  
-    als je publisht maar niks hebt ingevult dan krijg je een lelijke php error
     kan niet ingredients editen
     kan niet method editen
 
@@ -32,6 +30,3 @@ wachtwoord vergeten -
     na dat gebruiker code heeft ingevuld pas mogelijk maken om nieuw wachtwoord aan te maken
     nieuw wachtwoord 2 keer ingevuld worden
     moet goed responsive zijn
-
-create image -
-    don't show errors if var not exists

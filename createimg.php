@@ -7,8 +7,8 @@ $file = 'people.txt';
 
 $json = json_decode(file_get_contents('php://input'), true);
 $dir = 'assets/img/';
-$name = $json["img"];
-$type = $json["type"];
+$name = $json["img"] ?? "";
+$type = $json["type"]?? "";
 // Open the file to get existing content
 // Write the contents back to the file
 create_img($name, $type);
@@ -23,12 +23,16 @@ function create_img($name, $type){
         
     }elseif (mime_content_type($dir. $name) == "image/png") {
         $img = imagecreatefrompng($dir . $name);
+    }else {
+        $img = "";
     }
-    imagepalettetotruecolor($img);
-    imagealphablending($img, true);
-    imagesavealpha($img, true);
-    imagewebp($img, $dir . "webp/" . $newName, 100);
-    imagedestroy($img);
+    if($img != ""){
+        imagepalettetotruecolor($img);
+        imagealphablending($img, true);
+        imagesavealpha($img, true);
+        imagewebp($img, $dir . "webp/" . $newName, 100);
+        imagedestroy($img);
+    }
 }
 
 
