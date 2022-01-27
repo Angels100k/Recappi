@@ -17,8 +17,6 @@
                 <span class="setting-signout-text" id="categorytext"> Create category</span>
             </a>
         </div>
-
-
     </div>
     <?php require $dir.'/elements/main-footer.php';?>
 

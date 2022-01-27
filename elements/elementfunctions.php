@@ -103,6 +103,7 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
 }
 
 function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID, $userid){
+    // $reuslt = $sql->userinfo($userid);
     if($image && $type):
         $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
     else:

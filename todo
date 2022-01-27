@@ -1,6 +1,7 @@
 
 recept-save - 
     icon vult niet meer
+    show profile user
 
 navbar -
 
@@ -10,8 +11,6 @@ settings -
 
 shoppinglist - 
 
-    editen werk niet meer
-
 
 recipe view page -
 
@@ -20,7 +19,6 @@ recipe view page -
 
 recipe -
     ingredient save melding
-    ingredient save logic fixen
 
 home - 
 
@@ -31,9 +29,17 @@ recipes -
 create/edit recipe -
     save icon doet niks
     kan niet method editen
+    edit ingredient werkt niet
 
 wachtwoord vergeten - 
     Email sturen naar gebruiker met unike code
     na dat gebruiker code heeft ingevuld pas mogelijk maken om nieuw wachtwoord aan te maken
     nieuw wachtwoord 2 keer ingevuld worden
     moet goed responsive zijn
+
+
+
+    edit ingredient werkt niet
+    kan niet method editen
+    no ingredients message
+    no method message

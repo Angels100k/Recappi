@@ -123,7 +123,7 @@ WHERE grocery_list.userid = ?");
 
     public function ingredientlistrecipe($id){
       $stmt = $this->conn->prepare("
-      SELECT amount.id as amountId, amount.amount as amountunit, amount.unit, ingredient.ingredient, ingredient.id as id  FROM `amount` 
+      SELECT amount.id as id, amount.amount as amountunit, amount.unit, ingredient.ingredient  FROM `amount` 
 INNER JOIN ingredient ON ingredient.id =  amount.ingredientid
 WHERE amount.recipeid = ?");
       $stmt->execute([$id]);
