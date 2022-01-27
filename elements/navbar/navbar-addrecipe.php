@@ -14,7 +14,7 @@
 
 
         <!-- notifications -->
-        <a class="icon icon-eye" id="icon-eye" onclick="">
+        <a class="icon icon-eye" id="icon-eye" href="/recipe/<?=$urlpaths[3]?>">
             <img style="height: 50%; width: 50%;" src="/assets/img/svg/eye.svg" alt="bell icon">
             <p class="preview-text">preview</p>
         </a>
