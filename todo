@@ -11,7 +11,6 @@ settings -
 recipe -
     ingredient save melding
     ingredient save logic fixen
-    if search on id can find recipe even if it is a draft
 
 home - 
 
@@ -20,9 +19,7 @@ recipes -
     geen tags
 
 create/edit recipe -
-    Duration add hours and minutes to modal
     save icon doet niks
-    kan niet ingredients editen
     kan niet method editen
 
 wachtwoord vergeten - 

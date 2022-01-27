@@ -59,7 +59,7 @@ if($link === ""){
   <div class="modal-content">
     <span class="close">&times;</span>
     <div>
-
+        <p>Hours</p>
         <select  id="prepTimeHours">
             <option value="00">00</option>
             <option value="01">01</option>
@@ -75,6 +75,7 @@ if($link === ""){
         </select>
     </div>
     <div>
+        <p>Minutes</p>
         <select id="prepTimeMinutes">
             <option value="00">00</option>
             <option value="05">05</option>
@@ -91,7 +92,7 @@ if($link === ""){
         </select>
     </div>
     <div>
-        <button id="SavePrepTime" class="timer rf" >accept</button>
+        <button id="SavePrepTime" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" >accept</button>
     </div>
   </div>
 
@@ -102,7 +103,7 @@ if($link === ""){
   <div class="modal-content">
     <span class="close">&times;</span>
     <div>
-
+        <p>Hours</p>
         <select  id="cookTimeHours">
             <option value="00">00</option>
             <option value="01">01</option>
@@ -118,6 +119,7 @@ if($link === ""){
         </select>
     </div>
     <div>
+        <p>Minutes</p>
         <select id="cookTimeMinutes">
             <option value="00">00</option>
             <option value="05">05</option>
@@ -134,7 +136,7 @@ if($link === ""){
         </select>
     </div>
     <div>
-        <button id="SaveCookTime" class="timer rf" >accept</button>
+        <button id="SaveCookTime" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" >accept</button>
     </div>
   </div>
 
@@ -143,9 +145,10 @@ if($link === ""){
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
+    <p>Tag name</p>
     <input type="text" id="inputAddTag" maxlength="25">
     <div>
-        <button id="SaveTagModelBtn" class="timer rf" >accept</button>
+        <button id="SaveTagModelBtn" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" >accept</button>
     </div>
   </div>
 
@@ -315,7 +318,7 @@ if($link === ""){
             $draftrecepts = $sqlQuery->ingredientlistRecipe($urlpaths[3]);
             $ingredientlist = 0;
             while ($row = $draftrecepts->fetch()) :
-                echo dd_showingradientlist($row);
+                echo dd_showingradientlistedit($row);
                 $ingredientlist++;
             endwhile;
             if($ingredientlist == 0 ){
@@ -344,8 +347,9 @@ if($link === ""){
             ?>
         </datalist>
     </div>
-    <div class="main-container d-grid mb-4">
-        <a class="mt-2 text-end text-bold txt-primary" id="addIngredient">Add ingredient</a>
+    <div class="main-container d-flex mb-4">
+        <a class="mt-2 text-end text-bold txt-primary d-none" data-id="0" id="cancelIngredient">Cancel</a>
+        <a class="mt-2 text-end ml-auto text-bold txt-primary" data-id="0" id="addIngredient">Add ingredient</a>
     </div>
 
 </div>
@@ -479,7 +483,8 @@ addIngredient.onclick = function() {
         "ingredientAmount" : ingredientAmount.value,
         "ingredientUntit"  : ingredientUntit.value,
         "ingredientDesc"  : ingredientDesc.value,
-        "recipeId" : recipeId
+        "recipeId" : recipeId,
+        "id": addIngredient.dataset.id,
     }
     fetch("/request/addIngredient.php", {
             method: 'POST',
@@ -501,6 +506,9 @@ addIngredient.onclick = function() {
             ingredientAmount.value = "";
             ingredientUntit.value = "";
             ingredientDesc.value = "";
+            document.getElementById("addIngredient").innerHTML = "Add ingredient";
+            document.getElementById("addIngredient").dataset.id = 0;
+            document.getElementById("cancelIngredient").classList.add("d-none");
         });
 };
 
@@ -777,6 +785,7 @@ function addIngredientStep(name, element){
 }
 
 const deleteBtn = document.querySelector('#icon-trashCan');
+document.getElementById("cancelIngredient").onclick = function() {klikajCancel()};
 
 deleteBtn.onclick = function(){
             var data = {
@@ -789,6 +798,53 @@ deleteBtn.onclick = function(){
             .then(result => {
                 window.location.replace("/home");
             });
+        }
+        function klikajEditrecipe(amountunit, unit, ingredient, id, element){
+            document.getElementById("ingredientAmount").value = amountunit
+            document.getElementById("ingredientUntit").value = unit
+            document.getElementById("ingredientDesc").value = ingredient
+
+            document.getElementById("addIngredient").innerHTML = "Update ingredient";
+            document.getElementById("cancelIngredient").classList.remove("d-none");;
+
+            document.getElementById("addIngredient").dataset.id = id;
+        }
+        function klikajCancel(){
+            document.getElementById("ingredientAmount").value = "";
+            document.getElementById("ingredientUntit").value = "";
+            document.getElementById("ingredientDesc").value = "";
+
+            document.getElementById("addIngredient").innerHTML = "Add ingredient";
+            document.getElementById("cancelIngredient").classList.add("d-none");;
+
+            document.getElementById("addIngredient").dataset.id = 0;
+        }
+        function klikajDelrecipe(i, container){
+            const ids = i.split("_");
+            id = ids[1];
+            data = {
+              "postID": id,
+              recipeid: <?=$urlpaths[3]?>
+            }
+            var opts = {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: {
+                'content-type': 'application/json'
+              },
+            };
+             fetch('/request/deleteingredientrecipe.php', opts).then(response => response.json())
+             .then(data =>{
+               if(data == ""){
+                document.getElementById(container).innerHTML = "No current items in shopping list";
+                
+               }else {
+                document.getElementById(container).innerHTML = data;
+               }
+              console.log(data);
+             }
+               );
+            console.log(id)
         }
 </script>
 

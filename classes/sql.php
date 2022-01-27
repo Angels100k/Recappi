@@ -94,6 +94,13 @@ WHERE user1 = ?");
       $stmt->execute([$postid, $userid]); 
       return $stmt;
     }
+    public function deleteingredientrecipe($postid){
+      $userid = $_SESSION["id"];
+      $stmt = $this->conn->prepare("
+      DELETE FROM `amount` WHERE id = ?");
+      $stmt->execute([$postid]); 
+      return $stmt;
+    }
 
     public function updatesave($postid, $catid){
       $userid = $_SESSION["id"];
@@ -116,7 +123,7 @@ WHERE grocery_list.userid = ?");
 
     public function ingredientlistrecipe($id){
       $stmt = $this->conn->prepare("
-      SELECT amount.id as amountId, amount.amount as amountunit, amount.unit, ingredient.ingredient FROM `amount` 
+      SELECT amount.id as amountId, amount.amount as amountunit, amount.unit, ingredient.ingredient, amount.id as id  FROM `amount` 
 INNER JOIN ingredient ON ingredient.id =  amount.ingredientid
 WHERE amount.recipeid = ?");
       $stmt->execute([$id]);
@@ -448,7 +455,7 @@ WHERE user.email = ?;");
       $stmt = $this->conn->prepare("
       CALL addIngredient(?,?,?,?,?,?,@out);
       SELECT @out;");
-    $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"], 0]); 
+    $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"], $json["id"]]); 
     return $stmt;
     }
 

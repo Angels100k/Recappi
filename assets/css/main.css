@@ -1191,7 +1191,6 @@ th, td{
     background-color: var(--background);
     margin: auto;
     padding: 20px;
-    padding-bottom: 4rem;
     border: 1px solid #888;
     width: 80%;
   }

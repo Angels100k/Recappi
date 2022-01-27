@@ -232,7 +232,6 @@ function klikajCancel(){
 
 function klikajDel(i, container) {
   const ids = i.split("_");
-  y = document.getElementById(i);
   id = ids[1];
   data = {
     "postID": id,
