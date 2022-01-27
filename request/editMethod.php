@@ -16,15 +16,14 @@ $sqlQuery = new Sql($db);
 
 $currentstep = 0;
 
-$sqlQuery->createMethod($json);
+$sqlQuery->editMethod($json);
 
 $array = [[]];
 
 $ingredients = $sqlQuery->ingredientMethodRecipe($json["recipeId"]); 
 while($row = $ingredients->fetch()):
     array_push($array[0], dd_preprecipeedit($row));
-    $currentstep = $row["step"];
 endwhile;
-array_push($array, $currentstep);
+array_push($array);
 
 echo json_encode($array);

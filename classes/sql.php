@@ -478,6 +478,12 @@ WHERE amount.recipeid = ? ORDER BY 1 ");
       INSERT INTO `instruction`(`receptid`, `step`, `text`) VALUES (?,?,?)");
       $stmt->execute([$json["recipeId"], $json["methodStep"], $json["methodText"]]); 
     }
+    public function editMethod($json) {
+      $stmt = $this->conn->prepare("
+      UPDATE `instruction` SET `step`= ?,`text`= ? WHERE `step` = ? AND `receptid` = ?");
+      $stmt->execute([$json["step"], $json["methodText"], $json["step"], $json["recipeId"]]); 
+    }
+
 
     public function publishRecipe($json) {
       $stmt = $this->conn->prepare("

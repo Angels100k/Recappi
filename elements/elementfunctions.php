@@ -290,6 +290,15 @@ function dd_preprecipe($data){
     </div>
     ';
 }
+function dd_preprecipeedit($data){
+    return'
+    <div class="col-12 row  mt-1-not-first" onclick="editPrepMethodRecipe(`'. $data['step'].'`,`'.$data['text'].'`,this)">
+        <div class="ml-1 pt-05 border col">
+             <span class="text-size-1-5"> '. $data['step'].'   </span><span>'.$data['text'].'</span>
+        </div>
+    </div>
+    ';
+}
 
 function dd_button($text, $onclick, $type, $class = "", $style = ""){
     $button = "<" . $type . " ";

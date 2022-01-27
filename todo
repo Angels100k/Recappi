@@ -28,8 +28,6 @@ recipes -
 
 create/edit recipe -
     save icon doet niks
-    kan niet method editen
-    edit ingredient werkt niet
 
 wachtwoord vergeten - 
     Email sturen naar gebruiker met unike code
@@ -39,7 +37,5 @@ wachtwoord vergeten -
 
 
 
-    edit ingredient werkt niet
-    kan niet method editen
     no ingredients message
     no method message

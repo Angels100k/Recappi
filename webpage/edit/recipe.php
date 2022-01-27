@@ -363,7 +363,7 @@ if($link === ""){
             $ingredients = $sqlQuery->ingredientMethodRecipe($urlpaths[3]); 
             $ingredientMethod = 0;
             while($row = $ingredients->fetch()):
-                echo dd_preprecipe($row);
+                echo dd_preprecipeedit($row);
                 $currentstep = $row["step"];
                 $ingredientMethod++;
             endwhile;
@@ -386,7 +386,7 @@ if($link === ""){
         <div>
             <div id="methodStep" class="bg-white  button ml-05 r-max border-primary mr-1"><?php echo $currentstep + 1 ?></div>
             <input type="text" id="methodText" class="w-auto" placeholder="Add step">
-            <div id="methodStepAdd" class="bg-white button ml-05 r-max border-primary">+</div>
+            <div onclick="methodStepAdd()" class="bg-white button ml-05 r-max border-primary">+</div>
         </div>
     </div>
     <div class="main-container mt-3 mb-4">
@@ -415,12 +415,54 @@ var modalPrep = document.getElementById("modalPrepTime");
 var acceptBtnCook = document.getElementById("SaveCookTime");
 var acceptBtnPrep = document.getElementById("SavePrepTime");
 var publishRecipe = document.getElementById("publishRecipe");
-var methodStepAdd = document.getElementById("methodStepAdd");
 var addIngredient = document.getElementById("addIngredient");
 var tagBtnAccept = document.getElementById("SaveTagModelBtn");
 var spanPrep = document.getElementsByClassName("close")[0];
 var spanCook = document.getElementsByClassName("close")[1];
 var tagBtnClose = document.getElementsByClassName("close")[2];
+
+function editPrepMethodRecipe(item1, item2, container){
+    document.getElementsByTagName("BODY")[0].innerHTML += 
+      `    <div id="modalMethod" style="display:block;" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="document.getElementById('modalMethod').remove();">&times;</span>
+        <p class="text-bold">Select catogory to save recipe</p>
+        <div>
+            <div id="modalMethodStep" class="bg-white  button ml-05 r-max border-primary mr-1">`+item1+`</div>
+            <input type="text" id="modalMethodText" class="w-auto" placeholder="Add step" value="`+item2+`">
+            <div onclick="modalMethodStepAdd(document.getElementById('modalMethod'))" class="bg-white button ml-05 r-max border-primary">+</div>
+        </div>
+        <div>
+            <button id="closeModal" onclick="document.getElementById('modalMethod').remove();" class="timer rf" >cancel</button>
+        </div>
+      </div>
+      </div>`;
+}
+
+function modalMethodStepAdd(modal){
+    var step = document.getElementById("modalMethodStep").innerHTML;
+    var methodText = document.getElementById("modalMethodText").value;
+
+    var data = {
+       "methodText" : methodText,
+       "recipeId" : recipeId,
+       "step" : step
+    }
+
+    fetch("/request/editMethod.php", {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }).then(response => response.json())
+        .then(result => {
+            
+            methodContainer.innerHTML = "";
+
+            result[0].forEach(async function(rating) {
+                methodContainer.innerHTML += rating;
+            })
+            modal.remove();
+        });
+}
 
 function dificultychange(which){
     difficulty = which;
@@ -527,7 +569,8 @@ publishRecipe.onclick = function() {
         });
 }
 
-methodStepAdd.onclick = function() {
+function methodStepAdd() {
+    console.log("test")
     var methodText = document.getElementById("methodText");
     var methodStep = document.getElementById("methodStep");
 
