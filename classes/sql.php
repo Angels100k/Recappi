@@ -496,4 +496,18 @@ WHERE amount.recipeid = ? ORDER BY 1 ");
       DELETE FROM `recipe` WHERE id = ? AND userid = ?");
       $stmt->execute([$id, $_SESSION["id"]]); 
     }
+
+    public function deleteOldTokens($email) {
+        $stmt = $this->conn->prepare(
+            "DELETE FROM pwd_reset WHERE email = ?"
+        );
+        $stmt->execute([$email, $_SESSION["email"]]);
+    }
+
+    public function insertToken($email, $selector, $hashedToken, $expires) {
+        $stmt = $this->conn->prepare("
+        INSERT INTO pwd_reset (email, selector, token, expires) VALUES (?, ?, ?, ?)
+        ");
+        $stmt->execute();
+    }
 }

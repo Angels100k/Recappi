@@ -6,9 +6,6 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /home");
 }
 
-$pathtwo = $urlpaths[2] ?? 0;
-$query = $url['query'] ?? "nextUrl=/";
-parse_str($query, $results);
 $error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -18,18 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while($row = $returned->fetch()): 
             if (password_verify($password, $row["password"])):
                 $_SESSION["id"] = $row["id"];
-                if($row['email'] != null){
-                    $_SESSION["admin"] = 1;
-                    header("Location: /admin");
-                }
-                else{
-                    if($results){
-                        header("Location: ".$results["nextUrl"]);
-                    }else {
-                        header("Location: /home");
-                    }
-                }
-
+                header("Location: /home");
             else:
                     $error = 1;
             endif;
@@ -102,7 +88,7 @@ mail($to, $subject, $message, $headers);
 
     <div class="main-container text-center" style="bottom: 20px;position: absolute;left: 16px;right: 16px;">
     <?php
-if($pathtwo != 0){
+if($urlpaths[2]){
    ?>
    <?=dd_field_wrapper("Forgot password", "h1", "text-center f-100")?>
         <?=dd_field_wrapper("Enter your email and we will send you a link to reset your password", "h2", "text-center text-normal f-100")?>
