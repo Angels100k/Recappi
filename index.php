@@ -49,23 +49,30 @@ if($userid != 0){
         case 'edit':
             require __DIR__ . '/webpage/edit.php';
             break;
+        case 'settings':
+            require __DIR__ . '/webpage/settings.php';
+            break;
         case 'create':
             require __DIR__ . '/webpage/edit.php';
             break;
         case 'logout':
             require __DIR__ . '/webpage/logout.php';
             break;
+        case 'search':
+            require __DIR__ . '/webpage/search.php';
+            break;
         case 'shoppinglist':
         case 'boodschappenlijst':
             require __DIR__ . '/webpage/shoplist.php';
             break;
-        case 'admin':
-            require __DIR__ . '/webpage/adminmain.php';
-            break;
         default:
-            require __DIR__ . '/webpage/404.php';
-            header("HTTP/1.1 404 Not Found");
-            break;
+            $admin = $_SESSION["admin"] ?? 0;
+            if($admin === 1 && $urlpaths[1] == "admin"){
+                require __DIR__ . '/webpage/adminmain.php';
+            }else {
+                require __DIR__ . '/webpage/404.php';
+                break;
+            }
     }
 }else {
     switch($urlpaths[1]) {

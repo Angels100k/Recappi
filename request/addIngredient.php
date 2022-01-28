@@ -22,7 +22,7 @@ $array = [[],[]];
 $ingredientlistRecipe = $sqlQuery->ingredientlistRecipe($json["recipeId"]);
 
 while ($row = $ingredientlistRecipe->fetch()) :
-    array_push($array[0], dd_showingradientlist($row));
+    array_push($array[0], dd_showingradientlistedit($row));
 endwhile;
 
 

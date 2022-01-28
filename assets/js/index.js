@@ -127,16 +127,21 @@ function savepost(id,item){
 }
 
 function imgerror(item, url){
-  var xhr = new XMLHttpRequest();
-  xhr.open('HEAD', url, false);
-  xhr.send();
-   
-  if (xhr.status == "404") {
-      item.src = "/assets/img/placeholder.png";
-  } else {
-      item.src = url;
+  if(url != "/assets/img/."){
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', url, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        item.src = "/assets/img/placeholder.png";
+    } else {
+        item.src = url;
+    }
+    console.log("error")
+  }else{
+    item.src = "/assets/img/placeholder.png";
   }
-  console.log("error")
+  
 }
 
 function invitefollower(id, item){
@@ -227,7 +232,6 @@ function klikajCancel(){
 
 function klikajDel(i, container) {
   const ids = i.split("_");
-  y = document.getElementById(i);
   id = ids[1];
   data = {
     "postID": id,
@@ -241,7 +245,12 @@ function klikajDel(i, container) {
   };
    fetch('/request/deletegrocerys.php', opts).then(response => response.json())
    .then(data =>{
-    document.getElementById(container).innerHTML = data;
+     if(data == ""){
+      document.getElementById(container).innerHTML = "No current items in shopping list";
+
+     }else {
+      document.getElementById(container).innerHTML = data;
+     }
     console.log(data);
    }
      );

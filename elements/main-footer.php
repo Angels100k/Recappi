@@ -1,7 +1,9 @@
 <?php
 $color = 0;
 if($urlpaths[1] == "recipes"){
-$color = 1; 
+    $color = 1; 
+}else if($urlpaths[1] == "home" || $urlpaths[1] == ""){
+    $color = 2; 
 }
 ?>
 <div style="position:absolute;bottom:65px;left:16px;Right:16px;background-color:white;" id="addRecipe" class="addRecipe text-center main-container border-small bs-bb ">
@@ -9,7 +11,7 @@ $color = 1;
     <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0">Write it yourself</a>
     <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0/link">Copy a link</a>
     <a class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" href="/create/recipe/0">Use a photo</a>
-    <button class="txt-primary button-no-style">Cancel</button>
+    <button class="txt-primary button-no-style" id="btnCancelRecipe">Cancel</button>
     
 </div>
 
@@ -18,7 +20,7 @@ $color = 1;
         <a href="/home">
             <div class="text-center" style="height:28px;">
             <?php 
-        if($color == 0){
+        if($color == 2){
             echo dd_img("home-red", "svg", "28px", "28px", "", "");
         }else {
             echo dd_img("home-grey", "svg", "28px", "28px", "", "");

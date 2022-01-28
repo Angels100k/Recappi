@@ -4,27 +4,31 @@ const searchResultPeople = document.querySelector("#searchResultPeople");
 const searchbar = document.querySelector("#searchbar");
 
 function openSettings() {
-  const pageTitle = document.querySelector('#page-title');
-  const iconSettings = document.querySelector('#icon-settings');
-  const iconProfile = document.querySelector('#icon-profile');
-  const settingsMenu = document.querySelector('#settings-menu');
-  const backArrow = document.querySelector('#icon-back-arrow');
-  const searchBox = document.querySelector('#icon-search');
-  const iconBackArrow = document.querySelector('#icon-back-arrow');
-  const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
+  // const pageTitle = document.querySelector('#page-title');
+  // const iconSettings = document.querySelector('#icon-settings');
+  // const iconNotifications = document.querySelector('#icon-notifications');
+  // const iconProfile = document.querySelector('#icon-profile');
+  // const settingsMenu = document.querySelector('#settings-menu');
+  // const backArrow = document.querySelector('#icon-back-arrow');
+  // const searchBox = document.querySelector('#icon-search');
+  // const iconBackArrow = document.querySelector('#icon-back-arrow');
+  // const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
 
-  settingsMenu.style.display = 'block';
-  iconSettings.style.display = 'none';
-  iconProfile.style.display = 'none';
-  searchBox.style.display = 'none';
-  backArrow.style.display = 'block';
-  pageTitle.innerText = 'Settings';
-  iconBackArrow.style.display = 'none';
-  iconBackArrow2.style.display = 'block';
+  // settingsMenu.style.display = 'block';
+  // iconSettings.style.display = 'none';
+  // iconNotifications.style.display = "none";
+  // iconProfile.style.display = 'none';
+  // searchBox.style.display = 'none';
+  // backArrow.style.display = 'block';
+  // pageTitle.innerText = 'Settings';
+  // iconBackArrow.style.display = 'none';
+  // iconBackArrow2.style.display = 'block';
+  location.href = "/settings"
 }
 function closeSettings(){
   const pageTitle = document.querySelector('#page-title');
   const iconSettings = document.querySelector('#icon-settings');
+  const iconNotifications = document.querySelector('#icon-notifications');
   const iconProfile = document.querySelector('#icon-profile');
   const settingsMenu = document.querySelector('#settings-menu');
   const backArrow = document.querySelector('#icon-back-arrow');
@@ -33,13 +37,13 @@ function closeSettings(){
   settingsMenu.style.display = 'none';
 
   iconSettings.style.display = 'block';
+  iconNotifications.style.display = "block";
   iconProfile.style.display = 'block';
   searchBox.style.display = 'block';
   backArrow.style.display = 'none';
   pageTitle.innerText = 'Settings';
 }
-
-/*function openNotifications() {
+function openNotifications() {
   const pageTitle = document.querySelector('#page-title');
   const iconBackArrow = document.querySelector('#icon-back-arrow');
   const iconBackArrow2 = document.querySelector('#icon-back-arrow-2');
@@ -52,7 +56,7 @@ function closeSettings(){
   pageTitle.innerText = 'Notifications';
   iconBackArrow.style.display = 'none';
   iconBackArrow2.style.display = 'block';
-}*/
+}
 
 function searchOpen(){
   const searchBtn = document.querySelector(".search-btn");
@@ -75,6 +79,7 @@ function searchClose(){
 }
 
 function homeArrow(){
+  
 }
 
 function userProfile() {
@@ -83,18 +88,21 @@ function userProfile() {
   pageTitle.innerText = 'Profile';
 }
 
-searchbar.addEventListener("keyup", () => {
-  if (searchbar.value === "") {
-    searchmenu.style.display = "none";
-  } else {
-    searchmenu.style.display = "block";
-    search(searchbar.value)
-  }
-});
+if(searchbar){
+  searchbar.addEventListener("keyup", () => {
+    if (searchbar.value === "") {
+      searchmenu.style.display = "none";
+    } else {
+      searchmenu.style.display = "block";
+      search(searchbar.value)
+    }
+  });
+}
 
 function search(value) {
   data = {
     "item": value,
+    "limit": 5
   }
   let opts = {
     method: 'POST',

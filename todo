@@ -1,1 +1,41 @@
-profile unike naam zorgen geen spaties
+
+recept-save - 
+    icon vult niet meer
+    show profile user
+
+navbar -
+
+profile - 
+
+settings - 
+
+shoppinglist - 
+
+
+recipe view page -
+
+  no ingredients message
+  no method message
+
+recipe -
+    ingredient save melding
+
+home - 
+
+recipes - 
+    search doet niks
+    geen tags
+
+create/edit recipe -
+    save icon doet niks
+
+wachtwoord vergeten - 
+    Email sturen naar gebruiker met unike code
+    na dat gebruiker code heeft ingevuld pas mogelijk maken om nieuw wachtwoord aan te maken
+    nieuw wachtwoord 2 keer ingevuld worden
+    moet goed responsive zijn
+
+
+
+    no ingredients message
+    no method message

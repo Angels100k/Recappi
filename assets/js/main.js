@@ -1,6 +1,7 @@
 const sectionContainer = document.querySelector(".homepage-container");
 
 const btnaddRecipe = document.querySelector("#BtnAddRecipe");
+const btnCancelRecipe = document.querySelector("#btnCancelRecipe");
 const addRecipe = document.querySelector("#addRecipe");
 
 const friendsButton = document.querySelector("#Btnfriends");
@@ -37,12 +38,18 @@ discoverButton.addEventListener("click", ()=>{
 });
 
 btnaddRecipe.onclick = function (){
-if(addRecipe.classList.contains('addRecipe-show')){
-    addRecipe.classList.add("addRecipe-remove");
-    addRecipe.classList.remove("addRecipe-show");
-}else {
-
-    addRecipe.classList.remove("addRecipe-remove");
-    addRecipe.classList.add("addRecipe-show");
-}
+    toggleAddRecipe()
 };
+btnCancelRecipe.onclick = function (){
+    toggleAddRecipe()
+};
+function toggleAddRecipe(){
+    if(addRecipe.classList.contains('addRecipe-show')){
+        addRecipe.classList.add("addRecipe-remove");
+        addRecipe.classList.remove("addRecipe-show");
+    }else {
+    
+        addRecipe.classList.remove("addRecipe-remove");
+        addRecipe.classList.add("addRecipe-show");
+    }
+}

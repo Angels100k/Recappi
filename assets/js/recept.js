@@ -122,22 +122,24 @@ function convertrecipeRemove(){
 }
 
 function saverecipeingredients(){
-    console.log("test");
     const converted_check = document.getElementsByClassName("custom-checkbox");
     const converted_ele = document.getElementsByClassName("converted-container");
-    const amount = document.getElementById("convertAmount").innerText
     customArr = [];
 
     for (var i = 0; i < converted_check.length; ++i) {
         if( converted_check[i].querySelector('.checkbox').checked === true) {
             var id = converted_ele[i].querySelector('.converted-ingredient').dataset.id;  
-            customArr.push(id);
+            var unit = converted_ele[i].querySelector('.converted-unit').innerHTML;  
+            var amountunit = converted_ele[i].querySelector('.converted-amountunit').innerHTML;  
+            arr = [id, unit, amountunit]
+
+            customArr.push(arr);
         }
     }
     console.log(customArr)
     var data = {
-        "ids": customArr,
-        "amount": amount,
+        "ingredients": customArr,
+        "amount": 1,
         "id":0
     };
 

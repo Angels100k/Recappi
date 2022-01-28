@@ -7,8 +7,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 }
 
 $pathtwo = $urlpaths[2] ?? 0;
-
-parse_str($url['query'], $results);
+$query = $url['query'] ?? "nextUrl=/";
+parse_str($query, $results);
 $error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -18,11 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while($row = $returned->fetch()): 
             if (password_verify($password, $row["password"])):
                 $_SESSION["id"] = $row["id"];
-                if($results){
-                    header("Location: ".$results["nextUrl"]);
-                }else {
-                    header("Location: /home");
+                if($row['email'] != null){
+                    $_SESSION["admin"] = 1;
+                    header("Location: /admin");
                 }
+                else{
+                    if($results){
+                        header("Location: ".$results["nextUrl"]);
+                    }else {
+                        header("Location: /home");
+                    }
+                }
+
             else:
                     $error = 1;
             endif;

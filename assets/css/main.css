@@ -290,6 +290,11 @@ a {
     float: right;
 }
 
+.rf-flex {
+    
+    margin: auto 10px auto auto;
+}
+ 
 .object-cover {
     object-fit: cover;
 }
@@ -893,6 +898,10 @@ a {
     line-height: 50px;
     text-align: center;
     border-radius: 50%;
+}
+
+th, td{
+    padding: 10px;
 }
 /* .settings-menu.open {
     display: block;

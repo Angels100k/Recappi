@@ -14,20 +14,16 @@ $database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWO
 $db = $database->getConnection();
 $sqlQuery = new Sql($db);
 
-$sqlQuery->addIngredientShoppinglist($json);
+$currentstep = 0;
 
-$array = [[],[]];
+$sqlQuery->editMethod($json);
 
-$draftrecepts = $sqlQuery->ingredientlist();
-while ($row = $draftrecepts->fetch()) :
-    array_push($array[0], dd_showshoppinglistedit($row));
+$array = [[]];
+
+$ingredients = $sqlQuery->ingredientMethodRecipe($json["recipeId"]); 
+while($row = $ingredients->fetch()):
+    array_push($array[0], dd_preprecipeedit($row));
 endwhile;
-
-$ingredientType = $sqlQuery->ingredientTypes();
-
-while ($row = $ingredientType->fetch()) : 
-    // var_dump($row);
-    array_push($array[1], '<option data-value="'.$row["id"].'">'.$row["ingredient"].'</option>');
-endwhile;
+array_push($array);
 
 echo json_encode($array);

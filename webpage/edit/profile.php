@@ -51,7 +51,7 @@ while($row = $stmt->fetch()){
             <button onclick="profilesave()" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Save</button>
     </div>
     <div class="main-container text-center mt-05">
-        <a class="txt-primary text-bold">Finish later & go to the app</a>
+        <a class="txt-primary text-bold" href="/home">Finish later & go to the app</a>
     </div>
 
     <script src="/assets/js/profile-edit.js"></script>

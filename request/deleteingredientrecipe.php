@@ -12,22 +12,17 @@ require($dir . "elementfunctions.php");
 
 $database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
 $db = $database->getConnection();
-$sqlQuery = new Sql($db);
+$sqlQuery = new Sql($db); 
 
-$sqlQuery->addIngredientShoppinglist($json);
 
-$array = [[],[]];
+$hank = $sqlQuery->deleteingredientrecipe($json["postID"]);
 
-$draftrecepts = $sqlQuery->ingredientlist();
+while($row = $hank->fetch()): 
+    $item = $row;
+endwhile;
+$data = "";
+$draftrecepts = $sqlQuery->ingredientlistRecipe($json["recipeid"]);
 while ($row = $draftrecepts->fetch()) :
-    array_push($array[0], dd_showshoppinglistedit($row));
+    $data .= dd_showingradientlistedit($row);
 endwhile;
-
-$ingredientType = $sqlQuery->ingredientTypes();
-
-while ($row = $ingredientType->fetch()) : 
-    // var_dump($row);
-    array_push($array[1], '<option data-value="'.$row["id"].'">'.$row["ingredient"].'</option>');
-endwhile;
-
-echo json_encode($array);
+echo json_encode($data);

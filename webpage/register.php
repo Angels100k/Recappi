@@ -93,7 +93,7 @@ if($x === 0){
         <?=dd_field_wrapper("You're just moments away from capturing and sharing your recipes", "h2", "text-center f-100")?>
         <form method="post" style="bottom: 55px;position: absolute;left: 16px;right: 16px;">
             <input required type="text" id="username" name="username" placeholder="Name"><br>
-            <input required type="text" id="name" name="name" placeholder="Username"><br>
+            <input required type="text" id="name" name="name" placeholder="Username" onkeypress="return event.charCode != 32"><br>
             <input required type="text" id="email" name="email" placeholder="Email"><br>
             <input required type="password" id="password" name="password" placeholder="Password"><br>
             <input required type="password" id="passwordcheck" name="passwordcheck" placeholder="Password check"><br>

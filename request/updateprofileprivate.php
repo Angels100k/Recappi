@@ -12,19 +12,12 @@ require($dir . "elementfunctions.php");
 
 $database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
 $db = $database->getConnection();
-$sqlQuery = new Sql($db);
+$sqlQuery = new Sql($db); 
 
-$currentstep = 0;
+// var_dump($json);
+$sqlQuery->updateprofileprivate($json);
 
-$sqlQuery->createMethod($json);
-
-$array = [[]];
-
-$ingredients = $sqlQuery->ingredientMethodRecipe($json["recipeId"]); 
-while($row = $ingredients->fetch()):
-    array_push($array[0], dd_preprecipeedit($row));
-    $currentstep = $row["step"];
-endwhile;
-array_push($array, $currentstep);
-
-echo json_encode($array);
+// while($row = $accountinfo->fetch()): 
+//     $item = $row;
+// endwhile;
+echo json_encode($json);

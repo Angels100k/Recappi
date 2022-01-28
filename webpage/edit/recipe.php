@@ -34,7 +34,7 @@ if ($urlpaths[3] && $urlpaths[3] != 0) {
         $link = $row["link"];
     }
     if($count === 0){
-        header("Location: /create/recipe");
+        header("Location: /create/recipe/0");
     }
 }
 if($link === ""){
@@ -59,7 +59,7 @@ if($link === ""){
   <div class="modal-content">
     <span class="close">&times;</span>
     <div>
-
+        <p>Hours</p>
         <select  id="prepTimeHours">
             <option value="00">00</option>
             <option value="01">01</option>
@@ -75,6 +75,7 @@ if($link === ""){
         </select>
     </div>
     <div>
+        <p>Minutes</p>
         <select id="prepTimeMinutes">
             <option value="00">00</option>
             <option value="05">05</option>
@@ -91,7 +92,7 @@ if($link === ""){
         </select>
     </div>
     <div>
-        <button id="SavePrepTime" class="timer rf" >accept</button>
+        <button id="SavePrepTime" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" >accept</button>
     </div>
   </div>
 
@@ -102,7 +103,7 @@ if($link === ""){
   <div class="modal-content">
     <span class="close">&times;</span>
     <div>
-
+        <p>Hours</p>
         <select  id="cookTimeHours">
             <option value="00">00</option>
             <option value="01">01</option>
@@ -118,6 +119,7 @@ if($link === ""){
         </select>
     </div>
     <div>
+        <p>Minutes</p>
         <select id="cookTimeMinutes">
             <option value="00">00</option>
             <option value="05">05</option>
@@ -134,7 +136,7 @@ if($link === ""){
         </select>
     </div>
     <div>
-        <button id="SaveCookTime" class="timer rf" >accept</button>
+        <button id="SaveCookTime" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" >accept</button>
     </div>
   </div>
 
@@ -143,9 +145,10 @@ if($link === ""){
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
+    <p>Tag name</p>
     <input type="text" id="inputAddTag" maxlength="25">
     <div>
-        <button id="SaveTagModelBtn" class="timer rf" >accept</button>
+        <button id="SaveTagModelBtn" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb" >accept</button>
     </div>
   </div>
 
@@ -313,9 +316,14 @@ if($link === ""){
     <div class="row shadow bg-white p-1 border-small bs-bb mt-05" id="ingredientContainer">
         <?php
             $draftrecepts = $sqlQuery->ingredientlistRecipe($urlpaths[3]);
+            $ingredientlist = 0;
             while ($row = $draftrecepts->fetch()) :
-                echo dd_showingradientlist($row);
+                echo dd_showingradientlistedit($row);
+                $ingredientlist++;
             endwhile;
+            if($ingredientlist == 0 ){
+                echo "Currently no ingredients added";
+            }
         ?>
     </div>
     <div class="main-container d-grid">
@@ -339,9 +347,10 @@ if($link === ""){
             ?>
         </datalist>
     </div>
-    <div class="main-container d-grid">
-                <a class="mt-2 text-end text-bold txt-primary" id="addIngredient">Add ingredient</a>
-</div>
+    <div class="main-container d-flex mb-4">
+        <a class="mt-2 text-end text-bold txt-primary d-none" data-id="0" id="cancelIngredient">Cancel</a>
+        <a class="mt-2 text-end ml-auto text-bold txt-primary" data-id="0" id="addIngredient">Add ingredient</a>
+    </div>
 
 </div>
 <div class="pagerecepi" id="container3"style="display:none;">
@@ -352,10 +361,15 @@ if($link === ""){
     <div class="row shadow bg-white p-1 border-small bs-bb mt-1" id="methodContainer">
         <?php 
             $ingredients = $sqlQuery->ingredientMethodRecipe($urlpaths[3]); 
+            $ingredientMethod = 0;
             while($row = $ingredients->fetch()):
-                echo dd_preprecipe($row);
+                echo dd_preprecipeedit($row);
                 $currentstep = $row["step"];
+                $ingredientMethod++;
             endwhile;
+            if($ingredientMethod == 0){
+                echo "Currently no preparations added";
+            }
         ?>
     </div>
 
@@ -372,10 +386,10 @@ if($link === ""){
         <div>
             <div id="methodStep" class="bg-white  button ml-05 r-max border-primary mr-1"><?php echo $currentstep + 1 ?></div>
             <input type="text" id="methodText" class="w-auto" placeholder="Add step">
-            <div id="methodStepAdd" class="bg-white button ml-05 r-max border-primary">+</div>
+            <div onclick="methodStepAdd()" class="bg-white button ml-05 r-max border-primary">+</div>
         </div>
     </div>
-    <div class="main-container mt-3">
+    <div class="main-container mt-3 mb-4">
         <button id="publishRecipe" class="button txt-white bg-primary w-100 mt-05 r-max bs-bb">Publish recipe</button>
     </div>
 </div>
@@ -401,12 +415,54 @@ var modalPrep = document.getElementById("modalPrepTime");
 var acceptBtnCook = document.getElementById("SaveCookTime");
 var acceptBtnPrep = document.getElementById("SavePrepTime");
 var publishRecipe = document.getElementById("publishRecipe");
-var methodStepAdd = document.getElementById("methodStepAdd");
 var addIngredient = document.getElementById("addIngredient");
 var tagBtnAccept = document.getElementById("SaveTagModelBtn");
 var spanPrep = document.getElementsByClassName("close")[0];
 var spanCook = document.getElementsByClassName("close")[1];
 var tagBtnClose = document.getElementsByClassName("close")[2];
+
+function editPrepMethodRecipe(item1, item2, container){
+    document.getElementsByTagName("BODY")[0].innerHTML += 
+      `    <div id="modalMethod" style="display:block;" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="document.getElementById('modalMethod').remove();">&times;</span>
+        <p class="text-bold">Select catogory to save recipe</p>
+        <div>
+            <div id="modalMethodStep" class="bg-white  button ml-05 r-max border-primary mr-1">`+item1+`</div>
+            <input type="text" id="modalMethodText" class="w-auto" placeholder="Add step" value="`+item2+`">
+            <div onclick="modalMethodStepAdd(document.getElementById('modalMethod'))" class="bg-white button ml-05 r-max border-primary">+</div>
+        </div>
+        <div>
+            <button id="closeModal" onclick="document.getElementById('modalMethod').remove();" class="timer rf" >cancel</button>
+        </div>
+      </div>
+      </div>`;
+}
+
+function modalMethodStepAdd(modal){
+    var step = document.getElementById("modalMethodStep").innerHTML;
+    var methodText = document.getElementById("modalMethodText").value;
+
+    var data = {
+       "methodText" : methodText,
+       "recipeId" : recipeId,
+       "step" : step
+    }
+
+    fetch("/request/editMethod.php", {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }).then(response => response.json())
+        .then(result => {
+            
+            methodContainer.innerHTML = "";
+
+            result[0].forEach(async function(rating) {
+                methodContainer.innerHTML += rating;
+            })
+            modal.remove();
+        });
+}
 
 function dificultychange(which){
     difficulty = which;
@@ -469,7 +525,8 @@ addIngredient.onclick = function() {
         "ingredientAmount" : ingredientAmount.value,
         "ingredientUntit"  : ingredientUntit.value,
         "ingredientDesc"  : ingredientDesc.value,
-        "recipeId" : recipeId
+        "recipeId" : recipeId,
+        "id": addIngredient.dataset.id,
     }
     fetch("/request/addIngredient.php", {
             method: 'POST',
@@ -491,6 +548,9 @@ addIngredient.onclick = function() {
             ingredientAmount.value = "";
             ingredientUntit.value = "";
             ingredientDesc.value = "";
+            document.getElementById("addIngredient").innerHTML = "Add ingredient";
+            document.getElementById("addIngredient").dataset.id = 0;
+            document.getElementById("cancelIngredient").classList.add("d-none");
         });
 };
 
@@ -509,7 +569,8 @@ publishRecipe.onclick = function() {
         });
 }
 
-methodStepAdd.onclick = function() {
+function methodStepAdd() {
+    console.log("test")
     var methodText = document.getElementById("methodText");
     var methodStep = document.getElementById("methodStep");
 
@@ -634,58 +695,62 @@ btnNext.onclick = function() {
     var categorie = categories.options[categories.selectedIndex].value;
 
 
-if(document.getElementById("recipeLink")){
-    var link = document.getElementById("recipeLink").value;
-}
+    if(document.getElementById("recipeLink")){
+        var link = document.getElementById("recipeLink").value;
+    }
 
     if(container1.style.display == ""){
         var tags = []
 
-        var tagcontainer = document.getElementById("tagContainer");
+        if(recipeName != "" & categorie != ""){
+            var tagcontainer = document.getElementById("tagContainer");
 
-        for (var i = 0; i < tagcontainer.childNodes.length; i++) {
-            if (tagcontainer.childNodes[i].classList.contains("bg-primary")) {
-                note = tagcontainer.childNodes[i].innerText;
-                tags.push(note);
-            }        
+            for (var i = 0; i < tagcontainer.childNodes.length; i++) {
+                if (tagcontainer.childNodes[i].classList.contains("bg-primary")) {
+                    note = tagcontainer.childNodes[i].innerText;
+                    tags.push(note);
+                }        
+            }
+
+            // console.log(data);
+            profilesave().then(response => {
+                response.push(imgMade)
+                var data = {
+                "recipeId": <?php if($urlpaths[3]){echo $urlpaths[3];} else{echo 0;}; ?>,
+                "recipeName": recipeName,
+                "imgMade": imgMade,
+                "description": description,
+                "preptime":totalPrepTime,
+                "cooktime":totalCookTime,
+                "portions":portions,
+                "difficulty":difficulty,
+                "tags":tags,
+                "category":categorie,
+                "images":[response],
+                "link": link
+            };
+                fetch("/request/updateRecipe.php", {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                }).then(response => response.json())
+                .then(result => {
+                    if(<?=$urlpaths[3]?> === 0){
+                        recipeId = result;
+                        window.history.pushState("", "edit recipe", "/edit/recipe/" + result);
+                    }
+                });
+            }
+            );
+
+            BtnPrev.style.display = 'flex';
+            container1.style.display = 'none';
+            container2.style.display = '';
+            container3.style.display = 'none';
+            const pageTitle = document.querySelector(".page-title");
+            pageTitle.innerText = 'add ingredients';
+        }else {
+            window.alert("please add a recipe name and a category before continuing");
         }
-
-        // console.log(data);
-        profilesave().then(response => {
-            response.push(imgMade)
-            var data = {
-            "recipeId": <?php if($urlpaths[3]){echo $urlpaths[3];} else{echo 0;}; ?>,
-            "recipeName": recipeName,
-            "imgMade": imgMade,
-            "description": description,
-            "preptime":totalPrepTime,
-            "cooktime":totalCookTime,
-            "portions":portions,
-            "difficulty":difficulty,
-            "tags":tags,
-            "category":categorie,
-            "images":[response],
-            "link": link
-        };
-            fetch("/request/updateRecipe.php", {
-                method: 'POST',
-                body: JSON.stringify(data),
-            }).then(response => response.json())
-            .then(result => {
-                if(<?=$urlpaths[3]?> === 0){
-                    recipeId = result;
-                    window.history.pushState("", "edit recipe", "/edit/recipe/" + result);
-                }
-            });
-        }
-        );
-
-        BtnPrev.style.display = 'flex';
-        container1.style.display = 'none';
-        container2.style.display = '';
-        container3.style.display = 'none';
-        const pageTitle = document.querySelector(".page-title");
-        pageTitle.innerText = 'add ingredients';
     }else if(container2.style.display == ''){
 
         var data = {
@@ -763,6 +828,7 @@ function addIngredientStep(name, element){
 }
 
 const deleteBtn = document.querySelector('#icon-trashCan');
+document.getElementById("cancelIngredient").onclick = function() {klikajCancel()};
 
 deleteBtn.onclick = function(){
             var data = {
@@ -775,6 +841,53 @@ deleteBtn.onclick = function(){
             .then(result => {
                 window.location.replace("/home");
             });
+        }
+        function klikajEditrecipe(amountunit, unit, ingredient, id, element){
+            document.getElementById("ingredientAmount").value = amountunit
+            document.getElementById("ingredientUntit").value = unit
+            document.getElementById("ingredientDesc").value = ingredient
+
+            document.getElementById("addIngredient").innerHTML = "Update ingredient";
+            document.getElementById("cancelIngredient").classList.remove("d-none");;
+
+            document.getElementById("addIngredient").dataset.id = id;
+        }
+        function klikajCancel(){
+            document.getElementById("ingredientAmount").value = "";
+            document.getElementById("ingredientUntit").value = "";
+            document.getElementById("ingredientDesc").value = "";
+
+            document.getElementById("addIngredient").innerHTML = "Add ingredient";
+            document.getElementById("cancelIngredient").classList.add("d-none");;
+
+            document.getElementById("addIngredient").dataset.id = 0;
+        }
+        function klikajDelrecipe(i, container){
+            const ids = i.split("_");
+            id = ids[1];
+            data = {
+              "postID": id,
+              recipeid: <?=$urlpaths[3]?>
+            }
+            var opts = {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: {
+                'content-type': 'application/json'
+              },
+            };
+             fetch('/request/deleteingredientrecipe.php', opts).then(response => response.json())
+             .then(data =>{
+               if(data == ""){
+                document.getElementById(container).innerHTML = "No current items in shopping list";
+                
+               }else {
+                document.getElementById(container).innerHTML = data;
+               }
+              console.log(data);
+             }
+               );
+            console.log(id)
         }
 </script>
 

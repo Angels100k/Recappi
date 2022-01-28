@@ -103,6 +103,7 @@ function dd_field_wrapper($text, $el = "div", $class = "", $style = "")
 }
 
 function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repsonses, $image, $type, $likedID, $saveID, $userid){
+    // $reuslt = $sql->userinfo($userid);
     if($image && $type):
         $img = dd_img($image, $type, "120px", "120px", "", "border-small object-cover");
     else:
@@ -162,6 +163,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
             
     </a>';
 }
+
 
 function dd_layout_friend($row){
     return '<a href="/profile/'.$row["name"].'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
@@ -243,18 +245,37 @@ function dd_showingradientlist($data){
     ';
 }
 
+function dd_showingradientlistedit($data){
+    return'
+    <div class="col-12 row  mt-1-not-first top-border">
+        <div class="pt-05">
+            <div class="custom-checkbox">
+                <input type="checkbox"/>
+                <label for="checkbox" ></label>
+            </div>
+        </div>
+        <div class="ml-1 pt-05 border col row">
+            <div class="col" onclick="klikajEditrecipe(`'. $data['amountunit'].'`, `'.$data['unit'].'`, `'.$data['ingredient'].'`, `'.$data["id"].'`, this)">
+            <span class="text-bold">'. $data['amountunit'].' '.$data['unit'].'</span> '.$data['ingredient'].'
+            </div>
+            <span class="rf text-h-primary text-bold" onclick="klikajDelrecipe(`checkbox_'.$data["id"].'`, `ingredientContainer`)">DELETE</span>
+        </div>
+    </div>
+    ';
+}
+
 
 function dd_showshoppinglistrecipe($data, $multiplier){
     return'
     <div class="col-12 row  mt-1-not-first top-border">
         <div class="pt-05">
-            <div class="custom-checkbox" onclick="klikadd(`checkbox_'.$data["amountId"].'`)">
-                <input type="checkbox" class="checkbox" id="checkbox_'.$data["amountId"].'"/>
+            <div class="custom-checkbox" onclick="klikadd(`checkbox_'.$data["id"].'`)">
+                <input type="checkbox" class="checkbox" id="checkbox_'.$data["id"].'"/>
                 <label for="checkbox" ></label>
             </div>
         </div>
         <div class="ml-1 pt-05 border col converted-container">
-             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['amountId'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
+             <span class="text-bold converted converted-amountunit" data-multiplier="'.$multiplier.'" data-amountunit="'. $data['amountunit'].'" data-unit="'.$data['unit'].'" > '. $data['amountunit'].' </span> <span class="text-bold converted-unit"> '.$data['unit'].' </span><span data-id="'.$data['ingredientid'].'" class="converted-ingredient">'.$data['ingredient'].'</span>
         </div>
     </div>
     ';
@@ -263,6 +284,15 @@ function dd_showshoppinglistrecipe($data, $multiplier){
 function dd_preprecipe($data){
     return'
     <div class="col-12 row  mt-1-not-first">
+        <div class="ml-1 pt-05 border col">
+             <span class="text-size-1-5"> '. $data['step'].'   </span><span>'.$data['text'].'</span>
+        </div>
+    </div>
+    ';
+}
+function dd_preprecipeedit($data){
+    return'
+    <div class="col-12 row  mt-1-not-first" onclick="editPrepMethodRecipe(`'. $data['step'].'`,`'.$data['text'].'`,this)">
         <div class="ml-1 pt-05 border col">
              <span class="text-size-1-5"> '. $data['step'].'   </span><span>'.$data['text'].'</span>
         </div>
