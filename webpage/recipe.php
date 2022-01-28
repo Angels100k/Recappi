@@ -173,7 +173,7 @@ if($recipeid == 0 || $info["draft"] == 1 && $info["userid"] != $_SESSION["id"]){
             <div class="main-container">
                 <div class="row mt-1 mb-4">
                     <div class="col">
-                    <button class="button bg-primary w-100 txt-white r-max bs-bb" id="BtnSaveList">Add to list</button>
+                    <button class="button bg-primary w-100 txt-white r-max bs-bb" id="BtnSaveList">Add to shoppinglist</button>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ profile -
 
 recipe -
     ingredient save melding
-    shop list text aanpassen naar "Add to shoppinglist"
+    shop list text aanpassen naar "Add to shoppinglist" Done
 
 create/edit recipe -
     2de icon moet link delen

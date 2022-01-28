@@ -146,7 +146,7 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
             <div class="txt-subheader">Difficulty</div>
             '.$dots.'
             <div class="text-bold">
-                <button onclick="likepost(`'. $id .'`, this); return false;" class="button-no-style">
+                <button style="padding-right: 1rem" onclick="likepost(`'. $id .'`, this); return false;" class="button-no-style">
                 '. $likeimg .'<span>'.$likes.'</span> 
                 </button>
                     

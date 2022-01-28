@@ -84,11 +84,7 @@ if($urlpaths[2] == "category"){
 
     <script src="/assets/js/main.js"></script>
     <script>
-        var btnedit = document.getElementById('btnedit');
 
-        btnedit.onclick = function (){
-            document.getElementById('hoi').value = 
-        }
     </script>
 </body>
 
