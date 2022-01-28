@@ -1,41 +1,15 @@
-
-recept-save - 
-    icon vult niet meer
-    show profile user
-
-navbar -
-
 profile - 
-
-settings - 
-
-shoppinglist - 
-
-
-recipe view page -
-
-  no ingredients message
-  no method message
+    spacing categorie fixen
 
 recipe -
     ingredient save melding
-
-home - 
-
-recipes - 
-    search doet niks
-    geen tags
+    shop list text aanpassen naar "Add to shoppinglist"
 
 create/edit recipe -
-    save icon doet niks
-
-wachtwoord vergeten - 
-    Email sturen naar gebruiker met unike code
-    na dat gebruiker code heeft ingevuld pas mogelijk maken om nieuw wachtwoord aan te maken
-    nieuw wachtwoord 2 keer ingevuld worden
-    moet goed responsive zijn
+    2de icon moet link delen
+    shop list 1 item removed removes alles moet maar een item verweideren
+    slider porties met getal laten zien
 
 
-
-    no ingredients message
-    no method message
+ftp webserver met een domijn/subdomijn
+mysql database
