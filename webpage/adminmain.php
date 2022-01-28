@@ -42,7 +42,7 @@ if($urlpaths[2] == "category"){
                         echo "<td><a href='/category' class='icon icon-notifications' id='btnedit'>
                                 <img src='/assets/img/svg/edit-pen-black.svg' alt='bell icon'>
                               </a></td>";
-                        echo "<td><a class='icon icon-notifications' id='icon-notifications' onclick='openNotifications()'>
+                        echo "<td><a class='icon icon-notifications' id='icon-notifications'>
                                 <img src='/assets/img/svg/trash-can-black.svg' alt='bell icon'>
                               </a></td>";
                     }

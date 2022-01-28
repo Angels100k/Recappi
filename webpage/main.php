@@ -21,7 +21,7 @@
     </div>
     <div id="main-body" class="main-body homepage-container row flex-wrap-no">
         <div class="main-container pagefriends">
-            <h2>following</h2>
+            <h2 style="margin-bottom: -2rem; ">following</h2>
             <div class="row mb-4">
                 <?php 
                     $stmt = $sqlQuery->getfriends();
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="main-container pagediscover mb--4">
-            <h2>Recipe feed</h2>
+            <h2 style="margin-bottom: -2rem;">Recipe feed</h2>
             <div class="row mb-4">
                 <?php 
                 $stmt = $sqlQuery->getcookbookdiscover();

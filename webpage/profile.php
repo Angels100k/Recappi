@@ -174,7 +174,7 @@ $title = "Recappi | Profile of " . $url;
             $stmt = $sqlQuery->getcookbookcat($cat, $url);
         ?>
             <div class="row main-container mt-3 mb-4">
-                <h2><?= $cat ?></h2>
+                <h2 style="margin-top: -30px; margin-bottom: -80px;"><?= $cat ?></h2>
                 <?php
                 while ($row = $stmt->fetch()) :
                     echo dd_layout_post($row['id'], $row["recipe"], $row["preptime"], $row["difficulty"], $row["likes"], $row["repsonses"], $row["image"], $row["type"], $row["likeid"], $row["saveid"], $row["userid"]);

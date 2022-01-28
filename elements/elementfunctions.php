@@ -137,15 +137,15 @@ function dd_layout_post($id, $receptname, $preptime, $difficulty, $likes, $repso
     for ($y = $x; $y <= 4; $y++):
         $dots.= "<span class='text-grey mr-02'>&#9679</span>";
     endfor;
-    return '<a href="/recipe/'.$id.'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
-    <div class="row">
-        <div class="col-12"><h2 class="text-bold">'.$receptname.'</h2></div>
+    return '<a style="margin-top: 1rem;" href="/recipe/'.$id.'/" class="txt-black shadow col-12 bg-white p-1 border-small mt-3 bs-bb receptitem">
+    <div style="" class="row">
+        <div style="margin-top: -15px" class="col-12"><h2 class="text-bold">'.$receptname.'</h2></div>
         <div class="col-7">
             <div class="txt-subheader">Prep time</div>
             <span class="text-bold">'.$preptime.' min</span><br>
-            <div class="txt-subheader">Difficulty</div>
+            <div style="padding-top: 1rem;" class="txt-subheader">Difficulty</div>
             '.$dots.'
-            <div class="text-bold">
+            <div style="padding-top: 1rem; padding-bottom: 10px;" class="text-bold">
                 <button style="padding-right: 1rem" onclick="likepost(`'. $id .'`, this); return false;" class="button-no-style">
                 '. $likeimg .'<span>'.$likes.'</span> 
                 </button>
