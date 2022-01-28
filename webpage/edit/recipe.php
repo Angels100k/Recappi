@@ -262,6 +262,7 @@ if($link === ""){
                 </div>
                 <div class="txt-subheader">
                     <div>1 <div class="rf">20</div></div>
+                    <p>Current Amount: <span id="huidigeWaarde">  </span></p>
                     
                 </div>
             </div>
@@ -679,6 +680,13 @@ if(document.getElementById("container1").style.display != 'none' ){
     pageTitle.innerText = 'add recipe';
 }
 
+var slider = document.getElementById("rangePortions");
+var output = document.getElementById("huidigeWaarde");
+output.innerHTML = slider.value;
+
+slider.oninput = function (){
+    output.innerHTML = this.value;
+}
 
 
 btnNext.onclick = function() {
