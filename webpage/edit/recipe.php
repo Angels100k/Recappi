@@ -749,7 +749,7 @@ btnNext.onclick = function() {
             const pageTitle = document.querySelector(".page-title");
             pageTitle.innerText = 'add ingredients';
         }else {
-            window.alert("please add a recipe name and a category before continueing");
+            window.alert("please add a recipe name and a category before continuing");
         }
     }else if(container2.style.display == ''){
 
