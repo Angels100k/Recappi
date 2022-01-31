@@ -897,6 +897,21 @@ deleteBtn.onclick = function(){
                );
             console.log(id)
         }
+const shareButton = document.querySelector('.share-button');
+
+shareButton.addEventListener('click', event => {
+  if (navigator.share) { 
+   navigator.share({
+      title: 'Recipe',
+      url: '<?php  echo "http://" . $_SERVER['SERVER_NAME'] .'/recipe/'.$urlpaths[3]?>'
+    }).then(() => {
+      console.log('Thanks for sharing!');
+    })
+    .catch(console.error);
+    } else {
+        alert("Coudnt share, try again later")
+    }
+});
 </script>
 
 <script src="/assets/js/recipe-edit.js"></script>

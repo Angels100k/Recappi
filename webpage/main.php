@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="main-container pagediscover mb--4">
-            <h2 style="">Recipe feed</h2>
+            <h2>Recipe feed</h2>
             <div class="row mb-4">
                 <?php 
                 $stmt = $sqlQuery->getcookbookdiscover();
