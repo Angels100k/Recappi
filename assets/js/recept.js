@@ -161,8 +161,10 @@ function saverecipeingredients(){
         for (var i = 0; i < converted_check.length; ++i) {
             converted_check[i].querySelector('.checkbox').checked = false;
         }
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
+        document.getElementById("myPopup").classList.toggle("show");
+        setTimeout(function() {
+            document.getElementById("myPopup").classList.toggle("show");
+        }, 4900);
     })
 }
 
