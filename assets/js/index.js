@@ -80,7 +80,6 @@ function savecategory(id,catid){
 function savepost(id,item){
   catitembutton = item;
     
-    console.log(item.children[1].src)
   if(item.children[1].src.indexOf("savefill") >= 0){
     
     savecategory(id,1)
@@ -157,7 +156,6 @@ function invitefollower(id, item){
     };
     fetch('/request/updatefollow.php', opts).then(response => response.json())
         .then(data =>{
-          console.log(data);
             if(data.OUT_result == 1){
                 item.children[0].src = "/assets/img/svg/user-minus-solid.svg";
             }else{
@@ -215,7 +213,6 @@ function klikajEdit(id, amount, ingredient, amountunit, unit, container) {
 
   document.getElementById("addIngredient").dataset.id = id;
 
-console.log(container);
 }
 
 function klikajCancel(){
@@ -251,10 +248,8 @@ function klikajDel(i, container) {
      }else {
       document.getElementById(container).innerHTML = data;
      }
-    console.log(data);
    }
      );
-  console.log(id)
 }
 
 

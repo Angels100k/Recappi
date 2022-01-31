@@ -304,7 +304,6 @@ $title = "Recappi | Profile of " . $url;
         }
     
         function execMouseDown(element) { 
-            console.log(element.childNodes[3].innerText)
             mouseRelease = 1
             document.getElementById("modalAddTag").style.display = "block";
             document.getElementById("deleteTitle").innerHTML = element.childNodes[3].innerText;

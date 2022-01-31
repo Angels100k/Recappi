@@ -534,7 +534,6 @@ addIngredient.onclick = function() {
             body: JSON.stringify(data),
         }).then(response => response.json())
         .then(result => {
-            console.log(result)
             // var array = JSON.parse(result);
 
             ingredientContainer.innerHTML = "";
@@ -571,7 +570,6 @@ publishRecipe.onclick = function() {
 }
 
 function methodStepAdd() {
-    console.log("test")
     var methodText = document.getElementById("methodText");
     var methodStep = document.getElementById("methodStep");
 
@@ -600,7 +598,6 @@ function methodStepAdd() {
 
 btnPrep.onclick = function() {
     modalPrep.style.display = "block";
-  console.log(btnPrep.innerText.length)
   document.getElementById("prepTimeHours").value = btnPrep.innerText.substring(0, 2);
   document.getElementById("prepTimeMinutes").value = btnPrep.innerText.substring(btnPrep.innerText.length - 2);
 }
@@ -617,7 +614,6 @@ acceptBtnPrep.onclick = function() {
 
 btnCook.onclick = function() {
     modalCook.style.display = "block";
-  console.log(btnCook.innerText.length)
   document.getElementById("cookTimeHours").value = btnCook.innerText.substring(0, 2);
   document.getElementById("cookTimeMinutes").value = btnCook.innerText.substring(btnCook.innerText.length - 2);
 }
@@ -720,7 +716,6 @@ btnNext.onclick = function() {
                 }        
             }
 
-            // console.log(data);
             profilesave().then(response => {
                 response.push(imgMade)
                 var data = {
@@ -892,10 +887,8 @@ deleteBtn.onclick = function(){
                }else {
                 document.getElementById(container).innerHTML = data;
                }
-              console.log(data);
              }
                );
-            console.log(id)
         }
 const shareButton = document.querySelector('.share-button');
 
