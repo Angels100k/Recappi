@@ -84,10 +84,9 @@
     let timerID;
     var dots = document.getElementById("dots").querySelectorAll(".dot");
     carousel(myIndex);
-    console.log(dots);
 
     function carousel(number) {
-        console.log(number);
+        number);
         dots.forEach(element => element.style.backgroundColor = "red");
         dots[number].style.backgroundColor = "black";
         clearTimeout(timerID)

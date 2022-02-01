@@ -1259,8 +1259,8 @@ th, td{
   /* The actual popup */
   .popup .popuptext {
     visibility: hidden;
-    width: 160px;
-    background-color: #555;
+    width: 240px;
+    background-color: var(--success);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -1269,7 +1269,7 @@ th, td{
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -80px;
+    margin-left: -120px;
   }
   
   /* Popup arrow */
@@ -1287,17 +1287,19 @@ th, td{
   /* Toggle this class - hide and show the popup */
   .popup .show {
     visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 5s;
+    animation: fadeIn 5s;
   }
   
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
-    to {opacity: 1;}
+  0%  {opacity: 0;}
+  50%  {opacity: 1;}
+  100%  {opacity: 0;}
   }
   
   @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+    0%  {opacity: 0;}
+    50%  {opacity: 1;}
+    100%  {opacity: 0;}
   }

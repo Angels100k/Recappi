@@ -97,15 +97,11 @@ function recipeConvert() {
 
     for (var i = 0; i < converted_ele.length; ++i) {
         var item = converted_ele[i];  
-        console.log(item.dataset.amountunit)
-        console.log(item.dataset.multiplier)
-        console.log(amount)
         item.innerText = Math.round((item.dataset.amountunit / item.dataset.multiplier)* (amount)* 100) / 100
     }
 }
 
 function convertrecipeadd(){
-    console.log("test");    
     var number = parseInt(document.getElementById("convertAmount").innerText) + 1
 
     document.getElementById("convertAmount").innerText = number;
@@ -136,7 +132,6 @@ function saverecipeingredients(){
             customArr.push(arr);
         }
     }
-    console.log(customArr)
     var data = {
         "ingredients": customArr,
         "amount": 1,
@@ -154,9 +149,9 @@ function saverecipeingredients(){
         for (var i = 0; i < converted_check.length; ++i) {
             converted_check[i].querySelector('.checkbox').checked = false;
         }
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
+        document.getElementById("myPopup").classList.toggle("show");
+        setTimeout(function() {
+            document.getElementById("myPopup").classList.toggle("show");
+        }, 4900);
     })
 }
-
-console.log("testing")

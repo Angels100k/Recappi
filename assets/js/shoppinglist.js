@@ -31,7 +31,6 @@ addIngredient.onclick = function() {
             body: JSON.stringify(data),
         }).then(response => response.json())
         .then(result => {
-            console.log(result)
             // var array = JSON.parse(result);
             shoppingListContainer.innerHTML = "";
             result[0].forEach(async function(rating) {

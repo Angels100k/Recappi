@@ -347,6 +347,7 @@ WHERE user.email = ?;");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+
     public function getAllTags($recipeId){
       $stmt = $this->conn->prepare("
       SELECT `tag` 

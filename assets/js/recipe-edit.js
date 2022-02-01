@@ -58,7 +58,6 @@ async function profilesave(){
 
 function linecontinue(){
     imagearray.push(username.value, email.value, bio.value);
-    console.log(imagearray);
     fetch("/request/updateprofile.php", {
         method: 'POST',
         body: JSON.stringify(imagearray),

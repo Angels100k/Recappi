@@ -21,7 +21,7 @@
     </div>
     <div id="main-body" class="main-body homepage-container row flex-wrap-no">
         <div class="main-container pagefriends">
-            <h2>following</h2>
+            <h2 style="margin-bottom: -2rem; ">following</h2>
             <div class="row mb-4">
                 <?php 
                     $stmt = $sqlQuery->getfriends();

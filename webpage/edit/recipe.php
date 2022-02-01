@@ -262,6 +262,7 @@ if($link === ""){
                 </div>
                 <div class="txt-subheader">
                     <div>1 <div class="rf">20</div></div>
+                    <p>Current Amount: <span id="huidigeWaarde">  </span></p>
                     
                 </div>
             </div>
@@ -533,7 +534,6 @@ addIngredient.onclick = function() {
             body: JSON.stringify(data),
         }).then(response => response.json())
         .then(result => {
-            console.log(result)
             // var array = JSON.parse(result);
 
             ingredientContainer.innerHTML = "";
@@ -570,7 +570,6 @@ publishRecipe.onclick = function() {
 }
 
 function methodStepAdd() {
-    console.log("test")
     var methodText = document.getElementById("methodText");
     var methodStep = document.getElementById("methodStep");
 
@@ -599,7 +598,6 @@ function methodStepAdd() {
 
 btnPrep.onclick = function() {
     modalPrep.style.display = "block";
-  console.log(btnPrep.innerText.length)
   document.getElementById("prepTimeHours").value = btnPrep.innerText.substring(0, 2);
   document.getElementById("prepTimeMinutes").value = btnPrep.innerText.substring(btnPrep.innerText.length - 2);
 }
@@ -616,7 +614,6 @@ acceptBtnPrep.onclick = function() {
 
 btnCook.onclick = function() {
     modalCook.style.display = "block";
-  console.log(btnCook.innerText.length)
   document.getElementById("cookTimeHours").value = btnCook.innerText.substring(0, 2);
   document.getElementById("cookTimeMinutes").value = btnCook.innerText.substring(btnCook.innerText.length - 2);
 }
@@ -679,6 +676,13 @@ if(document.getElementById("container1").style.display != 'none' ){
     pageTitle.innerText = 'add recipe';
 }
 
+var slider = document.getElementById("rangePortions");
+var output = document.getElementById("huidigeWaarde");
+output.innerHTML = slider.value;
+
+slider.oninput = function (){
+    output.innerHTML = this.value;
+}
 
 
 btnNext.onclick = function() {
@@ -712,7 +716,6 @@ btnNext.onclick = function() {
                 }        
             }
 
-            // console.log(data);
             profilesave().then(response => {
                 response.push(imgMade)
                 var data = {
@@ -884,11 +887,24 @@ deleteBtn.onclick = function(){
                }else {
                 document.getElementById(container).innerHTML = data;
                }
-              console.log(data);
              }
                );
-            console.log(id)
         }
+const shareButton = document.querySelector('.share-button');
+
+shareButton.addEventListener('click', event => {
+  if (navigator.share) { 
+   navigator.share({
+      title: 'Recipe',
+      url: '<?php  echo "http://" . $_SERVER['SERVER_NAME'] .'/recipe/'.$urlpaths[3]?>'
+    }).then(() => {
+      console.log('Thanks for sharing!');
+    })
+    .catch(console.error);
+    } else {
+        alert("Coudnt share, try again later")
+    }
+});
 </script>
 
 <script src="/assets/js/recipe-edit.js"></script>

@@ -20,7 +20,7 @@
         </a>
 
         <!-- settings -->
-        <a class="icon icon-save" id="icon-save" onclick="">
+        <a class="icon icon-save share-button" id="icon-save" onclick="">
             <img style="height: 50%; width: 50%;" src="/assets/img/svg/save-icon.svg" alt="cog wheel icon">
         </a>
 
