@@ -157,14 +157,14 @@ $title = "Recappi | Profile of " . $url;
                 <?php 
                 } ?>
                 <div class="row">
-                    <h2 class="text-bold"><?= dd_img("bars", "svg", '18px', '18px') ?> <span class="ml-05">Cookbook</span></h2>
+                    <h2 class="text-bold"><?= dd_img("bars", "svg", '18px', '18px') ?> <span class="ml-05">Cookbook tew</span></h2>
                 </div>
                 <div class="row mb-4">
                     <?php while ($row = $cookbook->fetch()) : ?>
-                        <a href="/profile/<?= $url ?>/<?= $row[0] ?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
+                        <a href="/profile/<?= $url ?>/<?= $row["name"] ?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                             <div>
-                                <span class="text-semibold"><?= $row[0] ?></span>
-                                <div class="txt-subheader" style="font-size: 0.6875rem"><?= $row[1] ?> recipes</div>
+                                <span class="text-semibold"><?= $row["name"] ?></span>
+                                <div class="txt-subheader" style="font-size: 0.6875rem"><?= $row["amountrecepts"] + $row["amountreceptssaved"]  ?> recipes</div>
                             </div>
                         </a>
                     <?php endwhile; ?>

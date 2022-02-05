@@ -1,4 +1,5 @@
 <?php 
+
 class Sql {
   // set varriable connnection so it can get accesst only in this file in every function
     private $conn;
@@ -7,7 +8,7 @@ class Sql {
     public function __construct($db) {
       // the variable $db is the data from db.php saved in the conn variable for global use
         $this->conn = $db;
-    }
+  }
 
     public function getprofile($user){
       $stmt = $this->conn->prepare("
@@ -19,9 +20,9 @@ class Sql {
       user.imgtype AS `imgtype`, 
       user.email AS `email`, 
       user.bio AS `bio`,
-      ufn_recept_count(id) AS `recepts`, 
-      ufn_follower_count(id) AS `followers`, 
-      ufn_following_count(id) AS `following`,
+      (select COUNT(*) from recipe where recipe.userid = user.id AND recipe.draft = 0) AS `recepts`, 
+      (select COUNT(*) from follower	where user1 = user.id) AS `followers`, 
+      (select COUNT(*) from follower	where user2 = user.id) AS `following`, 
       (SELECT COUNT(*) FROM follower WHERE user1 = ? AND user2 = user.ID ) as personfollow
       FROM user WHERE user.name = ? GROUP BY 1, 2, 3, 4, 5");
       $stmt->execute([$_SESSION["id"], $user]); 
@@ -56,9 +57,11 @@ class Sql {
 
     public function getfriends(){
       $stmt = $this->conn->prepare("
-      SELECT user.name AS `name`, user.username AS `username`, user.image AS `image`, user.imgtype AS `imgtype`, ufn_recept_count(user.id) AS `recepts`  FROM `follower` 
-INNER JOIN user on user.id = user2
-WHERE user1 = ?");
+      SELECT user.name AS `name`, user.username AS `username`, user.image AS `image`, user.imgtype AS `imgtype`, 
+      (select COUNT(*) from recipe where recipe.userid = user.id AND recipe.draft = 0) AS `recepts`  
+      FROM `follower` 
+      INNER JOIN user on user.id = user2
+      WHERE user1 = ?");
       $stmt->execute([$_SESSION["id"]]); 
       return $stmt; 
     }
@@ -157,8 +160,9 @@ WHERE user.email = ?;");
     public function getcookbooknotdiscover(){
         $stmt = $this->conn->prepare("
       SELECT discovery.order, recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
-      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
-      ufn_reactions_count(recipe.id) AS repsonses 
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, 
+      (select COUNT(*)	from liked	where receptid = recipe.id) AS likes,
+      (select COUNT(*) from comment where recipeid = recipe.id) AS repsonses 
       FROM `discovery`
       LEFT JOIN recipe ON (recipe.id = discovery.receptid)
       INNER JOIN user on user.id = recipe.userid
@@ -173,8 +177,10 @@ WHERE user.email = ?;");
     public function getcookbookcat($cat, $user){
       $stmt = $this->conn->prepare("
       SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
-      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
-      ufn_reactions_count(recipe.id) AS repsonses FROM `recipe`
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, 
+      (select COUNT(*)	from liked	where receptid = recipe.id) AS likes,
+      (select COUNT(*) from comment where recipeid = recipe.id) AS repsonses 
+      FROM `recipe`
       INNER JOIN category on category.name = ?
       INNER JOIN user on user.name = ?
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
@@ -183,8 +189,10 @@ WHERE user.email = ?;");
       WHERE recipe.userid = user.id AND recipe.categoryid = category.id AND recipe.draft = 0
       UNION ALL
       SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, recipe.userid AS userid, recipe_image.image,
-      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
-      ufn_reactions_count(recipe.id) AS repsonses FROM `saved_recipe`
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, 
+      (select COUNT(*)	from liked	where receptid = recipe.id) AS likes,
+      (select COUNT(*) from comment where recipeid = recipe.id) AS repsonses 
+      FROM `saved_recipe`
       INNER JOIN category on category.name = ?
       INNER JOIN user on user.name = ?
       INNER JOIN recipe ON (recipe.id = saved_recipe.receptid)
@@ -197,8 +205,9 @@ WHERE user.email = ?;");
     public function getcookbookdiscover(){
       $stmt = $this->conn->prepare("
       SELECT discovery.order, recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
-      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
-      ufn_reactions_count(recipe.id) AS repsonses 
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, 
+      (select COUNT(*)	from liked	where receptid = recipe.id) AS likes,
+      (select COUNT(*) from comment where recipeid = recipe.id) AS repsonses 
       FROM `discovery`
       LEFT JOIN recipe ON (recipe.id = discovery.receptid)
       INNER JOIN user on user.id = recipe.userid
@@ -243,7 +252,9 @@ WHERE user.email = ?;");
     }
     public function getcookbookamount($user){
       $stmt = $this->conn->prepare("
-      select category.name, ufn_cat_count(user.id, category.id) as amountrecepts
+      select category.name, 
+      (select COUNT(*) from recipe where userid = user.id AND draft = 0 AND categoryid = category.id) as amountrecepts,
+      (SELECT COUNT(*) from saved_recipe where userid = user.id AND categoryid = category.id) as amountreceptssaved
       from user
       RIGHT JOIN category ON 1
       WHERE user.name = ?
@@ -253,7 +264,9 @@ WHERE user.email = ?;");
     }
     public function getcookbookamountprofile($user){
       $stmt = $this->conn->prepare("
-      select user.name as username, category.name, ufn_cat_count(user.id, category.id) as amountrecepts
+      select user.name as username, category.name, 
+      (select COUNT(*) from recipe where userid = user.id AND draft = 0 AND categoryid = category.id) as amountrecepts,
+      (SELECT COUNT(*) from saved_recipe where userid = user.id AND categoryid = category.id) as amountreceptssaved
       from user
       RIGHT JOIN category ON 1
       WHERE user.id = ?
@@ -281,7 +294,8 @@ WHERE user.email = ?;");
       $stmt = $this->conn->prepare("
       SELECT recipe.recipe AS recipe, recipe.preptime, recipe.portion, recipe.waittime, recipe.cooktime, recipe.description, recipe.userid as userid, recipe.id as id, recipe.draft as draft,
       user.id as userid,
-      ufn_likes_count(recipe.id) AS likes, ufn_reactions_count(recipe.id) AS repsonses,
+      (select COUNT(*)	from liked	where receptid = recipe.id) AS likes,
+      (select COUNT(*) from comment where recipeid = recipe.id) AS repsonses,
       (SELECT COUNT(*) FROM saved_recipe WHERE  saved_recipe.receptid = recipe.id AND saved_recipe.userid = ?) AS saved,
       (SELECT COUNT(*) FROM liked WHERE  liked.receptid = recipe.id AND liked.userid = ?) AS liked,
       user.name, user.username, user.image, user.imgtype
@@ -363,8 +377,9 @@ WHERE user.email = ?;");
       $item = "%" . $searchitem . "%";
       $stmt = $this->conn->prepare("
       SELECT recipe.recipe, recipe.id, recipe.preptime, recipe.difficulty, recipe.waittime, recipe.cooktime, user.id AS userid, recipe_image.image,
-      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, ufn_likes_count(recipe.id) AS likes,
-      ufn_reactions_count(recipe.id) AS repsonses 
+      recipe_image.type AS type, liked.id AS likeid, saved_recipe.id AS saveid, 
+      (select COUNT(*)	from liked	where receptid = recipe.id) AS likes,
+      (select COUNT(*) from comment where recipeid = recipe.id) AS repsonses
       FROM `recipe`
       INNER JOIN user on (user.id = recipe.userid and user.private = 0)
       LEFT JOIN recipe_image ON (recipe_image.recipeid = recipe.id AND recipe_image.order = 0)
@@ -377,14 +392,14 @@ WHERE user.email = ?;");
     public function getsearchresultpeople($searchitem){
       $item = "%" . $searchitem . "%";
       $stmt = $this->conn->prepare("
-      SELECT `ID`, `email`, `name`, `username`, `image`, `imgtype`, `bio`, `private`, ufn_recept_count(id) AS `recepts` FROM `user` WHERE private = 0 AND username LIKE ? ORDER BY name DESC LIMIT 5");
+      SELECT `ID`, `email`, `name`, `username`, `image`, `imgtype`, `bio`, `private`, (select COUNT(*) from recipe where recipe.userid = user.id AND recipe.draft = 0) AS `recepts` FROM `user` WHERE private = 0 AND username LIKE ? ORDER BY name DESC LIMIT 5");
       $stmt->execute([$item]); 
       return $stmt;
     }
     public function getsearchresultfriends($searchitem){
       $item = "%" . $searchitem . "%";
       $stmt = $this->conn->prepare("
-      SELECT `ID`, `email`, `name`, `username`, `image`, `imgtype`, `bio`, `private`, ufn_recept_count(id) AS `recepts` FROM `user` WHERE private = 0 AND ID <> ? AND username LIKE ? ORDER BY name DESC");
+      SELECT `ID`, `email`, `name`, `username`, `image`, `imgtype`, `bio`, `private`, (select COUNT(*) from recipe where recipe.userid = user.id AND recipe.draft = 0) AS `recepts` FROM `user` WHERE private = 0 AND ID <> ? AND username LIKE ? ORDER BY name DESC");
       $stmt->execute([$_SESSION["id"],$item]); 
       return $stmt;
     }

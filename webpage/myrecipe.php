@@ -61,7 +61,7 @@ while($row = $stmt->fetch()){
                             <a href="/profile/<?=$row["username"]?>/<?=$row["name"]?>" class="txt-black shadow col-12 bg-white p-1 border-small bs-bb mt-05">
                                 <div>
                                     <span class="text-semibold"><?=$row["name"]?></span>
-                                    <div class="txt-subheader" style="font-size: 0.7650rem"><?=$row["amountrecepts"]?> recipes</div>
+                                    <div class="txt-subheader" style="font-size: 0.7650rem"><?=$row["amountrecepts"] + $row["amountreceptssaved"]?> recipes</div>
                                 </div>
                             </a>
                         <?php endwhile;?>

@@ -4,7 +4,6 @@ $y = 0;
 $url = $urlpaths[2] ?? "";
 $cat = $urlpaths[3] ?? "";
 $email = "";
-$cookbook = "";
 $profileImage = "";
 $profileImagetype = "";
 $followimg = "";
@@ -19,7 +18,6 @@ $followers = "";
 if ($url != "") {
     $x = 1;
     $stmt = $sqlQuery->getprofile($url);
-    $cookbook = $sqlQuery->getcookbookamount($url);
 
     while ($row = $stmt->fetch()) {
         $email = $row['email'];
