@@ -46,7 +46,7 @@ function likepost(id, item){
     }else {
       item.children[0].src = "/assets/img/svg/heartempty.svg";
     }
-        item.children[1].innerHTML = data.OUT_Count;
+        item.children[1].innerHTML = data.likes;
    }
      );
 }

@@ -3,11 +3,13 @@
 class Sql {
   // set varriable connnection so it can get accesst only in this file in every function
     private $conn;
+    private $pro;
 
     // __construct is used on startup when the class is being called
     public function __construct($db) {
       // the variable $db is the data from db.php saved in the conn variable for global use
         $this->conn = $db;
+        $this->pro = new procedures($db);
   }
 
     public function getprofile($user){
@@ -66,28 +68,16 @@ class Sql {
       return $stmt; 
     }
     public function updatefollow($followid){
-        $userid = $_SESSION["id"];
-        $stmt = $this->conn->prepare("
-        CALL updatefollowing(?,?,@id);
-        SELECT @id;");
-        $stmt->execute([$userid, $followid]);
+        $stmt = $this->pro->updatefollowing($followid);
         return $stmt;
     }
 
     public function updatelike($postid){
-      $userid = $_SESSION["id"];
-      $stmt = $this->conn->prepare("
-        CALL likePost(?,?,@id, @count);
-        SELECT @id,@count;");
-      $stmt->execute([$postid, $userid]); 
+      $stmt = $this->pro->likePost($postid);
       return $stmt;
     }
     public function updategrocery($postid){
-      $userid = $_SESSION["id"];
-      $stmt = $this->conn->prepare("
-        CALL updategrocery(?,?,@id);
-        SELECT @id;");
-      $stmt->execute([$postid, $userid]); 
+      $stmt = $this->pro->updategrocery($postid);
       return $stmt;
     }
     public function deletegrocery($postid){
@@ -106,11 +96,7 @@ class Sql {
     }
 
     public function updatesave($postid, $catid){
-      $userid = $_SESSION["id"];
-      $stmt = $this->conn->prepare("
-        CALL savePost(?,?,?,@id);
-        SELECT @id;");
-      $stmt->execute([$postid,$catid, $userid]); 
+      $stmt = $this->pro->savePost($postid, $catid);
       return $stmt;
     }
 
@@ -142,11 +128,8 @@ WHERE amount.recipeid = ?");
     }
 
     public function registerUser($name, $username, $email, $hashedPassword){
-      $stmt = $this->conn->prepare("
-      CALL registeruser(?,?,?,?,@out);
-      SELECT @out;");
-    $stmt->execute([$name, $username, $email, $hashedPassword]); 
-    return $stmt;
+      $stmt = $this->pro->registeruser($name,$username, $email, $hashedPassword);
+      return $stmt;
     }
 
     public function loginUser($email){
@@ -283,8 +266,7 @@ WHERE user.email = ?;");
 
     public function addToShoppingList($data){
       foreach ($data["ingredients"] as &$value) {
-        $stmt = $this->conn->prepare("CALL addShoppingList(?,?,?,?,?,?);");
-        $stmt->execute([$value[0], $_SESSION["id"], $data["amount"],0,$value[1], $value[2]]); 
+        $stmt = $this->pro->addShoppingList($value[0], $data["amount"],0,$value[1], $value[2]);
       }
       
     return $stmt;
@@ -468,16 +450,13 @@ WHERE user.email = ?;");
     }
 
     public function addIngredient($json){
-      $stmt = $this->conn->prepare("
-      CALL addIngredient(?,?,?,?,?,?,@out);
-      SELECT @out;");
-    $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientAmount"], $json["ingredientUntit"], $json["id"]]); 
-    return $stmt;
+      $result = $this->pro->addIngredient($json);
+      return $result;
     }
 
     public function addIngredientShoppinglist($json){
-      $stmt = $this->conn->prepare("CALL addNewShoppingList(?,?,?,?,?,?,?);");
-      $stmt->execute([$json["ingredientDesc"], $_SESSION["id"], $json["recipeId"], $json["ingredientVolume"], $json["ingredientAmount"], $json["ingredientUntit"],  $json["id"]]); 
+      $result = $this->pro->addNewShoppingList($json);
+      return $result;
     }
 
     public function currentIngredientlistRecipe($recipeId){

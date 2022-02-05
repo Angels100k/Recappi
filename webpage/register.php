@@ -22,12 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["id"] = $row["OUT_result"];
                 header("Location: /edit/profile");
             }
-            var_dump($row);
         endwhile;
-    }else {
-        var_dump("error");
-        var_dump($password);
-        var_dump($password2);
     }
 }
 $url = $urlpaths[2] ?? "";
