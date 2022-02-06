@@ -10,7 +10,7 @@ function dd_img($image, $type, $width = '', $height = '', $style = '', $class = 
         $onclick_content = $onclick != "" ? " onclick='" . $onclick . "'" : "";
         $id_content = $id != "" ? " id='" . $id . "'" : "";
 
-        return '<img '. $custom . " ".$id_content.' src="'.$src.'" onerror="imgerror(this, `'.$errsrc.'`); test(`'.$image . "`,`" . $type.'`)" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
+        return '<img '. $custom . " ".$id_content.' src="'.$src.'" onerror="imgerror(this, `'.$errsrc.'`);" width="'.$width.'" height="'.$height.'" '.$style_content. $class_content. $onclick_content.'>';
     }
     else {
         $src = "/assets/img/svg/".$image . "." . $type;

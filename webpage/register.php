@@ -101,11 +101,7 @@ if($x === 0){
 
 <?php
 if($error == 1){
-    echo '
-                    <script>
-                        document.getElementById("password").setCustomValidity("passwords do not match");
-                      </script>
-                    ';
+    echo '<script>alert("Username exists")</script>';
 }
 }?>
 

@@ -180,12 +180,12 @@ class procedures {
     }
 
     if($CURRENTID == null){
-        $OUT_result = 16; 
+        $OUT_result = 1; 
     }else {
         $OUT_result = 0;
     }
     
-    if($OUT_result == 16){
+    if($OUT_result == 1){
         $stmt = $this->conn->prepare("INSERT INTO `user`(`email`, `name`, `username`, `password`) VALUES (?, ?, ?, ?)");
         $stmt->execute([$email,$name, $username, $password]); 
 
