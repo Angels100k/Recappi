@@ -5,7 +5,7 @@ window.onload = () => {
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/sw.js');
+      .register('/assets/js/sw.js');
   }
 }
 
@@ -22,7 +22,7 @@ function likepost(id, item){
   };
    fetch('/request/updatelike.php', opts).then(response => response.json())
    .then(data =>{
-     if(data.OUT_result == 1){
+     if(data.OUT_result === 1){
       item.children[0].src = "/assets/img/svg/heartfill.svg";
     }else {
       item.children[0].src = "/assets/img/svg/heartempty.svg";
@@ -48,7 +48,7 @@ function savecategory(id,catid){
     fetch('/request/updatesave.php', opts).then(response => response.json())
     .then(data =>{
       
-      if(data.OUT_result == 1){
+      if(data.OUT_result === 1){
         catitembutton.children[1].src = "/assets/img/svg/savefill.svg";
         document.getElementById('modalCategory').remove();
     }else {
@@ -107,12 +107,12 @@ function savepost(id,item){
 }
 
 function imgerror(item, url){
-  if(url != "/assets/img/."){
+  if(url !== "/assets/img/."){
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', url, false);
     xhr.send();
      
-    if (xhr.status == "404") {
+    if (xhr.status === "404") {
         item.src = "/assets/img/placeholder.png";
     } else {
         item.src = url;
@@ -137,7 +137,7 @@ function invitefollower(id, item){
     };
     fetch('/request/updatefollow.php', opts).then(response => response.json())
         .then(data =>{
-            if(data.OUT_result == 1){
+            if(data.OUT_result === 1){
                 item.children[0].src = "/assets/img/svg/user-minus-solid.svg";
             }else{
                 item.children[0].src = "/assets/img/svg/user-plus-solid.svg";
@@ -161,7 +161,7 @@ function klikaj(i) {
   };
    fetch('/request/updategrocerys.php', opts).then(response => response.json())
    .then(data =>{
-     if(data.OUT_result == 1){
+     if(data.OUT_result === 1){
       y.checked = true;
     }else {
       y.checked = false;
@@ -184,13 +184,13 @@ function klikadd(i) {
 
 
 function klikajEdit(id, amount, ingredient, amountunit, unit, container) {
-  document.getElementById("ingredientAmount").value = amount
-  document.getElementById("ingredientDesc").value = ingredient
-  document.getElementById("ingredientVolume").value = amountunit
-  document.getElementById("ingredientUntit").value = unit
+  document.getElementById("ingredientAmount").value = amount;
+  document.getElementById("ingredientDesc").value = ingredient;
+  document.getElementById("ingredientVolume").value = amountunit;
+  document.getElementById("ingredientUntit").value = unit;
 
   document.getElementById("addIngredient").innerHTML = "Update ingredient";
-  document.getElementById("cancelIngredient").classList.remove("d-none");;
+  document.getElementById("cancelIngredient").classList.remove("d-none");
 
   document.getElementById("addIngredient").dataset.id = id;
 
@@ -203,7 +203,7 @@ function klikajCancel(){
   document.getElementById("ingredientUntit").value = ""
 
   document.getElementById("addIngredient").innerHTML = "Add ingredient";
-  document.getElementById("cancelIngredient").classList.add("d-none");;
+  document.getElementById("cancelIngredient").classList.add("d-none");
 
   document.getElementById("addIngredient").dataset.id = 0;
 }
@@ -223,7 +223,7 @@ function klikajDel(i, container) {
   };
    fetch('/request/deletegrocerys.php', opts).then(response => response.json())
    .then(data =>{
-     if(data == ""){
+     if(data === ""){
       document.getElementById(container).innerHTML = "No current items in shopping list";
 
      }else {
